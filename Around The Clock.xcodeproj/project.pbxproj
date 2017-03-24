@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94246E3C1A3D55240091604E /* Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94246E3B1A3D55240091604E /* Watch.swift */; };
+		946AEFFE1DA482DC00F817F9 /* AlarmClockScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */; };
+		946AEFFF1DA482DC00F817F9 /* CountdownScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */; };
+		946AF0001DA482DC00F817F9 /* StopwatchScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */; };
+		946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F31A0573B300D80296 /* AppDelegate.swift */; };
+		946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */; };
+		946E00FB1A0573B300D80296 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FA1A0573B300D80296 /* Images.xcassets */; };
+		946E00FE1A0573B300D80296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FC1A0573B300D80296 /* Main.storyboard */; };
+		946E010A1A0573B300D80296 /* Around_The_ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E01091A0573B300D80296 /* Around_The_ClockTests.swift */; };
+		946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */; };
+		947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */; };
+		94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94725DF91A4113F8003A7186 /* TabViewController.swift */; };
+		9481AA581A0993EA000674AE /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481AA571A0993EA000674AE /* Alarm.swift */; };
+		9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */; };
+		94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC671A45F33B003C09AA /* CountdownViewController.swift */; };
+		94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC691A45F473003C09AA /* Countdown.swift */; };
+		94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */; };
+		94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */; };
+		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
+		94D835551A6495D500C1B932 /* WakeTheThump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 94D835541A6495D500C1B932 /* WakeTheThump.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		946E01041A0573B300D80296 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 946E00E61A0573B300D80296 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 946E00ED1A0573B300D80296;
+			remoteInfo = "Around The Clock";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		94246E3B1A3D55240091604E /* Watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watch.swift; sourceTree = "<group>"; };
+		944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AlarmClockScreenshot.jpg; sourceTree = "<group>"; };
+		946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot.jpg; sourceTree = "<group>"; };
+		946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot.jpg; sourceTree = "<group>"; };
+		946E00EE1A0573B300D80296 /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946E00F21A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		946E00F31A0573B300D80296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		946E00F81A0573B300D80296 /* Around_The_Clock.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Around_The_Clock.xcdatamodel; sourceTree = "<group>"; };
+		946E00FA1A0573B300D80296 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		946E00FD1A0573B300D80296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		946E01031A0573B300D80296 /* Around The ClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Around The ClockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946E01081A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		946E01091A0573B300D80296 /* Around_The_ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockTests.swift; sourceTree = "<group>"; };
+		946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmConfigViewController.swift; sourceTree = "<group>"; };
+		947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
+		94725DF91A4113F8003A7186 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		9481AA571A0993EA000674AE /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmExecutionViewController.swift; sourceTree = "<group>"; };
+		948AC4051B92695500B1E5D1 /* Around_The_Clock 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Around_The_Clock 2.xcdatamodel"; sourceTree = "<group>"; };
+		94A7BC671A45F33B003C09AA /* CountdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
+		94A7BC691A45F473003C09AA /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownExecutionViewController.swift; sourceTree = "<group>"; };
+		94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownConfigViewController.swift; sourceTree = "<group>"; };
+		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
+		94D835541A6495D500C1B932 /* WakeTheThump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WakeTheThump.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		946E00EB1A0573B300D80296 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		946E01001A0573B300D80296 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		946E00E51A0573B300D80296 = {
+			isa = PBXGroup;
+			children = (
+				94C62B521B30FE5700F5DE72 /* Screenshots */,
+				946E00F01A0573B300D80296 /* Around The Clock */,
+				946E01061A0573B300D80296 /* Around The ClockTests */,
+				946E00EF1A0573B300D80296 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		946E00EF1A0573B300D80296 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				946E00EE1A0573B300D80296 /* Around The Clock.app */,
+				946E01031A0573B300D80296 /* Around The ClockTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		946E00F01A0573B300D80296 /* Around The Clock */ = {
+			isa = PBXGroup;
+			children = (
+				94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */,
+				946E29E31A12FE6200A8C9D2 /* Sounds */,
+				94C7C3731A0698C000EECD8D /* View Controllers */,
+				946E00F31A0573B300D80296 /* AppDelegate.swift */,
+				946E00FA1A0573B300D80296 /* Images.xcassets */,
+				946E00FC1A0573B300D80296 /* Main.storyboard */,
+				946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */,
+				94A7BC691A45F473003C09AA /* Countdown.swift */,
+				94246E3B1A3D55240091604E /* Watch.swift */,
+				9481AA571A0993EA000674AE /* Alarm.swift */,
+				946E00F11A0573B300D80296 /* Supporting Files */,
+			);
+			path = "Around The Clock";
+			sourceTree = "<group>";
+		};
+		946E00F11A0573B300D80296 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				946E00F21A0573B300D80296 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		946E01061A0573B300D80296 /* Around The ClockTests */ = {
+			isa = PBXGroup;
+			children = (
+				946E01091A0573B300D80296 /* Around_The_ClockTests.swift */,
+				946E01071A0573B300D80296 /* Supporting Files */,
+			);
+			path = "Around The ClockTests";
+			sourceTree = "<group>";
+		};
+		946E01071A0573B300D80296 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				946E01081A0573B300D80296 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		946E29E31A12FE6200A8C9D2 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				94D835541A6495D500C1B932 /* WakeTheThump.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		94C62B521B30FE5700F5DE72 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */,
+				946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */,
+				946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		94C7C3731A0698C000EECD8D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				94725DF91A4113F8003A7186 /* TabViewController.swift */,
+				944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */,
+				9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */,
+				946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */,
+				947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */,
+				94A7BC671A45F33B003C09AA /* CountdownViewController.swift */,
+				94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */,
+				94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		946E00ED1A0573B300D80296 /* Around The Clock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The Clock" */;
+			buildPhases = (
+				946E00EA1A0573B300D80296 /* Sources */,
+				946E00EB1A0573B300D80296 /* Frameworks */,
+				946E00EC1A0573B300D80296 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Around The Clock";
+			productName = "Around The Clock";
+			productReference = 946E00EE1A0573B300D80296 /* Around The Clock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		946E01021A0573B300D80296 /* Around The ClockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The ClockTests" */;
+			buildPhases = (
+				946E00FF1A0573B300D80296 /* Sources */,
+				946E01001A0573B300D80296 /* Frameworks */,
+				946E01011A0573B300D80296 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				946E01051A0573B300D80296 /* PBXTargetDependency */,
+			);
+			name = "Around The ClockTests";
+			productName = "Around The ClockTests";
+			productReference = 946E01031A0573B300D80296 /* Around The ClockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		946E00E61A0573B300D80296 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Ryan Angelo";
+				TargetAttributes = {
+					946E00ED1A0573B300D80296 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 8L34TTJ3PA;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					946E01021A0573B300D80296 = {
+						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
+						TestTargetID = 946E00ED1A0573B300D80296;
+					};
+				};
+			};
+			buildConfigurationList = 946E00E91A0573B300D80296 /* Build configuration list for PBXProject "Around The Clock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 946E00E51A0573B300D80296;
+			productRefGroup = 946E00EF1A0573B300D80296 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				946E00ED1A0573B300D80296 /* Around The Clock */,
+				946E01021A0573B300D80296 /* Around The ClockTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		946E00EC1A0573B300D80296 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946E00FB1A0573B300D80296 /* Images.xcassets in Resources */,
+				94D835551A6495D500C1B932 /* WakeTheThump.mp3 in Resources */,
+				946AEFFE1DA482DC00F817F9 /* AlarmClockScreenshot.jpg in Resources */,
+				946E00FE1A0573B300D80296 /* Main.storyboard in Resources */,
+				946AEFFF1DA482DC00F817F9 /* CountdownScreenshot.jpg in Resources */,
+				946AF0001DA482DC00F817F9 /* StopwatchScreenshot.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		946E01011A0573B300D80296 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		946E00EA1A0573B300D80296 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */,
+				94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */,
+				947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */,
+				94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */,
+				9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */,
+				94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */,
+				94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */,
+				9481AA581A0993EA000674AE /* Alarm.swift in Sources */,
+				94246E3C1A3D55240091604E /* Watch.swift in Sources */,
+				94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */,
+				94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */,
+				946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */,
+				946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		946E00FF1A0573B300D80296 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946E010A1A0573B300D80296 /* Around_The_ClockTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		946E01051A0573B300D80296 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 946E00ED1A0573B300D80296 /* Around The Clock */;
+			targetProxy = 946E01041A0573B300D80296 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		946E00FC1A0573B300D80296 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				946E00FD1A0573B300D80296 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		946E010B1A0573B300D80296 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		946E010C1A0573B300D80296 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		946E010E1A0573B300D80296 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Around The Clock/Around The Clock.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "";
+				INFOPLIST_FILE = "Around The Clock/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		946E010F1A0573B300D80296 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Around The Clock/Around The Clock.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "";
+				INFOPLIST_FILE = "Around The Clock/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
+		946E01111A0573B300D80296 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Around The ClockTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
+			};
+			name = Debug;
+		};
+		946E01121A0573B300D80296 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Around The ClockTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		946E00E91A0573B300D80296 /* Build configuration list for PBXProject "Around The Clock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				946E010B1A0573B300D80296 /* Debug */,
+				946E010C1A0573B300D80296 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The Clock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				946E010E1A0573B300D80296 /* Debug */,
+				946E010F1A0573B300D80296 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The ClockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				946E01111A0573B300D80296 /* Debug */,
+				946E01121A0573B300D80296 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				948AC4051B92695500B1E5D1 /* Around_The_Clock 2.xcdatamodel */,
+				946E00F81A0573B300D80296 /* Around_The_Clock.xcdatamodel */,
+			);
+			currentVersion = 946E00F81A0573B300D80296 /* Around_The_Clock.xcdatamodel */;
+			path = Around_The_Clock.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 946E00E61A0573B300D80296 /* Project object */;
+}

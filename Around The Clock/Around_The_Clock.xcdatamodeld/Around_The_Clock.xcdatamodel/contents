@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Alarm" representedClassName="Around_The_Clock.Alarm" syncable="YES">
+        <attribute name="alarmstate" attributeType="String" defaultValueString="off" syncable="YES"/>
+        <attribute name="alarmtime" attributeType="Date" defaultDateTimeInterval="0" defaultValueString="Alarm Time" syncable="YES"/>
+        <attribute name="audio" optional="YES" attributeType="String" defaultValueString="WakeTheThump.mp3" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="Alarm" syncable="YES"/>
+        <attribute name="uid" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Countdown" representedClassName="Around_The_Clock.Countdown" syncable="YES">
+        <attribute name="audio" optional="YES" attributeType="String" defaultValueString="WakeTheThump.mp3" syncable="YES"/>
+        <attribute name="countdownstate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countdowntime" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startcountdowntime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Watch" representedClassName="Around_The_Clock.Watch" syncable="YES">
+        <attribute name="elapsedtime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pausetime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="splits" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="starttime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="watchstate" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Alarm" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Countdown" positionX="-63" positionY="54" width="128" height="133"/>
+        <element name="Watch" positionX="-63" positionY="18" width="128" height="148"/>
+    </elements>
+</model>
