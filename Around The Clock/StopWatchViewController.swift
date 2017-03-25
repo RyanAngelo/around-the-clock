@@ -333,12 +333,10 @@ class StopWatchViewController: NSViewController {
         let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Watch")
         var watch_obj: Watch
         do{
-            results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
             watchrequest.returnsDistinctResults = true
             watchrequest.returnsObjectsAsFaults = false
             watchrequest.predicate = NSPredicate(format: "uid=%@", identifier)
-
-            
+            results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
         }
         catch {
             print("Unable to load existing stopwatch.")
