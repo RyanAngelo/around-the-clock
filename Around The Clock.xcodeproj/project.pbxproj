@@ -25,8 +25,8 @@
 		94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC691A45F473003C09AA /* Countdown.swift */; };
 		94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */; };
 		94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */; };
+		94C534D01E8C9612001A980A /* WakeUpShakeUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */; };
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
-		94D835551A6495D500C1B932 /* WakeTheThump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 94D835541A6495D500C1B932 /* WakeTheThump.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownExecutionViewController.swift; sourceTree = "<group>"; };
 		94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownConfigViewController.swift; sourceTree = "<group>"; };
 		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
-		94D835541A6495D500C1B932 /* WakeTheThump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WakeTheThump.mp3; sourceTree = "<group>"; };
+		94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = WakeUpShakeUp.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 		946E29E31A12FE6200A8C9D2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				94D835541A6495D500C1B932 /* WakeTheThump.mp3 */,
+				94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				946E00FB1A0573B300D80296 /* Images.xcassets in Resources */,
-				94D835551A6495D500C1B932 /* WakeTheThump.mp3 in Resources */,
+				94C534D01E8C9612001A980A /* WakeUpShakeUp.m4a in Resources */,
 				946AEFFE1DA482DC00F817F9 /* AlarmClockScreenshot.jpg in Resources */,
 				946E00FE1A0573B300D80296 /* Main.storyboard in Resources */,
 				946AEFFF1DA482DC00F817F9 /* CountdownScreenshot.jpg in Resources */,
