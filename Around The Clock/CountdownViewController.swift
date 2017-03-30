@@ -158,28 +158,30 @@ class CountdownViewController: NSViewController {
     }
     
     @IBAction func updateinformation(_ sender: AnyObject) {
-        let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
-        let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
-        if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
-            var strHours: String
-            var strMinutes: String
-            var strSeconds: String
-            let hour=self.hourstext.integerValue
-            let min=self.minstext.integerValue
-            let second=self.secondstext.integerValue
-            let startcountdowntime=Int((hour*60*60)+(min*60)+second)
-            countdown_obj.countdowntime=startcountdowntime
-            countdown_obj.startcountdowntime=startcountdowntime
-            let strFormat = self.calculateDisplayTime(countdown_obj.countdowntime)
-            strHours=strFormat.strHours as String
-            strMinutes=strFormat.strMinutes as String
-            strSeconds=strFormat.strSeconds as String
-            //dispatch UI task on the main queue
-            DispatchQueue.main.async {
-                self.timelabel.stringValue="\(strHours):\(strMinutes):\(strSeconds)"
-                do {
-                    try self.managedObjectContext.save()
-                } catch _ {
+        if countdownArrayController.canRemove==true{
+            let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
+            let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
+            if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
+                var strHours: String
+                var strMinutes: String
+                var strSeconds: String
+                let hour=self.hourstext.integerValue
+                let min=self.minstext.integerValue
+                let second=self.secondstext.integerValue
+                let startcountdowntime=Int((hour*60*60)+(min*60)+second)
+                countdown_obj.countdowntime=startcountdowntime
+                countdown_obj.startcountdowntime=startcountdowntime
+                let strFormat = self.calculateDisplayTime(countdown_obj.countdowntime)
+                strHours=strFormat.strHours as String
+                strMinutes=strFormat.strMinutes as String
+                strSeconds=strFormat.strSeconds as String
+                //dispatch UI task on the main queue
+                DispatchQueue.main.async {
+                    self.timelabel.stringValue="\(strHours):\(strMinutes):\(strSeconds)"
+                    do {
+                        try self.managedObjectContext.save()
+                    } catch _ {
+                    }
                 }
             }
         }
