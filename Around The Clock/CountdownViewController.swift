@@ -22,7 +22,6 @@ class CountdownViewController: NSViewController {
     @IBOutlet weak var resetcountdown: NSButton!
     @IBOutlet weak var pausecountdown: NSButton!
     
-    var isViewVisible: Bool?
     let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
     
     var managedObjectContext=(NSApplication.shared().delegate as! AppDelegate).managedObjectContext
@@ -61,12 +60,10 @@ class CountdownViewController: NSViewController {
     }
     
     override func viewDidAppear() {
-        self.isViewVisible=true
         newSelection(self)
     }
     
     override func viewDidDisappear() {
-        self.isViewVisible=false
         do {
             try self.managedObjectContext.save()
         } catch _ {
@@ -100,14 +97,14 @@ class CountdownViewController: NSViewController {
     
     
     func bringcountdownWindowUp(_ notification: Notification){
-        if self.isViewVisible==true{
+        if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notification as NSNotification).userInfo!["countdown_obj"] as! Countdown
             self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
         }
     }
     
     func bringAlarmWindowUp(_ notification: Notification){
-        if self.isViewVisible==true{
+        if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notification as NSNotification).userInfo!["alarm_obj"] as! Alarm
             self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }

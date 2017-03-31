@@ -235,6 +235,9 @@
 						DevelopmentTeam = 8L34TTJ3PA;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};

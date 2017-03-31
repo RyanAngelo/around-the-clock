@@ -19,7 +19,6 @@ class AlarmViewController: NSViewController {
     @IBOutlet weak var startalarm: NSButton!
     @IBOutlet weak var stopalarm_btn: NSButton!
 
-    var isViewVisible: Bool?
     let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
     var managedObjectContext=(NSApplication.shared().delegate as! AppDelegate).managedObjectContext
     
@@ -30,8 +29,9 @@ class AlarmViewController: NSViewController {
         
         //Create listeners for the different topics for events that could occur.
         NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.bringAlarmWindowUp(_:)), name: NSNotification.Name(rawValue: "alarmExecuting"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.stopActiveAlarms(_:)), name: NSNotification.Name(rawValue: "stopAlarms"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.bringcountdownWindowUp(_:)), name: NSNotification.Name(rawValue: "countdownExecuting"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.stopActiveAlarms(_:)), name: NSNotification.Name(rawValue: "stopAlarms"), object: nil)
+        
         let alarmrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
         var results = [NSManagedObject]()
 
@@ -55,11 +55,9 @@ class AlarmViewController: NSViewController {
     }
     
     override func viewDidAppear() {
-        self.isViewVisible=true
     }
     
     override func viewDidDisappear() {
-        self.isViewVisible=false
         do {
             try self.managedObjectContext.save()
         } catch _ {
@@ -92,14 +90,14 @@ class AlarmViewController: NSViewController {
     }
     
     func bringAlarmWindowUp(_ notifcation: Notification){
-        if self.isViewVisible==true{
+    if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
             self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }
     }
     
     func bringcountdownWindowUp(_ notifcation: Notification){
-        if self.isViewVisible==true{
+        if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notifcation as NSNotification).userInfo!["countdown_obj"] as! Countdown
             self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
         }

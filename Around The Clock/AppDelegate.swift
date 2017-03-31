@@ -39,15 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared().terminate(self)
     }
     
-    /*It seems weird that I need to reference the window in this way in order to restore it...*/
-    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        if !flag{
-            mainWindow.makeKeyAndOrderFront(nil)
-        }
-        
-        return true
-    }
-    
     /*Terminate when the last window is closed (i.e. when the red "x" is clicked)*/
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true;
