@@ -90,7 +90,7 @@ class AlarmViewController: NSViewController {
     }
     
     func bringAlarmWindowUp(_ notifcation: Notification){
-    if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
+        if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
             self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }
