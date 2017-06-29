@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OoI-TM-cyu">
-                                <rect key="frame" x="394" y="11" width="47" height="19"/>
+                                <rect key="frame" x="394" y="11" width="66" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundRect" title="Reset" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bcd-2r-AIf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -166,7 +166,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9B-Ye-CpU">
-                                <rect key="frame" x="314" y="11" width="42" height="19"/>
+                                <rect key="frame" x="314" y="11" width="72" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundRect" title="Start" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="obk-b8-Bjw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1081,7 +1081,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fEz-rA-CkD"/>
-        <segue reference="kpr-ui-nET"/>
+        <segue reference="Y3A-uU-eao"/>
+        <segue reference="Nq2-Jf-vOz"/>
     </inferredMetricsTieBreakers>
 </document>
