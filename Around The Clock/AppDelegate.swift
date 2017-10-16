@@ -3,7 +3,7 @@
 //  Testing
 //
 //  Created by Ryan Angelo on 11/11/15.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2017 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -14,29 +14,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindow: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        mainWindow = NSApplication.shared().windows[0] as NSWindow
+        mainWindow = NSApplication.shared.windows[0] as NSWindow
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
     
     @IBAction func applicationOntop(_ sender: NSMenuItem) {
         
-        if sender.state==NSOffState{
-            mainWindow.level=Int(CGWindowLevelForKey(.maximumWindow))
-            sender.state=NSOnState
+        if sender.state == .off{
+            mainWindow.level=NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
+            sender.state = .on
         }
-        else if sender.state==NSOnState{
-            mainWindow.level=Int(CGWindowLevelForKey(.normalWindow))
-            sender.state=NSOffState
+        else if sender.state == .off {
+            mainWindow.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+            sender.state = .off
         }
+ 
     }
     
     @IBAction func exitNow(_ sender: AnyObject) {
         print("Exiting Application");
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     /*Terminate when the last window is closed (i.e. when the red "x" is clicked)*/
@@ -108,7 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 dict[NSUnderlyingErrorKey] = failError
             }
             let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            NSApplication.shared().presentError(error)
+            NSApplication.shared.presentError(error)
             abort()
         } else {
             return coordinator!
@@ -135,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSApplication.shared().presentError(nserror)
+                NSApplication.shared.presentError(nserror)
             }
         }
     }
@@ -145,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return managedObjectContext.undoManager
     }
     
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         
         if !managedObjectContext.commitEditing() {
@@ -178,7 +177,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: cancelButton)
             
             let answer = alert.runModal()
-            if answer == NSAlertFirstButtonReturn {
+            if answer == NSApplication.ModalResponse.alertFirstButtonReturn {
                 return .terminateCancel
             }
         }

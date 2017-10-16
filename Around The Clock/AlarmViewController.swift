@@ -19,8 +19,8 @@ class AlarmViewController: NSViewController {
     @IBOutlet weak var startalarm: NSButton!
     @IBOutlet weak var stopalarm_btn: NSButton!
 
-    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
-    var managedObjectContext=(NSApplication.shared().delegate as! AppDelegate).managedObjectContext
+    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
+    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,41 +65,41 @@ class AlarmViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AlarmConfiguration"){
+        if (segue.identifier!.rawValue == "AlarmConfiguration"){
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             let svc = segue.destinationController as! AlarmConfigViewController;
             svc.alarmobject = alarm_obj
         }
-        if (segue.identifier == "AlarmExecution"){
+        if (segue.identifier!.rawValue == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
             svc.alarmobject = sender as! Alarm
         }
-        if (segue.identifier == "CountdownExecution"){
+        if (segue.identifier!.rawValue == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
             svc.countdown_obj = sender as! Countdown
         }
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "AlarmConfiguration" &&  !self.alarmArrayController.canRemove{
+    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
+        if identifier.rawValue == "AlarmConfiguration" &&  !self.alarmArrayController.canRemove{
             print("Can't configure an Alarm. No Alarms exist.")
             return false;
         }
         return true;
     }
     
-    func bringAlarmWindowUp(_ notifcation: Notification){
+    @objc func bringAlarmWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
         }
     }
     
-    func bringcountdownWindowUp(_ notifcation: Notification){
+    @objc func bringcountdownWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notifcation as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
         }
     }
     
@@ -189,7 +189,7 @@ class AlarmViewController: NSViewController {
         }
     }
     
-    func runAlarm(_ timer: Timer) {
+    @objc func runAlarm(_ timer: Timer) {
         let alarm_obj = timer.userInfo as! Alarm
         
         if alarm_obj.alarmstate=="off"{
@@ -341,7 +341,7 @@ class AlarmViewController: NSViewController {
         }
     }
     
-    func stopActiveAlarms(_ notifcation: Notification){
+    @objc func stopActiveAlarms(_ notifcation: Notification){
         let currentselection: Alarm=self.alarmArrayController.selectedObjects[0] as! Alarm
         let currentuid = currentselection.uid
         let alarmrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Alarm")

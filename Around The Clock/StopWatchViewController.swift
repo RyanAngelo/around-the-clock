@@ -20,8 +20,8 @@ class StopWatchViewController: NSViewController {
     @IBOutlet weak var lapbutton: NSButton!
     @IBOutlet weak var pausewatch: NSButton!
     
-    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
-    var managedObjectContext=(NSApplication.shared().delegate as! AppDelegate).managedObjectContext
+    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
+    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     override func awakeFromNib() {
     }
@@ -86,27 +86,27 @@ class StopWatchViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AlarmExecution"){
+        if (segue.identifier!.rawValue == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
             svc.alarmobject = sender as! Alarm
         }
-        if (segue.identifier == "CountdownExecution"){
+        if (segue.identifier!.rawValue == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
             svc.countdown_obj = sender as! Countdown
         }
     }
     
-    func bringAlarmWindowUp(_ notifcation: Notification){
+    @objc func bringAlarmWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
         }
     }
     
-    func bringcountdownWindowUp(_ notifcation: Notification){
+    @objc func bringcountdownWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notifcation as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
         }
     }
     
@@ -227,7 +227,7 @@ class StopWatchViewController: NSViewController {
     }
     
     
-    func calculateDisplayTime(_ timer: Timer) {
+    @objc func calculateDisplayTime(_ timer: Timer) {
         let watch_obj = timer.userInfo as! Watch
         let currentselection: [Watch] = self.watchArrayController.selectedObjects as! [Watch]
         let currentuid: NSString = currentselection[0].value(forKey: "uid") as! NSString
@@ -298,11 +298,6 @@ class StopWatchViewController: NSViewController {
     @IBAction func newSelection(_ sender: AnyObject?) {
         if watchArrayController.canRemove==true{ //confirm there are actually more watches to view
             let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
-            /*if selectedwatch.count==0{
-                self.watchArrayController.setSelectionIndex(0)
-            }*/
-            //let watch_obj: Watch = self.getWatchObject(selectedwatch)
-            //let watch_obj = self.watchArrayController
             let watchstate: NSString = watch_obj.watchstate as NSString
             self.splittimes.string=watch_obj.splits
             if watchstate == "on" {

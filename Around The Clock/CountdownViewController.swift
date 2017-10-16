@@ -22,9 +22,9 @@ class CountdownViewController: NSViewController {
     @IBOutlet weak var resetcountdown: NSButton!
     @IBOutlet weak var pausecountdown: NSButton!
     
-    let appDelegate = (NSApplication.shared().delegate as! AppDelegate)
+    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
     
-    var managedObjectContext=(NSApplication.shared().delegate as! AppDelegate).managedObjectContext
+    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,24 +71,24 @@ class CountdownViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "CountdownConfiguration"){
+        if (segue.identifier!.rawValue == "CountdownConfiguration"){
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             let svc = segue.destinationController as! CountdownConfigViewController;
             svc.countdown_obj = countdown_obj
         }
-        if (segue.identifier == "CountdownExecution"){
+        if (segue.identifier!.rawValue == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
             svc.countdown_obj = sender as! Countdown
         }
-        if (segue.identifier == "AlarmExecution"){
+        if (segue.identifier!.rawValue == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
             svc.alarmobject = sender as! Alarm
         }
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "CountdownConfiguration" &&  !self.countdownArrayController.canRemove{
+    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
+        if identifier.rawValue == "CountdownConfiguration" &&  !self.countdownArrayController.canRemove{
             print("Can't configure a Countdown. No Countdowns exist.")
             return false;
         }
@@ -96,17 +96,17 @@ class CountdownViewController: NSViewController {
     }
     
     
-    func bringcountdownWindowUp(_ notification: Notification){
+    @objc func bringcountdownWindowUp(_ notification: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notification as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
         }
     }
     
-    func bringAlarmWindowUp(_ notification: Notification){
+    @objc func bringAlarmWindowUp(_ notification: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notification as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
         }
     }
     
@@ -259,7 +259,7 @@ class CountdownViewController: NSViewController {
         }
     }
     
-    func runcountdown(_ timer: Timer) {
+    @objc func runcountdown(_ timer: Timer) {
         let countdown_obj = timer.userInfo as! Countdown
         
         if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
@@ -401,7 +401,7 @@ class CountdownViewController: NSViewController {
         }
     }
     
-    func stopActivecountdowns(_ notifcation: Notification){
+    @objc func stopActivecountdowns(_ notifcation: Notification){
         let currentselection: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
         let currentuid: NSString = currentselection[0].value(forKey: "uid") as! NSString
         let countdownrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")

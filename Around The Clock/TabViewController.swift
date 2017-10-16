@@ -13,7 +13,6 @@ class TabViewController: NSTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("Tab View Controller Has Loaded.")
     }
     
