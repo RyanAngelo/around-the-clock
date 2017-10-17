@@ -63,10 +63,14 @@ class StopWatchViewController: NSViewController {
         }
         if watchArrayController.canRemove{
             let currentselection: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-            self.timelabel.stringValue = currentselection[0].value(forKey: "elapsedtime") as! String
+            DispatchQueue.main.async {
+                self.timelabel.stringValue = currentselection[0].value(forKey: "elapsedtime") as! String
+            }
         }
         else{
-            self.timelabel.stringValue="00:00:00.0"
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00.0"
+            }
         }
         do {
             try self.managedObjectContext.save()
@@ -137,11 +141,13 @@ class StopWatchViewController: NSViewController {
         if watchArrayController.canRemove==true{
             let selectedwatch: Watch=self.watchArrayController.selectedObjects[0] as! Watch
             selectedwatch.watchstate="off"
-            //dispatch UI task on the main queue
-            self.splittimes.string=""
             let selected_row=self.timetable.selectedRow
             self.watchArrayController.remove(atArrangedObjectIndex: selected_row)
-            self.timelabel.stringValue="00:00:00.0"
+            //dispatch UI task on the main queue
+            DispatchQueue.main.async {
+                self.splittimes.string=""
+                self.timelabel.stringValue="00:00:00.0"
+            }
             self.timetable.reloadData()//confirm there are actually more alarms to view
             self.newSelection(sender)
         }
@@ -191,8 +197,10 @@ class StopWatchViewController: NSViewController {
             }
             watch_obj.elapsedtime="00:00:00.0"
             watch_obj.splits=""
-            self.splittimes.string=watch_obj.splits
-            self.timelabel.stringValue=watch_obj.elapsedtime
+            DispatchQueue.main.async {
+                self.splittimes.string=watch_obj.splits
+                self.timelabel.stringValue=watch_obj.elapsedtime
+            }
             do {
                 try self.managedObjectContext.save()
             } catch _ {
@@ -299,7 +307,6 @@ class StopWatchViewController: NSViewController {
         if watchArrayController.canRemove==true{ //confirm there are actually more watches to view
             let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
             let watchstate: NSString = watch_obj.watchstate as NSString
-            self.splittimes.string=watch_obj.splits
             if watchstate == "on" {
                 resetwatch.isHidden=false
                 startwatch.isHidden=true
@@ -315,6 +322,7 @@ class StopWatchViewController: NSViewController {
                 splitbutton.isHidden=true
             }
             DispatchQueue.main.async {
+                self.splittimes.string=watch_obj.splits
                 self.timelabel.stringValue=watch_obj.elapsedtime
             }
         }

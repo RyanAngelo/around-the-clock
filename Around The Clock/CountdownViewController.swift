@@ -53,8 +53,7 @@ class CountdownViewController: NSViewController {
         
         do {
             try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
+        } catch _ { }
         self.timetable.reloadData()
 
     }
@@ -148,7 +147,9 @@ class CountdownViewController: NSViewController {
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.countdownArrayController.remove(atArrangedObjectIndex: selected_row)
-            self.timelabel.stringValue="00:00:00"
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00"
+            }
             self.timetable.reloadData()
             self.newSelection(sender)
         }
@@ -169,9 +170,9 @@ class CountdownViewController: NSViewController {
                 countdown_obj.countdowntime=startcountdowntime
                 countdown_obj.startcountdowntime=startcountdowntime
                 let strFormat = self.calculateDisplayTime(countdown_obj.countdowntime)
-                strHours=strFormat.strHours as String
-                strMinutes=strFormat.strMinutes as String
-                strSeconds=strFormat.strSeconds as String
+                strHours = strFormat.strHours as String
+                strMinutes = strFormat.strMinutes as String
+                strSeconds = strFormat.strSeconds as String
                 //dispatch UI task on the main queue
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="\(strHours):\(strMinutes):\(strSeconds)"
@@ -228,7 +229,9 @@ class CountdownViewController: NSViewController {
                 minstext.isEnabled=true
                 secondstext.isEnabled=true
             }
-            self.timelabel.stringValue="00:00:00"
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00"
+            }
             countdown_obj.countdowntime=countdown_obj.startcountdowntime
             do {
                 try self.managedObjectContext.save()
@@ -274,7 +277,9 @@ class CountdownViewController: NSViewController {
             countdown_obj.countdowntime = countdown_obj.countdowntime-1
             if countdown_obj.countdowntime <= 0 { //countdown is going off
                 countdown_obj.countdownstate="activated"
-                self.timelabel.stringValue="00:00:00"
+                DispatchQueue.main.async {
+                    self.timelabel.stringValue="00:00:00"
+                }
                 countdown_obj.countdowntime=0
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "countdownExecuting"), object: self, userInfo:["countdown_obj":countdown_obj])
             }
@@ -422,7 +427,9 @@ class CountdownViewController: NSViewController {
             countdown.countdownstate="off"
             countdown.countdowntime=countdown.startcountdowntime
             if countdown.uid==currentuid as String{
-                self.timelabel.stringValue="00:00:00"
+                DispatchQueue.main.async {
+                    self.timelabel.stringValue="00:00:00"
+                }
             }
         }
         self.newSelection(self)

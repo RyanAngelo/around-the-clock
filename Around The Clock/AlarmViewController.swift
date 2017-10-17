@@ -25,7 +25,10 @@ class AlarmViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Alarm View Controller Has Loaded.");
-        self.timelabel.stringValue="00:00:00"
+        
+        DispatchQueue.main.async {
+            self.timelabel.stringValue="00:00:00"
+        }
         
         //Create listeners for the different topics for events that could occur.
         NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.bringAlarmWindowUp(_:)), name: NSNotification.Name(rawValue: "alarmExecuting"), object: nil)
@@ -139,7 +142,9 @@ class AlarmViewController: NSViewController {
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.alarmArrayController.remove(atArrangedObjectIndex: selected_row)
-            self.timelabel.stringValue="00:00:00"
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00"
+            }
             self.timetable.reloadData()
             self.newSelection(sender)
             if(!self.alarmArrayController.canRemove){
@@ -180,7 +185,9 @@ class AlarmViewController: NSViewController {
                 startalarm.isHidden=false
                 alarmtimechoice.isEnabled=true
             }
-            self.timelabel.stringValue="00:00:00"
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00"
+            }
             do {
                 try self.managedObjectContext.save()
             } catch _ {
@@ -210,7 +217,9 @@ class AlarmViewController: NSViewController {
             timeinterval=alarmtime.timeIntervalSinceNow
             if timeinterval.sign == .minus { //Alarm is going off
                 alarm_obj.alarmstate="activated"
-                self.timelabel.stringValue="00:00:00"
+                DispatchQueue.main.async {
+                    self.timelabel.stringValue="00:00:00"
+                }
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "alarmExecuting"), object: self, userInfo:["alarm_obj":alarm_obj])
             }
             if currentuid == identifier as String{
@@ -362,7 +371,9 @@ class AlarmViewController: NSViewController {
             let timeinterval=alarm.alarmtime.timeIntervalSinceNow
             alarm.alarmtime=self.changeDay(alarm, timeinterval:timeinterval).alarmtime
             if alarm.uid as String==currentuid{
-              self.timelabel.stringValue="00:00:00"
+                DispatchQueue.main.async {
+                    self.timelabel.stringValue="00:00:00"
+                }
             }
             do {
                 try self.managedObjectContext.save()
