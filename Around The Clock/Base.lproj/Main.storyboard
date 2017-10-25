@@ -797,14 +797,18 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text View Cell" id="tgL-D7-zoA">
+                                                    <textFieldCell key="dataCell" selectable="YES" alignment="left" title="Text View Cell" id="tgL-D7-zoA">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmtime" id="ntJ-AZ-xm8"/>
+                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmtime" id="bzI-vt-RMY">
+                                                            <dictionary key="options">
+                                                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </tableColumn>
                                             </tableColumns>
@@ -1090,7 +1094,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fEz-rA-CkD"/>
-        <segue reference="kpr-ui-nET"/>
+        <segue reference="FXn-tM-6zD"/>
+        <segue reference="dVa-3F-cmW"/>
     </inferredMetricsTieBreakers>
 </document>

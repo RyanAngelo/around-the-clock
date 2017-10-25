@@ -119,7 +119,7 @@ class AlarmViewController: NSViewController {
         components.day = 1
         components.second = -1
         let endOfDay = NSCalendar.current.date(byAdding: components as DateComponents, to: todayStart)
-
+        
         let myAlarm = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
         myAlarm.setValue(endOfDay, forKey: "alarmtime")
         myAlarm.setValue("Alarm", forKey: "name")

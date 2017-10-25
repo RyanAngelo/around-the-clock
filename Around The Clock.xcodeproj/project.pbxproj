@@ -28,6 +28,7 @@
 		94B751D11F95605C00CCDBB5 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B751D01F95605C00CCDBB5 /* WindowController.swift */; };
 		94C534D01E8C9612001A980A /* WakeUpShakeUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */; };
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
+		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		94B751D01F95605C00CCDBB5 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
 		94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = WakeUpShakeUp.m4a; sourceTree = "<group>"; };
+		94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		946E00F01A0573B300D80296 /* Around The Clock */ = {
 			isa = PBXGroup;
 			children = (
+				94EDD48E1F96DCC400EABA96 /* Models */,
 				94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */,
 				946E29E31A12FE6200A8C9D2 /* Sounds */,
 				94C7C3731A0698C000EECD8D /* View Controllers */,
@@ -117,9 +120,6 @@
 				946E00FA1A0573B300D80296 /* Images.xcassets */,
 				946E00FC1A0573B300D80296 /* Main.storyboard */,
 				946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */,
-				94A7BC691A45F473003C09AA /* Countdown.swift */,
-				94246E3B1A3D55240091604E /* Watch.swift */,
-				9481AA571A0993EA000674AE /* Alarm.swift */,
 				946E00F11A0573B300D80296 /* Supporting Files */,
 			);
 			path = "Around The Clock";
@@ -182,6 +182,17 @@
 				94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		94EDD48E1F96DCC400EABA96 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94A7BC691A45F473003C09AA /* Countdown.swift */,
+				94246E3B1A3D55240091604E /* Watch.swift */,
+				9481AA571A0993EA000674AE /* Alarm.swift */,
+				94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 				94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */,
 				9481AA581A0993EA000674AE /* Alarm.swift in Sources */,
 				94246E3C1A3D55240091604E /* Watch.swift in Sources */,
+				94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */,
 				94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */,
 				94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */,
 				946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */,
