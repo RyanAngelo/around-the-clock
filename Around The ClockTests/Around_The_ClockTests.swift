@@ -8,6 +8,7 @@
 
 import Cocoa
 import XCTest
+@testable import Around_The_Clock
 
 class Around_The_ClockTests: XCTestCase {
     
