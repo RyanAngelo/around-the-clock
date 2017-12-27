@@ -116,10 +116,6 @@ class CountdownViewController: NSViewController {
         
         let mycountdown = Countdown(entity: entityDescription!, insertInto: managedObjectContext)
         
-        self.hourstext.integerValue=0
-        self.minstext.integerValue=0
-        self.secondstext.integerValue=0
-        
         let hour=self.hourstext.integerValue
         let min=self.minstext.integerValue
         let second=self.secondstext.integerValue
