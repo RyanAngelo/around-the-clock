@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/1/14.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2017 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -22,14 +22,16 @@ class StopWatchViewController: NSViewController {
     
     let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
     @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
-    
+
     override func awakeFromNib() {
     }
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        print("Stop Watch View Controller Has Loaded.");
         
+        print("Stop Watch View Controller Has Loaded.");
+    
         NotificationCenter.default.addObserver(self, selector: #selector(StopWatchViewController.bringAlarmWindowUp(_:)), name: NSNotification.Name(rawValue: "alarmExecuting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(StopWatchViewController.bringcountdownWindowUp(_:)), name: NSNotification.Name(rawValue: "countdownExecuting"), object: nil)
        

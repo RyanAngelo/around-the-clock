@@ -12,10 +12,12 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var mainWindow: NSWindow!
+    //var stateValueTransformer: StateValueTransformer?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         mainWindow = NSApplication.shared.windows[0] as NSWindow
-    }
+        
+        ValueTransformer.setValueTransformer(StateValueTransformer(), forName: .stateValueTransformerName)    }
     
     func applicationWillTerminate(_ aNotification: Notification) {
     }

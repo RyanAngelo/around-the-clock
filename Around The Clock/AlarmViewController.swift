@@ -109,19 +109,19 @@ class AlarmViewController: NSViewController {
     @IBAction func addAlarmItem(_ sender: AnyObject) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
-        let now = Date()
-        let cal = Calendar(identifier: .gregorian)
-        let todayStart = cal.startOfDay(for: now)
+        let today = Date()
+        let cal = Calendar.current
+        
         let entityDescription=NSEntityDescription.entity(forEntityName: "Alarm", in: self.managedObjectContext)
         
-        // Components to calculate end of day
-        let components = NSDateComponents()
-        components.day = 1
-        components.second = -1
-        let endOfDay = NSCalendar.current.date(byAdding: components as DateComponents, to: todayStart)
+        let hour = cal.component(.hour, from: alarmtimechoice.dateValue)
+        let minutes = cal.component(.minute, from: alarmtimechoice.dateValue)
+        let seconds = cal.component(.second, from: alarmtimechoice.dateValue)
         
+        let chosenDate = cal.date(bySettingHour: hour, minute: minutes, second: seconds, of: today)
+
         let myAlarm = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
-        myAlarm.setValue(endOfDay, forKey: "alarmtime")
+        myAlarm.setValue(chosenDate, forKey: "alarmtime")
         myAlarm.setValue("Alarm", forKey: "name")
         myAlarm.setValue("off", forKey: "alarmstate")
         let uid = UUID().uuidString //create unique user identifier

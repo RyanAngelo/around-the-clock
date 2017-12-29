@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -225,29 +224,27 @@
                                     <rect key="frame" x="1" y="0.0" width="455" height="79"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="vQz-ty-brU" id="jhl-oI-8rd">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="vQz-ty-brU" id="jhl-oI-8rd">
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="43.11328125" minWidth="10" maxWidth="3.4028234663852886e+38" id="6fW-tn-2hq">
+                                                <tableColumn identifier="watchstate" editable="NO" width="43.11328125" minWidth="10" maxWidth="3.4028234663852886e+38" id="6fW-tn-2hq">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="State">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text Cell" id="eNw-rs-dlg">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
+                                                    <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="nSj-af-4ll"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="WEc-eF-A4h" name="value" keyPath="arrangedObjects.watchstate" id="nP6-6Q-Eyd">
+                                                        <binding destination="WEc-eF-A4h" name="value" keyPath="arrangedObjects.watchstate" id="Pgo-pG-tx4">
                                                             <dictionary key="options">
-                                                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                <string key="NSValueTransformerName">StateValueTransformer</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -381,7 +378,7 @@
                 </arrayController>
                 <userDefaultsController id="jmE-aC-eJZ"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="681"/>
+            <point key="canvasLocation" x="1188" y="665"/>
         </scene>
         <!--Countdown-->
         <scene sceneID="CU5-zL-RIy">
@@ -431,11 +428,12 @@
                                     <rect key="frame" x="1" y="0.0" width="455" height="109"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="2hI-yR-ErC" id="NbD-QC-ktz">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="2hI-yR-ErC" id="NbD-QC-ktz">
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="43.11328125" minWidth="10" maxWidth="3.4028234663852886e+38" id="fnL-Km-LY8">
@@ -444,16 +442,12 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text Cell" id="dma-cQ-b7S">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
+                                                    <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="wuS-sU-D5d"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="cBd-Tt-A6f" name="value" keyPath="arrangedObjects.countdownstate" id="jnf-1h-Yma">
+                                                        <binding destination="cBd-Tt-A6f" name="value" keyPath="arrangedObjects.countdownstate" id="e82-Cz-9oZ">
                                                             <dictionary key="options">
-                                                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                <string key="NSValueTransformerName">StateValueTransformer</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -748,11 +742,12 @@
                                     <rect key="frame" x="1" y="0.0" width="455" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="rD8-If-zAt" id="S57-g5-cl3">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="rD8-If-zAt" id="S57-g5-cl3">
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="43.11328125" minWidth="10" maxWidth="3.4028234663852886e+38" id="FdK-FN-EWg">
@@ -761,16 +756,12 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text Cell" id="iic-ik-Tau">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
+                                                    <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="glv-3F-ESd"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmstate" id="RmM-pp-S1e">
+                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmstate" id="xJ5-la-6pV">
                                                             <dictionary key="options">
-                                                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                <string key="NSValueTransformerName">StateValueTransformer</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -804,9 +795,10 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmtime" id="bzI-vt-RMY">
+                                                        <binding destination="xeL-xE-JTY" name="value" keyPath="arrangedObjects.alarmtime" id="Fsw-8R-Akf">
                                                             <dictionary key="options">
                                                                 <bool key="NSConditionallySetsEditable" value="NO"/>
+                                                                <string key="NSValueTransformerName">DateValueTransformer</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>

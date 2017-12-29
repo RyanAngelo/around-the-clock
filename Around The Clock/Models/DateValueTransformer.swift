@@ -1,14 +1,14 @@
 //
-//  ValueTransformer.swift
+//  DateValueTransformer.swift
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 10/17/17.
 //  Copyright © 2017 Ryan Angelo. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-class DateValueTransformer: ValueTransformer {
+@objc (DateValueTransformer) class DateValueTransformer: ValueTransformer {
     
     override class func transformedValueClass() -> AnyClass { //What do I transform
         return NSString.self
@@ -19,10 +19,9 @@ class DateValueTransformer: ValueTransformer {
     }
     
     override func transformedValue(_ value: Any?) -> Any? {
-        guard let type = value as? AnyClass else { return nil }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd yyyy"
-        return dateFormatter.string(for: type)
+        dateFormatter.dateFormat = "yyyy-MM-dd h:mm:ss a"
+        return dateFormatter.string(for: (value as! Date))
     }
     
 
