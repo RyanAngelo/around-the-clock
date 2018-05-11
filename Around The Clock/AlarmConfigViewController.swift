@@ -44,7 +44,7 @@ class AlarmConfigViewController: NSViewController {
         
         if myFiledialog.url != nil{
             fileurl = myFiledialog.url
-            chosenaudio=fileurl.path as String!
+            chosenaudio=fileurl.path as String?
         }
         else{
             errorlabel.stringValue = "Can't open selected file. Please select an audio file." as String
