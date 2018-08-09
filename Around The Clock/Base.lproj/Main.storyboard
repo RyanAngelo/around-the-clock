@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -825,6 +825,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="addalarm_btn" destination="wl2-la-GkF" id="J0G-YV-qOa"/>
                         <outlet property="alarmArrayController" destination="xeL-xE-JTY" id="m1E-nF-nYQ"/>
                         <outlet property="alarmtimechoice" destination="KgN-HV-F1k" id="Fyk-Vr-d3d"/>
                         <outlet property="startalarm" destination="avW-CW-LV6" id="CxU-1j-h4X"/>
@@ -855,7 +856,7 @@
                 <customObject id="ESF-Go-Fbk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="XtF-Vl-5hz" customClass="AlarmConfigViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G9l-oq-Cjz">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="161"/>
+                        <rect key="frame" x="0.0" y="0.0" width="211" height="161"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QgI-na-PjH">
@@ -887,7 +888,7 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="om6-dt-cY4">
-                                <rect key="frame" x="5" y="46" width="436" height="38"/>
+                                <rect key="frame" x="-2" y="46" width="215" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sound Title" id="ojT-C9-bTj">
                                     <font key="font" metaFont="cellTitle"/>
@@ -895,17 +896,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37l-4Q-s74">
-                                <rect key="frame" x="7" y="19" width="122" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="msG-dv-hI3">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="16" name=".HelveticaNeueDeskInterface-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectionsDone:" target="XtF-Vl-5hz" id="QLq-om-afO"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bey-Ll-bt4">
                                 <rect key="frame" x="135" y="10" width="306" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -915,6 +905,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37l-4Q-s74">
+                                <rect key="frame" x="44" y="19" width="122" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="msG-dv-hI3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="16" name=".HelveticaNeueDeskInterface-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectionsDone:" target="XtF-Vl-5hz" id="QLq-om-afO"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -926,7 +927,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1963" y="-45.5"/>
+            <point key="canvasLocation" x="1843.5" y="-45.5"/>
         </scene>
         <!--Alarm Execution View Controller-->
         <scene sceneID="pHi-Wd-nap">
@@ -972,7 +973,7 @@
                 <customObject id="6YD-Kt-MyJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
                     <view key="view" id="92S-XW-QNw">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="202" height="198"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9R9-n5-nxM">
@@ -1003,19 +1004,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-Bf-1HH">
-                                <rect key="frame" x="7" y="19" width="122" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LCC-BS-oPc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="16" name=".HelveticaNeueDeskInterface-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectionsDone:" target="ugT-lJ-0sh" id="oNX-qv-3bw"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VOh-bX-xFd">
-                                <rect key="frame" x="5" y="51" width="436" height="43"/>
+                                <rect key="frame" x="5" y="51" width="188" height="43"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sound Title" id="KQJ-iA-IvN">
                                     <font key="font" metaFont="cellTitle"/>
@@ -1032,6 +1022,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-Bf-1HH">
+                                <rect key="frame" x="40" y="19" width="122" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LCC-BS-oPc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="16" name=".HelveticaNeueDeskInterface-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectionsDone:" target="ugT-lJ-0sh" id="oNX-qv-3bw"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1043,7 +1044,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1957" y="1215"/>
+            <point key="canvasLocation" x="1833" y="1215"/>
         </scene>
         <!--Countdown Execution View Controller-->
         <scene sceneID="Ovo-qH-lBH">

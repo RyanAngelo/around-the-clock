@@ -110,6 +110,11 @@ class CountdownViewController: NSViewController {
     }
     
     @IBAction func addcountdownItem(_ sender: AnyObject) {
+        addCountdown()
+        self.newSelection(nil)
+    }
+    
+    func addCountdown(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         let entityDescription=NSEntityDescription.entity(forEntityName: "Countdown", in: self.managedObjectContext)
@@ -133,7 +138,6 @@ class CountdownViewController: NSViewController {
         } catch _ {
         } //For error handling replace nil with error handler
         self.timetable.reloadData()
-        self.newSelection(sender)
     }
     
     @IBAction func deletecountdown(_ sender: AnyObject) {
@@ -183,6 +187,11 @@ class CountdownViewController: NSViewController {
     }
 
     @IBAction func startcountdown(_ sender: AnyObject) {
+        // This means the person wants to add and start without clicking "add"
+        if countdownArrayController.selectedObjects.count == 0 {
+            self.addCountdown()
+            self.newSelection(nil)
+        }
         if countdownArrayController.canRemove==true{
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
@@ -263,11 +272,11 @@ class CountdownViewController: NSViewController {
         
         if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
             timer.invalidate()
+            return
         }
         
-        let identifier: String = countdown_obj.uid
-        
         if countdown_obj.countdownstate=="on"{
+            let identifier: String = countdown_obj.uid
             let currentselection: [Countdown] = self.countdownArrayController.selectedObjects as! [Countdown]
             let currentuid: String = currentselection[0].value(forKey: "uid") as! String
             countdown_obj.countdowntime = countdown_obj.countdowntime-1
@@ -297,7 +306,7 @@ class CountdownViewController: NSViewController {
         }
     }
     
-    @IBAction func newSelection(_ sender: AnyObject) {
+    @IBAction func newSelection(_ sender: AnyObject?) {
         if countdownArrayController.canRemove==true{
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             if selectedcountdown.count==0{
@@ -343,6 +352,17 @@ class CountdownViewController: NSViewController {
                 }
 
                 updateTextBoxes(selectedcountdown)
+            }
+        } else {
+            resetcountdown.isHidden=true
+            startcountdown.isHidden=false
+            pausecountdown.isHidden=true
+            hourstext.isEnabled=true
+            minstext.isEnabled=true
+            secondstext.isEnabled=true
+            
+            DispatchQueue.main.async {
+                self.timelabel.stringValue="00:00:00"
             }
         }
     }

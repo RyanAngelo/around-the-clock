@@ -18,6 +18,7 @@ class AlarmViewController: NSViewController {
     @IBOutlet var alarmArrayController: NSArrayController!
     @IBOutlet weak var startalarm: NSButton!
     @IBOutlet weak var stopalarm_btn: NSButton!
+    @IBOutlet weak var addalarm_btn: NSButton!
 
     let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
     @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
@@ -107,6 +108,11 @@ class AlarmViewController: NSViewController {
     }
     
     @IBAction func addAlarmItem(_ sender: AnyObject) {
+        self.addAlarm()
+        self.newSelection(nil)
+    }
+    
+    func addAlarm() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         let today = Date()
@@ -119,20 +125,20 @@ class AlarmViewController: NSViewController {
         let seconds = cal.component(.second, from: alarmtimechoice.dateValue)
         
         let chosenDate = cal.date(bySettingHour: hour, minute: minutes, second: seconds, of: today)
-
-        let myAlarm = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
-        myAlarm.setValue(chosenDate, forKey: "alarmtime")
-        myAlarm.setValue("Alarm", forKey: "name")
-        myAlarm.setValue("off", forKey: "alarmstate")
+        
+        let alarm_obj = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
+        alarm_obj.setValue(chosenDate, forKey: "alarmtime")
+        alarm_obj.setValue("Alarm", forKey: "name")
+        alarm_obj.setValue("off", forKey: "alarmstate")
         let uid = UUID().uuidString //create unique user identifier
-        myAlarm.setValue(uid, forKey:"uid")
-        self.alarmArrayController.addObject(myAlarm)
+        alarm_obj.setValue(uid, forKey:"uid")
+        self.alarmArrayController.addObject(alarm_obj)
+        _=changeDay(alarm_obj, timeinterval: alarm_obj.alarmtime.timeIntervalSinceNow)
         do {
             try self.managedObjectContext.save()
         } catch _ {
         } //For error handling replace nil with error handler
         self.timetable.reloadData()
-        self.newSelection(sender)
     }
     
     @IBAction func deleteAlarm(_ sender: AnyObject) {
@@ -156,7 +162,12 @@ class AlarmViewController: NSViewController {
     }
     
     @IBAction func startAlarm(_ sender: AnyObject) {
-        if alarmArrayController.canRemove==true{
+        // This means the person wants to add and start without clicking "add"
+        if(alarmArrayController.selectedObjects.count==0) {
+            self.addAlarm()
+            self.newSelection(nil)
+        }
+        if(alarmArrayController.canRemove==true) {
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             _=changeDay(alarm_obj, timeinterval: alarm_obj.alarmtime.timeIntervalSinceNow)
@@ -198,20 +209,16 @@ class AlarmViewController: NSViewController {
     
     @objc func runAlarm(_ timer: Timer) {
         let alarm_obj = timer.userInfo as! Alarm
-        
         if alarm_obj.alarmstate=="off"{
             timer.invalidate()
+            return
         }
-        
-        let alarmtime: Date = alarm_obj.alarmtime as Date
-        let identifier: String = alarm_obj.uid
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        var timeinterval = TimeInterval()
-        
-        
-        if alarm_obj.alarmstate=="on"{
+        else if alarm_obj.alarmstate=="on"{
+            let alarmtime: Date = alarm_obj.alarmtime as Date
+            let identifier: String = alarm_obj.uid
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            var timeinterval = TimeInterval()
             let currentselection: Alarm=self.alarmArrayController.selectedObjects[0] as! Alarm
             let currentuid = currentselection.uid
             timeinterval=alarmtime.timeIntervalSinceNow
@@ -240,7 +247,7 @@ class AlarmViewController: NSViewController {
         }
     }
     
-    @IBAction func newSelection(_ sender: AnyObject) {
+    @IBAction func newSelection(_ sender: AnyObject?) {
         if alarmArrayController.canRemove==true{ //confirm there are actually more alarms to view
             let selectedalarm: Alarm=self.alarmArrayController.selectedObjects[0] as! Alarm
             let alarmstate = selectedalarm.alarmstate

@@ -117,6 +117,11 @@ class StopWatchViewController: NSViewController {
     }
     
     @IBAction func addWatchItem(_ sender: AnyObject) {
+        self.addWatch()
+        self.newSelection(nil)
+    }
+    
+    func addWatch() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         let entityDescription=NSEntityDescription.entity(forEntityName: "Watch", in: self.managedObjectContext)
@@ -136,7 +141,6 @@ class StopWatchViewController: NSViewController {
         } catch _ {
         } //For error handling replace nil with error handler
         self.timetable.reloadData()
-        self.newSelection(sender)
     }
     
     @IBAction func deleteWatch(_ sender: AnyObject) {
@@ -156,6 +160,11 @@ class StopWatchViewController: NSViewController {
     }
     
     @IBAction func startWatch(_ sender: AnyObject) {
+        // This means the person wants to add and start without clicking "add"
+        if watchArrayController.selectedObjects.count == 0 {
+            self.addWatch()
+            self.newSelection(nil)
+        }
         if watchArrayController.canRemove==true{
             let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
             //let watch_obj: Watch = self.getWatchObject(selectedwatch)!
@@ -239,13 +248,13 @@ class StopWatchViewController: NSViewController {
     
     @objc func calculateDisplayTime(_ timer: Timer) {
         let watch_obj = timer.userInfo as! Watch
-        let currentselection: [Watch] = self.watchArrayController.selectedObjects as! [Watch]
-        let currentuid: NSString = currentselection[0].value(forKey: "uid") as! NSString
-        let identifier = watch_obj.uid
         if watch_obj.watchstate=="off" || watch_obj.watchstate=="paused"{
             timer.invalidate()
             return
         }
+        let currentselection: [Watch] = self.watchArrayController.selectedObjects as! [Watch]
+        let currentuid: NSString = currentselection[0].value(forKey: "uid") as! NSString 
+        let identifier = watch_obj.uid
         let starttime=watch_obj.starttime
         let timeinterval=starttime.timeIntervalSinceNow*(-1)
         let displaytime=self.getTimeFormatted(timeinterval)
@@ -326,6 +335,17 @@ class StopWatchViewController: NSViewController {
             DispatchQueue.main.async {
                 self.splittimes.string=watch_obj.splits
                 self.timelabel.stringValue=watch_obj.elapsedtime
+            }
+        } else {
+            resetwatch.isHidden=true
+            startwatch.isHidden=false
+            pausewatch.isHidden=true
+            lapbutton.isHidden=true
+            splitbutton.isHidden=true
+            
+            DispatchQueue.main.async {
+                self.splittimes.string=""
+                self.timelabel.stringValue=""
             }
         }
     }
