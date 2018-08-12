@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/1/14.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -38,10 +38,8 @@ class CountdownViewController: NSViewController {
 
         let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
         var results = [NSManagedObject]()
-
         do{
             results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
-            
         }
         catch {
             print("Unable to load existing Countdowns.")
@@ -50,12 +48,7 @@ class CountdownViewController: NSViewController {
             let countdown:Countdown=result as! Countdown
             countdown.countdownstate="off"
         }
-        
-        do {
-            try self.managedObjectContext.save()
-        } catch _ { }
-        self.timetable.reloadData()
-
+        self.saveAndReload()
     }
     
     override func viewDidAppear() {
@@ -124,26 +117,22 @@ class CountdownViewController: NSViewController {
         let hour=self.hourstext.integerValue
         let min=self.minstext.integerValue
         let second=self.secondstext.integerValue
-        let startcountdowntime=Float((hour*60*60)+(min*60)+second)
+        let startcountdowntime=((hour*60*60)+(min*60)+second)
         
-        mycountdown.setValue(startcountdowntime, forKey: "startcountdowntime")
-        mycountdown.setValue(startcountdowntime, forKey: "countdowntime")
-        mycountdown.setValue("Countdown", forKey: "name")
-        mycountdown.setValue("off", forKey: "countdownstate")
+        mycountdown.startcountdowntime = startcountdowntime
+        mycountdown.countdowntime = startcountdowntime
+        mycountdown.name = "Countdown"
+        mycountdown.setState(off: "off")
         let uid = UUID().uuidString //create unique user identifier
-        mycountdown.setValue(uid, forKey:"uid")
+        mycountdown.uid = uid
         self.countdownArrayController.addObject(mycountdown)
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
-        self.timetable.reloadData()
+        self.saveAndReload()
     }
     
     @IBAction func deletecountdown(_ sender: AnyObject) {
         if countdownArrayController.canRemove==true{ //confirm there are actually more countdowns to view
             let selectedcountdown: Countdown=self.countdownArrayController.selectedObjects[0] as! Countdown
-            selectedcountdown.countdownstate="off"
+            selectedcountdown.setState(off: "off")
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.countdownArrayController.remove(atArrangedObjectIndex: selected_row)
@@ -160,9 +149,6 @@ class CountdownViewController: NSViewController {
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
-                var strHours: String
-                var strMinutes: String
-                var strSeconds: String
                 let hour=self.hourstext.integerValue
                 let min=self.minstext.integerValue
                 let second=self.secondstext.integerValue
@@ -170,16 +156,13 @@ class CountdownViewController: NSViewController {
                 countdown_obj.countdowntime=startcountdowntime
                 countdown_obj.startcountdowntime=startcountdowntime
                 let strFormat = self.calculateDisplayTime(countdown_obj.countdowntime)
-                strHours = strFormat.strHours as String
-                strMinutes = strFormat.strMinutes as String
-                strSeconds = strFormat.strSeconds as String
+                let strHours = strFormat.strHours as String
+                let strMinutes = strFormat.strMinutes as String
+                let strSeconds = strFormat.strSeconds as String
                 //dispatch UI task on the main queue
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="\(strHours):\(strMinutes):\(strSeconds)"
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch _ {
-                    }
+                    self.saveAndReload()
                 }
             }
         }
@@ -192,7 +175,7 @@ class CountdownViewController: NSViewController {
             self.addCountdown()
             self.newSelection(nil)
         }
-        if countdownArrayController.canRemove==true{
+        if countdownArrayController.canRemove==true {
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             if countdown_obj.countdownstate as NSString == "off" || countdown_obj.countdownstate == "paused"{
@@ -204,7 +187,7 @@ class CountdownViewController: NSViewController {
                     countdown_obj.countdowntime=startcountdowntime
                     countdown_obj.startcountdowntime=startcountdowntime
                 }
-                countdown_obj.countdownstate="on"
+                countdown_obj.setState(off: "on")
                 resetcountdown.isHidden=false
                 pausecountdown.isHidden=false
                 hourstext.isEnabled=false
@@ -213,11 +196,7 @@ class CountdownViewController: NSViewController {
                 startcountdown.isHidden=true
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(CountdownViewController.runcountdown(_:)), userInfo: countdown_obj, repeats: true)
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+            self.saveAndReload()
         }
     }
     
@@ -238,11 +217,7 @@ class CountdownViewController: NSViewController {
                 self.timelabel.stringValue="00:00:00"
             }
             countdown_obj.countdowntime=countdown_obj.startcountdowntime
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+            self.saveAndReload()
         }
     }
     
@@ -251,7 +226,7 @@ class CountdownViewController: NSViewController {
             let selectedcountdown: [Countdown] = self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             if countdown_obj.countdownstate == "on" {
-                countdown_obj.countdownstate="paused"
+                countdown_obj.setState(off: "paused")
                 resetcountdown.isHidden=false
                 startcountdown.isHidden=false
                 pausecountdown.isHidden=true
@@ -259,11 +234,7 @@ class CountdownViewController: NSViewController {
                 minstext.isEnabled=false
                 secondstext.isEnabled=false
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+            self.saveAndReload()
         }
     }
     
@@ -440,7 +411,7 @@ class CountdownViewController: NSViewController {
 
         for result in results{
             let countdown = result as! Countdown
-            countdown.countdownstate="off"
+            countdown.setState(off: "off")
             countdown.countdowntime=countdown.startcountdowntime
             if countdown.uid==currentuid as String{
                 DispatchQueue.main.async {
@@ -449,13 +420,16 @@ class CountdownViewController: NSViewController {
             }
         }
         self.newSelection(self)
+        self.saveAndReload()
+    }
+    
+    func saveAndReload(){
         do {
             try self.managedObjectContext.save()
         } catch _ {
         }
         self.timetable.reloadData()
     }
-    
     
 }
 

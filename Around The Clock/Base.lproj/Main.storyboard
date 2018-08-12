@@ -856,11 +856,11 @@
                 <customObject id="ESF-Go-Fbk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="XtF-Vl-5hz" customClass="AlarmConfigViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G9l-oq-Cjz">
-                        <rect key="frame" x="0.0" y="0.0" width="211" height="161"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QgI-na-PjH">
-                                <rect key="frame" x="5" y="131" width="238" height="25"/>
+                                <rect key="frame" x="5" y="170" width="238" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Alarm Name" placeholderString="Alarm Name" id="UHh-54-Q5N">
                                     <font key="font" metaFont="system" size="20"/>
@@ -869,7 +869,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXs-W6-vo6">
-                                <rect key="frame" x="101" y="86" width="87" height="32"/>
+                                <rect key="frame" x="101" y="125" width="87" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uYF-b7-ZtZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -880,7 +880,7 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KGG-VR-pwi">
-                                <rect key="frame" x="5" y="95" width="88" height="18"/>
+                                <rect key="frame" x="5" y="134" width="88" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Play Alarm" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vEP-rm-4CD">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -888,7 +888,7 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="om6-dt-cY4">
-                                <rect key="frame" x="-2" y="46" width="215" height="38"/>
+                                <rect key="frame" x="5" y="36" width="190" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sound Title" id="ojT-C9-bTj">
                                     <font key="font" metaFont="cellTitle"/>
@@ -897,7 +897,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bey-Ll-bt4">
-                                <rect key="frame" x="135" y="10" width="306" height="38"/>
+                                <rect key="frame" x="135" y="49" width="306" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="sep-0r-Sb1">
                                     <font key="font" metaFont="system" size="14"/>
@@ -906,7 +906,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37l-4Q-s74">
-                                <rect key="frame" x="44" y="19" width="122" height="19"/>
+                                <rect key="frame" x="39" y="9" width="122" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="msG-dv-hI3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -927,7 +927,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1843.5" y="-45.5"/>
+            <point key="canvasLocation" x="1843" y="-46"/>
         </scene>
         <!--Alarm Execution View Controller-->
         <scene sceneID="pHi-Wd-nap">
@@ -973,11 +973,11 @@
                 <customObject id="6YD-Kt-MyJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
                     <view key="view" id="92S-XW-QNw">
-                        <rect key="frame" x="0.0" y="0.0" width="202" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9R9-n5-nxM">
-                                <rect key="frame" x="5" y="168" width="238" height="25"/>
+                                <rect key="frame" x="5" y="170" width="238" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Countdown Name" placeholderString="Alarm Name" id="RKX-bo-Xoz">
                                     <font key="font" metaFont="system" size="20"/>
@@ -986,7 +986,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-I5-qO0">
-                                <rect key="frame" x="101" y="95" width="87" height="32"/>
+                                <rect key="frame" x="108" y="129" width="87" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y5E-r8-IL0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -997,24 +997,15 @@
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwi-UJ-C9h">
-                                <rect key="frame" x="5" y="104" width="88" height="18"/>
+                                <rect key="frame" x="5" y="138" width="88" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Play Alarm" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dsq-Qa-xMd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VOh-bX-xFd">
-                                <rect key="frame" x="5" y="51" width="188" height="43"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sound Title" id="KQJ-iA-IvN">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j1D-QC-rHm">
-                                <rect key="frame" x="135" y="7" width="306" height="43"/>
+                                <rect key="frame" x="135" y="9" width="306" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="A8F-s5-hlb">
                                     <font key="font" metaFont="system" size="14"/>
@@ -1023,7 +1014,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-Bf-1HH">
-                                <rect key="frame" x="40" y="19" width="122" height="19"/>
+                                <rect key="frame" x="40" y="8" width="122" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LCC-BS-oPc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1033,6 +1024,15 @@
                                     <action selector="selectionsDone:" target="ugT-lJ-0sh" id="oNX-qv-3bw"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VOh-bX-xFd">
+                                <rect key="frame" x="5" y="35" width="191" height="93"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sound Title" id="KQJ-iA-IvN">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>

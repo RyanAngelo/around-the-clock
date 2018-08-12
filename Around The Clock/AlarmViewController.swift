@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/1/14.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -48,14 +48,10 @@ class AlarmViewController: NSViewController {
         }
         for result in results{
             let alarm:Alarm=result as! Alarm
-            alarm.alarmstate="off"
-            alarm.alarmtime=self.changeDay(alarm, timeinterval: alarm.alarmtime.timeIntervalSinceNow).alarmtime
+            alarm.setState(off: "off")
+            alarm.changeDay()
         }
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
-        self.timetable.reloadData()
+       self.saveAndReload()
     }
     
     override func viewDidAppear() {
@@ -127,24 +123,21 @@ class AlarmViewController: NSViewController {
         let chosenDate = cal.date(bySettingHour: hour, minute: minutes, second: seconds, of: today)
         
         let alarm_obj = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
-        alarm_obj.setValue(chosenDate, forKey: "alarmtime")
-        alarm_obj.setValue("Alarm", forKey: "name")
-        alarm_obj.setValue("off", forKey: "alarmstate")
+        alarm_obj.alarmtime = chosenDate!
+        alarm_obj.name = "Alarm"
+        alarm_obj.setState(off: "off")
         let uid = UUID().uuidString //create unique user identifier
-        alarm_obj.setValue(uid, forKey:"uid")
+        alarm_obj.uid = uid
         self.alarmArrayController.addObject(alarm_obj)
-        _=changeDay(alarm_obj, timeinterval: alarm_obj.alarmtime.timeIntervalSinceNow)
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
-        self.timetable.reloadData()
+        alarm_obj.changeDay()
+        self.saveAndReload()
     }
     
     @IBAction func deleteAlarm(_ sender: AnyObject) {
         if alarmArrayController.canRemove==true{ //confirm there are actually more alarms to view
-            let selectedalarm: AnyObject=self.alarmArrayController.selectedObjects as AnyObject
-            selectedalarm.setValue("off", forKey: "alarmstate")
+            let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
+            let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
+            alarm_obj.setState(off: "off")
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.alarmArrayController.remove(atArrangedObjectIndex: selected_row)
@@ -170,19 +163,15 @@ class AlarmViewController: NSViewController {
         if(alarmArrayController.canRemove==true) {
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
-            _=changeDay(alarm_obj, timeinterval: alarm_obj.alarmtime.timeIntervalSinceNow)
-            if alarm_obj.alarmstate as NSString == "off"{
-                alarm_obj.alarmstate="on"
+            alarm_obj.changeDay()
+            if alarm_obj.alarmstate == "off"{
+                alarm_obj.setState(off: "on")
                 stopalarm_btn.isHidden=false
                 startalarm.isHidden=true
                 alarmtimechoice.isEnabled=false
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AlarmViewController.runAlarm(_:)), userInfo: alarm_obj, repeats: true)
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+           self.saveAndReload()
         }
     }
     
@@ -191,7 +180,7 @@ class AlarmViewController: NSViewController {
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             if alarm_obj.alarmstate == "on" || alarm_obj.alarmstate=="activated"{
-                alarm_obj.alarmstate="off"
+                alarm_obj.setState(off: "off")
                 stopalarm_btn.isHidden=true
                 startalarm.isHidden=false
                 alarmtimechoice.isEnabled=true
@@ -199,11 +188,7 @@ class AlarmViewController: NSViewController {
             DispatchQueue.main.async {
                 self.timelabel.stringValue="00:00:00"
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+            self.saveAndReload()
         }
     }
     
@@ -223,7 +208,7 @@ class AlarmViewController: NSViewController {
             let currentuid = currentselection.uid
             timeinterval=alarmtime.timeIntervalSinceNow
             if timeinterval.sign == .minus { //Alarm is going off
-                alarm_obj.alarmstate="activated"
+                alarm_obj.setState(off: "activated")
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
                 }
@@ -248,14 +233,13 @@ class AlarmViewController: NSViewController {
     }
     
     @IBAction func newSelection(_ sender: AnyObject?) {
-        if alarmArrayController.canRemove==true{ //confirm there are actually more alarms to view
+        if alarmArrayController.canRemove==true { //confirm there are actually more alarms to view
             let selectedalarm: Alarm=self.alarmArrayController.selectedObjects[0] as! Alarm
-            let alarmstate = selectedalarm.alarmstate
-            if alarmstate == "on" || alarmstate == "activated"{
+            if selectedalarm.alarmstate == "on" || selectedalarm.alarmstate == "activated"{
                 stopalarm_btn.isHidden=false
                 startalarm.isHidden=true
             }
-            if alarmstate == "off"{
+            else if selectedalarm.alarmstate == "off"{
                 stopalarm_btn.isHidden=true
                 startalarm.isHidden=false
                 DispatchQueue.main.async {
@@ -292,45 +276,11 @@ class AlarmViewController: NSViewController {
     //A correct date means either today if the time is still going to happen
     //Or tomorrow if the time has already passed for today.
     @IBAction func checkDay(_ sender: AnyObject){
-        let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
-        let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
-        _=changeDay(alarm_obj, timeinterval: alarm_obj.alarmtime.timeIntervalSinceNow)
-    }
-    
-    //We always want the alarm to be for a future time. So this checks to make sure that the alarm is 
-    //being set such that when the user starts the alarm, the alarm is always for the next time that time
-    //is applicable. This decides whether the alarm should be today or tomorrow.
-    func changeDay(_ alarm_obj: Alarm, timeinterval: TimeInterval) -> (alarmtime:Date, timeinterval:TimeInterval){
-        var returntimeinterval = timeinterval
-        let alarmtime: Date = alarm_obj.alarmtime as Date
-        let oneday: TimeInterval = TimeInterval(86400)
-        var daystosubtract = oneday
-        if timeinterval.sign == .minus{
-            if abs(timeinterval)/oneday > 1{
-                daystosubtract=(abs(timeinterval)/oneday)*oneday
-            }
-            let new_date: Date=alarmtime.addingTimeInterval(daystosubtract) //add 24 hours to the alarm
-            alarm_obj.alarmtime=new_date
-            returntimeinterval=alarm_obj.alarmtime.timeIntervalSinceNow
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            } //For error handling replace nil with error handler
+        if(alarmArrayController.selectedObjects.count>0) {
+            let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
+            let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
+            alarm_obj.changeDay()
         }
-        if(timeinterval >= oneday){ //If you are more than one day ahead in the future...
-            if timeinterval/oneday >= 2{
-                daystosubtract=(timeinterval/oneday)-(timeinterval.truncatingRemainder(dividingBy: oneday))
-                daystosubtract=daystosubtract*oneday
-            }
-            let new_date: Date=alarmtime.addingTimeInterval(-daystosubtract) //subtract amt
-            alarm_obj.alarmtime=new_date
-            returntimeinterval=alarm_obj.alarmtime.timeIntervalSinceNow
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            } //For error handling replace nil with error handler
-        }
-        return (alarm_obj.alarmtime as Date, returntimeinterval)
     }
     
     func getAlarmObject(_ selectedalarm: [Alarm]) -> Alarm?{
@@ -374,9 +324,8 @@ class AlarmViewController: NSViewController {
         }
         for result in results{
             let alarm = result as! Alarm
-            alarm.alarmstate="off"
-            let timeinterval=alarm.alarmtime.timeIntervalSinceNow
-            alarm.alarmtime=self.changeDay(alarm, timeinterval:timeinterval).alarmtime
+            alarm.setState(off: "off")
+            alarm.changeDay()
             if alarm.uid as String==currentuid{
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
@@ -388,13 +337,16 @@ class AlarmViewController: NSViewController {
             }
         }
         self.newSelection(self)
+        self.saveAndReload()
+    }
+    
+    func saveAndReload(){
         do {
             try self.managedObjectContext.save()
         } catch _ {
         }
         self.timetable.reloadData()
     }
-    
 
 }
 

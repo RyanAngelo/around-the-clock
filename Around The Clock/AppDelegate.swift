@@ -3,7 +3,7 @@
 //  Testing
 //
 //  Created by Ryan Angelo on 11/11/15.
-//  Copyright (c) 2017 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa

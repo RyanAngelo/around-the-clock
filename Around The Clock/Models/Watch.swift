@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 12/14/14.
-//  Copyright (c) 2017 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Foundation
@@ -19,4 +19,8 @@ class Watch: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var splits: String
 
+    func setState(off state: String){
+        watchstate = state
+    }
+    
 }

@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/11/14.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import CoreData

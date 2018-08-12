@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 12/20/14.
-//  Copyright (c) 2016 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Foundation
@@ -17,5 +17,9 @@ class Countdown: NSManagedObject {
     @NSManaged dynamic var audio: String
     @NSManaged dynamic var name: String
     @NSManaged dynamic var uid: String
+    
+    func setState(off state: String){
+        countdownstate = state
+    }
 
 }

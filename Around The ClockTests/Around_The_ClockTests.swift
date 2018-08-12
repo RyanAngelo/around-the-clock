@@ -3,7 +3,7 @@
 //  Around The ClockTests
 //
 //  Created by Ryan Angelo on 11/1/14.
-//  Copyright (c) 2015 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -22,9 +22,16 @@ class Around_The_ClockTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testObjectCreation() {
+        let alarm = Alarm()
+        alarm.setState(off: "paused")
+        XCTAssertEqual(alarm.alarmstate, "paused")
+        let watch = Watch()
+        watch.setState(off: "paused")
+        XCTAssertEqual(alarm.alarmstate, "paused")
+        let countdown = Countdown()
+        countdown.setState(off: "paused")
+        XCTAssertEqual(countdown.countdownstate, "paused")
     }
     
     func testPerformanceExample() {

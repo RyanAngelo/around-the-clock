@@ -3,7 +3,7 @@
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/1/14.
-//  Copyright (c) 2017 Ryan Angelo. All rights reserved.
+//  Copyright (c) 2018 Ryan Angelo. All rights reserved.
 //
 
 import Cocoa
@@ -39,7 +39,6 @@ class StopWatchViewController: NSViewController {
         let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Watch")
         do{
             results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
-
         }
         catch {
             print("Unable to load existing stopwatches.")
@@ -54,7 +53,7 @@ class StopWatchViewController: NSViewController {
         for result in results{
             let watch:Watch=result as! Watch
             if watch.watchstate != "off"{
-                watch.watchstate="off"
+                watch.setState(off: "off")
                 watch.elapsedtime="00:00:00.0"
             }
         }
@@ -74,11 +73,7 @@ class StopWatchViewController: NSViewController {
                 self.timelabel.stringValue="00:00:00.0"
             }
         }
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
-        self.timetable.reloadData()
+        self.saveAndReload()
     }
     
     override func viewDidAppear() {
@@ -126,21 +121,17 @@ class StopWatchViewController: NSViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         let entityDescription=NSEntityDescription.entity(forEntityName: "Watch", in: self.managedObjectContext)
         
-        let myWatch = Watch(entity: entityDescription!, insertInto: managedObjectContext)
+        let newWatch = Watch(entity: entityDescription!, insertInto: managedObjectContext)
         let now = Date()
-        myWatch.setValue("00:00:00.0", forKey: "elapsedtime")
-        myWatch.setValue("", forKey: "splits")
-        myWatch.setValue(now, forKey: "starttime")
-        myWatch.setValue("Stopwatch", forKey: "name")
-        myWatch.setValue("off", forKey: "watchstate")
+        newWatch.elapsedtime = "00:00:00.0"
+        newWatch.splits = ""
+        newWatch.starttime = now
+        newWatch.name = "Stopwatch"
+        newWatch.setState(off: "off")
         let uid = UUID().uuidString //create unique user identifier
-        myWatch.setValue(uid, forKey:"uid")
-        self.watchArrayController.addObject(myWatch)
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        } //For error handling replace nil with error handler
-        self.timetable.reloadData()
+        newWatch.setValue(uid, forKey:"uid")
+        self.watchArrayController.addObject(newWatch)
+        self.saveAndReload()
     }
     
     @IBAction func deleteWatch(_ sender: AnyObject) {
@@ -166,8 +157,8 @@ class StopWatchViewController: NSViewController {
             self.newSelection(nil)
         }
         if watchArrayController.canRemove==true{
-            let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
-            //let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+            let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
+            let watch_obj: Watch = self.getWatchObject(selectedwatch)!
             let now = Date()
             if watch_obj.watchstate as NSString == "off" || watch_obj.watchstate == "paused"{
                 if watch_obj.watchstate=="paused"{
@@ -177,16 +168,13 @@ class StopWatchViewController: NSViewController {
                 else{
                     watch_obj.setValue(now, forKey: "starttime")
                 }
-                watch_obj.watchstate="on"
+                watch_obj.setState(off: "on")
                 resetwatch.isHidden=false
                 startwatch.isHidden=true
                 splitbutton.isHidden=false
                 lapbutton.isHidden=false
                 pausewatch.isHidden=false
-                do {
-                    try self.managedObjectContext.save()
-                } catch _ {
-                }
+                self.saveAndReload()
                 Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(StopWatchViewController.calculateDisplayTime(_:)), userInfo: watch_obj, repeats: true)
                 
             }
@@ -198,7 +186,7 @@ class StopWatchViewController: NSViewController {
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
             let watch_obj: Watch = self.getWatchObject(selectedwatch)!
             if watch_obj.watchstate == "on" || watch_obj.watchstate == "paused" {
-                watch_obj.watchstate="off"
+                watch_obj.setState(off: "off")
                 resetwatch.isHidden=true
                 startwatch.isHidden=false
                 splitbutton.isHidden=true
@@ -226,7 +214,7 @@ class StopWatchViewController: NSViewController {
             let watch_obj: Watch = self.getWatchObject(selectedwatch)!
             watch_obj.pausetime=Date()
             if watch_obj.watchstate == "on" {
-                watch_obj.watchstate="paused"
+                watch_obj.setState(off: "paused")
                 resetwatch.isHidden=false
                 startwatch.isHidden=false
                 pausewatch.isHidden=true
@@ -234,11 +222,7 @@ class StopWatchViewController: NSViewController {
                 lapbutton.isHidden=true
                 
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
-            self.timetable.reloadData()
+            self.saveAndReload()
             DispatchQueue.main.async {
                 self.timelabel.stringValue=watch_obj.elapsedtime
             }
@@ -306,11 +290,7 @@ class StopWatchViewController: NSViewController {
         watch_obj.elapsedtime="00:00:00.0"
         let now: Date = Date()
         watch_obj.starttime=now
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
-        self.timetable.reloadData()
+        self.saveAndReload()
     }
     
     
@@ -371,6 +351,14 @@ class StopWatchViewController: NSViewController {
         else{
             return nil
         }
+    }
+    
+    func saveAndReload(){
+        do {
+            try self.managedObjectContext.save()
+        } catch _ {
+        }
+        self.timetable.reloadData()
     }
     
 }

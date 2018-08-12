@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		94246E3C1A3D55240091604E /* Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94246E3B1A3D55240091604E /* Watch.swift */; };
-		946AEFFE1DA482DC00F817F9 /* AlarmClockScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */; };
-		946AEFFF1DA482DC00F817F9 /* CountdownScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */; };
-		946AF0001DA482DC00F817F9 /* StopwatchScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */; };
+		94259318211E38B1008A0468 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259317211E38B0008A0468 /* WindowController.swift */; };
+		944D84B2212093FE001A3E95 /* WakeUpShakeUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 944D84B1212093FE001A3E95 /* WakeUpShakeUp.mp3 */; };
+		944D84BC21209865001A3E95 /* AlarmClockScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84B921209865001A3E95 /* AlarmClockScreenshot.jpg */; };
+		944D84BD21209865001A3E95 /* StopwatchScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */; };
+		944D84BE21209865001A3E95 /* CountdownScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */; };
 		946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F31A0573B300D80296 /* AppDelegate.swift */; };
 		946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */; };
 		946E00FB1A0573B300D80296 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FA1A0573B300D80296 /* Images.xcassets */; };
@@ -25,10 +27,8 @@
 		94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC691A45F473003C09AA /* Countdown.swift */; };
 		94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */; };
 		94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */; };
-		94B751D11F95605C00CCDBB5 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B751D01F95605C00CCDBB5 /* WindowController.swift */; };
 		94B88E1C1FF67565006A0196 /* StateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */; };
 		94B88E251FF6D5D3006A0196 /* StateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88E241FF6D5D3006A0196 /* StateValue.swift */; };
-		94C534D01E8C9612001A980A /* WakeUpShakeUp.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */; };
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
 		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
 /* End PBXBuildFile section */
@@ -45,10 +45,12 @@
 
 /* Begin PBXFileReference section */
 		94246E3B1A3D55240091604E /* Watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watch.swift; sourceTree = "<group>"; };
+		94259317211E38B0008A0468 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		944D84B1212093FE001A3E95 /* WakeUpShakeUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WakeUpShakeUp.mp3; sourceTree = "<group>"; };
+		944D84B921209865001A3E95 /* AlarmClockScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AlarmClockScreenshot.jpg; sourceTree = "<group>"; };
+		944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot.jpg; sourceTree = "<group>"; };
+		944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot.jpg; sourceTree = "<group>"; };
 		944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
-		946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AlarmClockScreenshot.jpg; sourceTree = "<group>"; };
-		946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot.jpg; sourceTree = "<group>"; };
-		946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot.jpg; sourceTree = "<group>"; };
 		946E00EE1A0573B300D80296 /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		946E00F21A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		946E00F31A0573B300D80296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,11 +70,9 @@
 		94A7BC691A45F473003C09AA /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownExecutionViewController.swift; sourceTree = "<group>"; };
 		94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownConfigViewController.swift; sourceTree = "<group>"; };
-		94B751D01F95605C00CCDBB5 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValueTransformer.swift; sourceTree = "<group>"; };
 		94B88E241FF6D5D3006A0196 /* StateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValue.swift; sourceTree = "<group>"; };
 		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
-		94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = WakeUpShakeUp.m4a; sourceTree = "<group>"; };
 		94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,7 +158,7 @@
 		946E29E31A12FE6200A8C9D2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				94C534CF1E8C9612001A980A /* WakeUpShakeUp.m4a */,
+				944D84B1212093FE001A3E95 /* WakeUpShakeUp.mp3 */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -174,9 +174,9 @@
 		94C62B521B30FE5700F5DE72 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				946AEFFB1DA482DC00F817F9 /* AlarmClockScreenshot.jpg */,
-				946AEFFC1DA482DC00F817F9 /* CountdownScreenshot.jpg */,
-				946AEFFD1DA482DC00F817F9 /* StopwatchScreenshot.jpg */,
+				944D84B921209865001A3E95 /* AlarmClockScreenshot.jpg */,
+				944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */,
+				944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 		94C7C3731A0698C000EECD8D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				94B751D01F95605C00CCDBB5 /* WindowController.swift */,
+				94259317211E38B0008A0468 /* WindowController.swift */,
 				94725DF91A4113F8003A7186 /* TabViewController.swift */,
 				944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */,
 				9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */,
@@ -303,11 +303,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				946E00FB1A0573B300D80296 /* Images.xcassets in Resources */,
-				94C534D01E8C9612001A980A /* WakeUpShakeUp.m4a in Resources */,
-				946AEFFE1DA482DC00F817F9 /* AlarmClockScreenshot.jpg in Resources */,
+				944D84B2212093FE001A3E95 /* WakeUpShakeUp.mp3 in Resources */,
+				944D84BC21209865001A3E95 /* AlarmClockScreenshot.jpg in Resources */,
+				944D84BD21209865001A3E95 /* StopwatchScreenshot.jpg in Resources */,
 				946E00FE1A0573B300D80296 /* Main.storyboard in Resources */,
-				946AEFFF1DA482DC00F817F9 /* CountdownScreenshot.jpg in Resources */,
-				946AF0001DA482DC00F817F9 /* StopwatchScreenshot.jpg in Resources */,
+				944D84BE21209865001A3E95 /* CountdownScreenshot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +328,6 @@
 				946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */,
 				94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */,
 				947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */,
-				94B751D11F95605C00CCDBB5 /* WindowController.swift in Sources */,
 				94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */,
 				9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */,
 				94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */,
@@ -338,6 +337,7 @@
 				94246E3C1A3D55240091604E /* Watch.swift in Sources */,
 				94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */,
 				94B88E251FF6D5D3006A0196 /* StateValue.swift in Sources */,
+				94259318211E38B1008A0468 /* WindowController.swift in Sources */,
 				94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */,
 				94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */,
 				946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */,
