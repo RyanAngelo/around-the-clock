@@ -21,6 +21,9 @@
 		947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */; };
 		94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94725DF91A4113F8003A7186 /* TabViewController.swift */; };
 		9476128121D5CACB00D4B728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FC1A0573B300D80296 /* Main.storyboard */; };
+		9476128521D67B6E00D4B728 /* AlarmClockScreenshot_DarkMode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9476128221D67B6E00D4B728 /* AlarmClockScreenshot_DarkMode.jpg */; };
+		9476128621D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9476128321D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg */; };
+		9476128721D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9476128421D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg */; };
 		9481AA581A0993EA000674AE /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481AA571A0993EA000674AE /* Alarm.swift */; };
 		9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */; };
 		94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC671A45F33B003C09AA /* CountdownViewController.swift */; };
@@ -71,6 +74,9 @@
 		946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmConfigViewController.swift; sourceTree = "<group>"; };
 		947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
 		94725DF91A4113F8003A7186 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		9476128221D67B6E00D4B728 /* AlarmClockScreenshot_DarkMode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AlarmClockScreenshot_DarkMode.jpg; sourceTree = "<group>"; };
+		9476128321D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot_DarkMode.jpg; sourceTree = "<group>"; };
+		9476128421D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot_DarkMode.jpg; sourceTree = "<group>"; };
 		9481AA571A0993EA000674AE /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmExecutionViewController.swift; sourceTree = "<group>"; };
 		948AC4051B92695500B1E5D1 /* Around_The_Clock 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Around_The_Clock 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -196,6 +202,9 @@
 			children = (
 				944D84B921209865001A3E95 /* AlarmClockScreenshot.jpg */,
 				944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */,
+				9476128221D67B6E00D4B728 /* AlarmClockScreenshot_DarkMode.jpg */,
+				9476128421D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg */,
+				9476128321D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg */,
 				944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */,
 			);
 			path = Screenshots;
@@ -354,11 +363,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9476128621D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg in Resources */,
 				946E00FB1A0573B300D80296 /* Images.xcassets in Resources */,
 				944D84B2212093FE001A3E95 /* WakeUpShakeUp.mp3 in Resources */,
 				944D84BC21209865001A3E95 /* AlarmClockScreenshot.jpg in Resources */,
+				9476128721D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg in Resources */,
 				9476128121D5CACB00D4B728 /* Main.storyboard in Resources */,
 				944D84BD21209865001A3E95 /* StopwatchScreenshot.jpg in Resources */,
+				9476128521D67B6E00D4B728 /* AlarmClockScreenshot_DarkMode.jpg in Resources */,
 				944D84BE21209865001A3E95 /* CountdownScreenshot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

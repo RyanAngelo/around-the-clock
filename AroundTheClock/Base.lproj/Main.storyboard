@@ -227,7 +227,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -431,7 +431,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -543,7 +543,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="eat-wq-u9s">
-                                <rect key="frame" x="12" y="22" width="50" height="50"/>
+                                <rect key="frame" x="12" y="28" width="50" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="0" drawsBackground="YES" id="19n-op-RHh">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="tbR-Db-Iuh"/>
@@ -556,7 +556,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" id="P5G-a3-Dbq">
-                                <rect key="frame" x="78" y="22" width="50" height="50"/>
+                                <rect key="frame" x="78" y="28" width="50" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="0" drawsBackground="YES" id="K3r-mq-eGH">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="BN4-wp-ml8"/>
@@ -569,7 +569,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" id="7Dg-K2-iiK">
-                                <rect key="frame" x="142" y="21" width="50" height="50"/>
+                                <rect key="frame" x="142" y="28" width="50" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="0" drawsBackground="YES" id="x24-12-gar">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Mkl-VX-dU2"/>
@@ -727,7 +727,7 @@
                             <scrollView focusRingType="none" placeholderIntrinsicWidth="457" placeholderIntrinsicHeight="135" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="MbJ-ZR-hKg">
                                 <rect key="frame" x="12" y="53" width="457" height="136"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" id="thB-cV-Gd8">
+                                <clipView key="contentView" drawsBackground="NO" id="thB-cV-Gd8">
                                     <rect key="frame" x="1" y="0.0" width="455" height="135"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -735,7 +735,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="455" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -798,6 +798,7 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="kd5-FV-EV3">
                                     <rect key="frame" x="1" y="118" width="455" height="16"/>
@@ -1087,7 +1088,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Y3A-uU-eao"/>
-        <segue reference="Nq2-Jf-vOz"/>
+        <segue reference="fEz-rA-CkD"/>
+        <segue reference="kpr-ui-nET"/>
     </inferredMetricsTieBreakers>
 </document>
