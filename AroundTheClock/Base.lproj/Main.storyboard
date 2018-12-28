@@ -11,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Around The Clock" id="1Xt-HY-uBw">
+                            <menuItem title="AroundTheClock" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Around The Clock" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="AroundTheClock" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Around The Clock" id="5kV-Vb-QxS">
+                                        <menuItem title="About AroundTheClock" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -29,7 +29,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Around The Clock" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide AroundTheClock" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -47,7 +47,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Around The Clock" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit AroundTheClock" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="exitNow:" target="Voe-Tx-rLC" id="uB5-vT-8Wq"/>
                                             </connections>
@@ -59,9 +59,9 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Keep Window On Top" toolTip="Sets whether the Around The Clock window will stay ontop of all other windows that are open on the screen" id="9ow-49-UUw">
+                                        <menuItem title="Keep Window On Top" toolTip="Sets whether the AroundTheClock window will stay ontop of all other windows that are open on the screen" id="9ow-49-UUw">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <accessibility description="Sets whether the Around The Clock window will stay ontop of all other windows that are open on the screen"/>
+                                            <accessibility description="Sets whether the AroundTheClock window will stay ontop of all other windows that are open on the screen"/>
                                             <connections>
                                                 <action selector="applicationOntop:" target="Voe-Tx-rLC" id="C9U-u2-JpV"/>
                                             </connections>
@@ -73,7 +73,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Around The Clock Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="AroundTheClock Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -88,7 +88,7 @@
                     </connections>
                 </application>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Around_The_Clock"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AroundTheClock"/>
                 <userDefaultsController representsSharedInstance="YES" id="yAp-DS-eHy"/>
             </objects>
             <point key="canvasLocation" x="-82" y="163"/>
@@ -97,8 +97,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Around The Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="AroundTheClock" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="AroundTheClock" sceneMemberID="viewController">
+                    <window key="window" title="AroundTheClock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="AroundTheClock" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="748" y="60" width="480" height="330"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
@@ -118,7 +118,7 @@
         <!--Tab View Controller-->
         <scene sceneID="xJz-y4-xlW">
             <objects>
-                <tabViewController selectedTabViewItemIndex="1" id="iz6-zA-GlR" customClass="TabViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="1" id="iz6-zA-GlR" customClass="TabViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="gKs-An-WOW"/>
                         <tabViewItem id="QYx-hE-Epl"/>
@@ -147,7 +147,7 @@
         <!--Stopwatch-->
         <scene sceneID="RHy-ql-iGE">
             <objects>
-                <viewController title="Stopwatch" id="V2v-sL-nan" customClass="StopWatchViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Stopwatch" id="V2v-sL-nan" customClass="StopWatchViewController" customModule="AroundTheClock" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="FcY-vA-jNM">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,7 +382,7 @@
         <!--Countdown-->
         <scene sceneID="CU5-zL-RIy">
             <objects>
-                <viewController title="Countdown" storyboardIdentifier="Countdown" id="TkM-1P-CUJ" userLabel="Countdown" customClass="CountdownViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
+                <viewController title="Countdown" storyboardIdentifier="Countdown" id="TkM-1P-CUJ" userLabel="Countdown" customClass="CountdownViewController" customModule="AroundTheClock" sceneMemberID="viewController">
                     <view key="view" identifier="Countdown" wantsLayer="YES" id="uAF-kM-veP">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -648,7 +648,7 @@
         <!--Alarm-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="Alarm" id="XfG-lQ-9wD" customClass="AlarmViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
+                <viewController title="Alarm" id="XfG-lQ-9wD" customClass="AlarmViewController" customModule="AroundTheClock" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -855,7 +855,7 @@
         <scene sceneID="J09-uE-ooa">
             <objects>
                 <customObject id="ESF-Go-Fbk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="XtF-Vl-5hz" customClass="AlarmConfigViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XtF-Vl-5hz" customClass="AlarmConfigViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G9l-oq-Cjz">
                         <rect key="frame" x="0.0" y="0.0" width="261" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -933,7 +933,7 @@
         <!--Alarm Execution View Controller-->
         <scene sceneID="pHi-Wd-nap">
             <objects>
-                <viewController id="bLV-fY-gV5" customClass="AlarmExecutionViewController" customModule="Around_The_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bLV-fY-gV5" customClass="AlarmExecutionViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="kfW-fl-UEf">
                         <rect key="frame" x="0.0" y="0.0" width="439" height="155"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -972,7 +972,7 @@
         <scene sceneID="B6a-aB-fwZ">
             <objects>
                 <customObject id="6YD-Kt-MyJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
+                <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="AroundTheClock" sceneMemberID="viewController">
                     <view key="view" id="92S-XW-QNw">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1050,7 +1050,7 @@
         <!--Countdown Execution View Controller-->
         <scene sceneID="Ovo-qH-lBH">
             <objects>
-                <viewController id="d1W-Dg-bax" customClass="CountdownExecutionViewController" customModule="Around_The_Clock" sceneMemberID="viewController">
+                <viewController id="d1W-Dg-bax" customClass="CountdownExecutionViewController" customModule="AroundTheClock" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="ifG-Yr-pOU">
                         <rect key="frame" x="0.0" y="0.0" width="439" height="155"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1087,7 +1087,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FXn-tM-6zD"/>
-        <segue reference="dVa-3F-cmW"/>
+        <segue reference="Y3A-uU-eao"/>
+        <segue reference="Nq2-Jf-vOz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,7 +24,7 @@ class Around_The_ClockUITests: XCTestCase {
 
     func testAlarm() {
         
-        let aroundTheClockWindow = XCUIApplication().windows["Around The Clock"]
+        let aroundTheClockWindow = XCUIApplication().windows["AroundTheClock"]
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.radioButtons["Alarm"]/*[[".radioGroups.radioButtons[\"Alarm\"]",".radioButtons[\"Alarm\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         
         let addButton = aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Add"]/*[[".groups.buttons[\"Add\"]",".buttons[\"Add\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/

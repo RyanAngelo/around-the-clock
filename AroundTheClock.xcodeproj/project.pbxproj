@@ -16,11 +16,11 @@
 		946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F31A0573B300D80296 /* AppDelegate.swift */; };
 		946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */; };
 		946E00FB1A0573B300D80296 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FA1A0573B300D80296 /* Images.xcassets */; };
-		946E00FE1A0573B300D80296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FC1A0573B300D80296 /* Main.storyboard */; };
 		946E010A1A0573B300D80296 /* Around_The_ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E01091A0573B300D80296 /* Around_The_ClockTests.swift */; };
 		946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */; };
 		947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */; };
 		94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94725DF91A4113F8003A7186 /* TabViewController.swift */; };
+		9476128121D5CACB00D4B728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FC1A0573B300D80296 /* Main.storyboard */; };
 		9481AA581A0993EA000674AE /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481AA571A0993EA000674AE /* Alarm.swift */; };
 		9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */; };
 		94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC671A45F33B003C09AA /* CountdownViewController.swift */; };
@@ -59,13 +59,13 @@
 		944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot.jpg; sourceTree = "<group>"; };
 		944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot.jpg; sourceTree = "<group>"; };
 		944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
-		946E00EE1A0573B300D80296 /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946E00EE1A0573B300D80296 /* AroundTheClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AroundTheClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		946E00F21A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		946E00F31A0573B300D80296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		946E00F81A0573B300D80296 /* Around_The_Clock.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Around_The_Clock.xcdatamodel; sourceTree = "<group>"; };
 		946E00FA1A0573B300D80296 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		946E00FD1A0573B300D80296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		946E01031A0573B300D80296 /* Around The ClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Around The ClockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946E01031A0573B300D80296 /* AroundTheClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundTheClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		946E01081A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		946E01091A0573B300D80296 /* Around_The_ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockTests.swift; sourceTree = "<group>"; };
 		946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmConfigViewController.swift; sourceTree = "<group>"; };
@@ -80,9 +80,9 @@
 		94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownConfigViewController.swift; sourceTree = "<group>"; };
 		94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValueTransformer.swift; sourceTree = "<group>"; };
 		94B88E241FF6D5D3006A0196 /* StateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValue.swift; sourceTree = "<group>"; };
-		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
+		94C2D06F1B2A5F2B00E0378C /* AroundTheClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AroundTheClock.entitlements; sourceTree = "<group>"; };
 		94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueTransformer.swift; sourceTree = "<group>"; };
-		94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Around The ClockUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundTheClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F48B2921D5B3970002753D /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
 		94F48B2B21D5B3970002753D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,9 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				94C62B521B30FE5700F5DE72 /* Screenshots */,
-				946E00F01A0573B300D80296 /* Around The Clock */,
-				946E01061A0573B300D80296 /* Around The ClockTests */,
-				94F48B2821D5B3970002753D /* Around The ClockUITests */,
+				946E00F01A0573B300D80296 /* AroundTheClock */,
+				946E01061A0573B300D80296 /* AroundTheClockTests */,
+				94F48B2821D5B3970002753D /* AroundTheClockUITests */,
 				946E00EF1A0573B300D80296 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,28 +126,28 @@
 		946E00EF1A0573B300D80296 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				946E00EE1A0573B300D80296 /* Around The Clock.app */,
-				946E01031A0573B300D80296 /* Around The ClockTests.xctest */,
-				94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */,
+				946E00EE1A0573B300D80296 /* AroundTheClock.app */,
+				946E01031A0573B300D80296 /* AroundTheClockTests.xctest */,
+				94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		946E00F01A0573B300D80296 /* Around The Clock */ = {
+		946E00F01A0573B300D80296 /* AroundTheClock */ = {
 			isa = PBXGroup;
 			children = (
 				94B88E231FF6D5B6006A0196 /* Tools */,
 				94EDD48E1F96DCC400EABA96 /* Models */,
-				94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */,
+				94C2D06F1B2A5F2B00E0378C /* AroundTheClock.entitlements */,
 				946E29E31A12FE6200A8C9D2 /* Sounds */,
-				94C7C3731A0698C000EECD8D /* View Controllers */,
+				94C7C3731A0698C000EECD8D /* ViewControllers */,
 				946E00F31A0573B300D80296 /* AppDelegate.swift */,
 				946E00FA1A0573B300D80296 /* Images.xcassets */,
 				946E00FC1A0573B300D80296 /* Main.storyboard */,
 				946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */,
 				946E00F11A0573B300D80296 /* Supporting Files */,
 			);
-			path = "Around The Clock";
+			path = AroundTheClock;
 			sourceTree = "<group>";
 		};
 		946E00F11A0573B300D80296 /* Supporting Files */ = {
@@ -158,13 +158,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		946E01061A0573B300D80296 /* Around The ClockTests */ = {
+		946E01061A0573B300D80296 /* AroundTheClockTests */ = {
 			isa = PBXGroup;
 			children = (
 				946E01091A0573B300D80296 /* Around_The_ClockTests.swift */,
 				946E01071A0573B300D80296 /* Supporting Files */,
 			);
-			path = "Around The ClockTests";
+			path = AroundTheClockTests;
 			sourceTree = "<group>";
 		};
 		946E01071A0573B300D80296 /* Supporting Files */ = {
@@ -201,7 +201,7 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
-		94C7C3731A0698C000EECD8D /* View Controllers */ = {
+		94C7C3731A0698C000EECD8D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				94259317211E38B0008A0468 /* WindowController.swift */,
@@ -214,7 +214,7 @@
 				94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */,
 				94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */,
 			);
-			name = "View Controllers";
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		94EDD48E1F96DCC400EABA96 /* Models */ = {
@@ -229,21 +229,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		94F48B2821D5B3970002753D /* Around The ClockUITests */ = {
+		94F48B2821D5B3970002753D /* AroundTheClockUITests */ = {
 			isa = PBXGroup;
 			children = (
 				94F48B2921D5B3970002753D /* Around_The_ClockUITests.swift */,
 				94F48B2B21D5B3970002753D /* Info.plist */,
 			);
-			path = "Around The ClockUITests";
+			path = AroundTheClockUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		946E00ED1A0573B300D80296 /* Around The Clock */ = {
+		946E00ED1A0573B300D80296 /* AroundTheClock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The Clock" */;
+			buildConfigurationList = 946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "AroundTheClock" */;
 			buildPhases = (
 				946E00EA1A0573B300D80296 /* Sources */,
 				946E00EB1A0573B300D80296 /* Frameworks */,
@@ -253,14 +253,14 @@
 			);
 			dependencies = (
 			);
-			name = "Around The Clock";
+			name = AroundTheClock;
 			productName = "Around The Clock";
-			productReference = 946E00EE1A0573B300D80296 /* Around The Clock.app */;
+			productReference = 946E00EE1A0573B300D80296 /* AroundTheClock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		946E01021A0573B300D80296 /* Around The ClockTests */ = {
+		946E01021A0573B300D80296 /* AroundTheClockTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The ClockTests" */;
+			buildConfigurationList = 946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "AroundTheClockTests" */;
 			buildPhases = (
 				946E00FF1A0573B300D80296 /* Sources */,
 				946E01001A0573B300D80296 /* Frameworks */,
@@ -271,14 +271,14 @@
 			dependencies = (
 				946E01051A0573B300D80296 /* PBXTargetDependency */,
 			);
-			name = "Around The ClockTests";
+			name = AroundTheClockTests;
 			productName = "Around The ClockTests";
-			productReference = 946E01031A0573B300D80296 /* Around The ClockTests.xctest */;
+			productReference = 946E01031A0573B300D80296 /* AroundTheClockTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		94F48B2621D5B3970002753D /* Around The ClockUITests */ = {
+		94F48B2621D5B3970002753D /* AroundTheClockUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "Around The ClockUITests" */;
+			buildConfigurationList = 94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "AroundTheClockUITests" */;
 			buildPhases = (
 				94F48B2321D5B3970002753D /* Sources */,
 				94F48B2421D5B3970002753D /* Frameworks */,
@@ -289,9 +289,9 @@
 			dependencies = (
 				94F48B2D21D5B3970002753D /* PBXTargetDependency */,
 			);
-			name = "Around The ClockUITests";
+			name = AroundTheClockUITests;
 			productName = "Around The ClockUITests";
-			productReference = 94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */;
+			productReference = 94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -329,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 946E00E91A0573B300D80296 /* Build configuration list for PBXProject "Around The Clock" */;
+			buildConfigurationList = 946E00E91A0573B300D80296 /* Build configuration list for PBXProject "AroundTheClock" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -342,9 +342,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				946E00ED1A0573B300D80296 /* Around The Clock */,
-				946E01021A0573B300D80296 /* Around The ClockTests */,
-				94F48B2621D5B3970002753D /* Around The ClockUITests */,
+				946E00ED1A0573B300D80296 /* AroundTheClock */,
+				946E01021A0573B300D80296 /* AroundTheClockTests */,
+				94F48B2621D5B3970002753D /* AroundTheClockUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,8 +357,8 @@
 				946E00FB1A0573B300D80296 /* Images.xcassets in Resources */,
 				944D84B2212093FE001A3E95 /* WakeUpShakeUp.mp3 in Resources */,
 				944D84BC21209865001A3E95 /* AlarmClockScreenshot.jpg in Resources */,
+				9476128121D5CACB00D4B728 /* Main.storyboard in Resources */,
 				944D84BD21209865001A3E95 /* StopwatchScreenshot.jpg in Resources */,
-				946E00FE1A0573B300D80296 /* Main.storyboard in Resources */,
 				944D84BE21209865001A3E95 /* CountdownScreenshot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,12 +425,12 @@
 /* Begin PBXTargetDependency section */
 		946E01051A0573B300D80296 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 946E00ED1A0573B300D80296 /* Around The Clock */;
+			target = 946E00ED1A0573B300D80296 /* AroundTheClock */;
 			targetProxy = 946E01041A0573B300D80296 /* PBXContainerItemProxy */;
 		};
 		94F48B2D21D5B3970002753D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 946E00ED1A0573B300D80296 /* Around The Clock */;
+			target = 946E00ED1A0573B300D80296 /* AroundTheClock */;
 			targetProxy = 94F48B2C21D5B3970002753D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -556,13 +556,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Around The Clock/Around The Clock.entitlements";
+				CODE_SIGN_ENTITLEMENTS = AroundTheClock/AroundTheClock.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
-				INFOPLIST_FILE = "Around The Clock/Info.plist";
+				INFOPLIST_FILE = AroundTheClock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
@@ -577,13 +577,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Around The Clock/Around The Clock.entitlements";
+				CODE_SIGN_ENTITLEMENTS = AroundTheClock/AroundTheClock.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
-				INFOPLIST_FILE = "Around The Clock/Info.plist";
+				INFOPLIST_FILE = AroundTheClock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
@@ -607,12 +607,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Around The ClockTests/Info.plist";
+				INFOPLIST_FILE = AroundTheClockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AroundTheClock.app/Contents/MacOS/AroundTheClock";
 			};
 			name = Debug;
 		};
@@ -625,12 +625,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Around The ClockTests/Info.plist";
+				INFOPLIST_FILE = AroundTheClockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AroundTheClock.app/Contents/MacOS/AroundTheClock";
 			};
 			name = Release;
 		};
@@ -649,7 +649,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Around The ClockUITests/Info.plist";
+				INFOPLIST_FILE = "AroundTh ClockUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -657,7 +657,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = "Around The Clock";
+				TEST_TARGET_NAME = AroundTheClock;
 			};
 			name = Debug;
 		};
@@ -676,20 +676,20 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Around The ClockUITests/Info.plist";
+				INFOPLIST_FILE = "AroundTh ClockUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.angelo.com.Around-The-ClockUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = "Around The Clock";
+				TEST_TARGET_NAME = AroundTheClock;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		946E00E91A0573B300D80296 /* Build configuration list for PBXProject "Around The Clock" */ = {
+		946E00E91A0573B300D80296 /* Build configuration list for PBXProject "AroundTheClock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				946E010B1A0573B300D80296 /* Debug */,
@@ -698,7 +698,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The Clock" */ = {
+		946E010D1A0573B300D80296 /* Build configuration list for PBXNativeTarget "AroundTheClock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				946E010E1A0573B300D80296 /* Debug */,
@@ -707,7 +707,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "Around The ClockTests" */ = {
+		946E01101A0573B300D80296 /* Build configuration list for PBXNativeTarget "AroundTheClockTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				946E01111A0573B300D80296 /* Debug */,
@@ -716,7 +716,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "Around The ClockUITests" */ = {
+		94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "AroundTheClockUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94F48B2F21D5B3970002753D /* Debug */,
