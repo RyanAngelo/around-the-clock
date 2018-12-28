@@ -31,10 +31,18 @@
 		94B88E251FF6D5D3006A0196 /* StateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88E241FF6D5D3006A0196 /* StateValue.swift */; };
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
 		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
+		94F48B2A21D5B3970002753D /* Around_The_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F48B2921D5B3970002753D /* Around_The_ClockUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		946E01041A0573B300D80296 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 946E00E61A0573B300D80296 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 946E00ED1A0573B300D80296;
+			remoteInfo = "Around The Clock";
+		};
+		94F48B2C21D5B3970002753D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 946E00E61A0573B300D80296 /* Project object */;
 			proxyType = 1;
@@ -74,6 +82,9 @@
 		94B88E241FF6D5D3006A0196 /* StateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValue.swift; sourceTree = "<group>"; };
 		94C2D06F1B2A5F2B00E0378C /* Around The Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Around The Clock.entitlements"; sourceTree = "<group>"; };
 		94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueTransformer.swift; sourceTree = "<group>"; };
+		94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Around The ClockUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F48B2921D5B3970002753D /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
+		94F48B2B21D5B3970002753D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +102,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94F48B2421D5B3970002753D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -100,6 +118,7 @@
 				94C62B521B30FE5700F5DE72 /* Screenshots */,
 				946E00F01A0573B300D80296 /* Around The Clock */,
 				946E01061A0573B300D80296 /* Around The ClockTests */,
+				94F48B2821D5B3970002753D /* Around The ClockUITests */,
 				946E00EF1A0573B300D80296 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +128,7 @@
 			children = (
 				946E00EE1A0573B300D80296 /* Around The Clock.app */,
 				946E01031A0573B300D80296 /* Around The ClockTests.xctest */,
+				94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +229,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		94F48B2821D5B3970002753D /* Around The ClockUITests */ = {
+			isa = PBXGroup;
+			children = (
+				94F48B2921D5B3970002753D /* Around_The_ClockUITests.swift */,
+				94F48B2B21D5B3970002753D /* Info.plist */,
+			);
+			path = "Around The ClockUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +276,24 @@
 			productReference = 946E01031A0573B300D80296 /* Around The ClockTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		94F48B2621D5B3970002753D /* Around The ClockUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "Around The ClockUITests" */;
+			buildPhases = (
+				94F48B2321D5B3970002753D /* Sources */,
+				94F48B2421D5B3970002753D /* Frameworks */,
+				94F48B2521D5B3970002753D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94F48B2D21D5B3970002753D /* PBXTargetDependency */,
+			);
+			name = "Around The ClockUITests";
+			productName = "Around The ClockUITests";
+			productReference = 94F48B2721D5B3970002753D /* Around The ClockUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -254,14 +301,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Ryan Angelo";
 				TargetAttributes = {
 					946E00ED1A0573B300D80296 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 8L34TTJ3PA;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 0;
@@ -273,7 +319,12 @@
 					};
 					946E01021A0573B300D80296 = {
 						CreatedOnToolsVersion = 6.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
+						TestTargetID = 946E00ED1A0573B300D80296;
+					};
+					94F48B2621D5B3970002753D = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 946E00ED1A0573B300D80296;
 					};
 				};
@@ -293,6 +344,7 @@
 			targets = (
 				946E00ED1A0573B300D80296 /* Around The Clock */,
 				946E01021A0573B300D80296 /* Around The ClockTests */,
+				94F48B2621D5B3970002753D /* Around The ClockUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +364,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		946E01011A0573B300D80296 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94F48B2521D5B3970002753D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,6 +412,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94F48B2321D5B3970002753D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94F48B2A21D5B3970002753D /* Around_The_ClockUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -360,6 +427,11 @@
 			isa = PBXTargetDependency;
 			target = 946E00ED1A0573B300D80296 /* Around The Clock */;
 			targetProxy = 946E01041A0573B300D80296 /* PBXContainerItemProxy */;
+		};
+		94F48B2D21D5B3970002753D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 946E00ED1A0573B300D80296 /* Around The Clock */;
+			targetProxy = 94F48B2C21D5B3970002753D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,7 +474,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer: Ryan Angelo (GH4CD82U77)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -421,13 +493,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -458,7 +530,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer: Ryan Angelo (GH4CD82U77)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -471,12 +543,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -489,14 +561,14 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "";
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				INFOPLIST_FILE = "Around The Clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
@@ -510,14 +582,14 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "";
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				INFOPLIST_FILE = "Around The Clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
@@ -539,8 +611,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
 			};
 			name = Debug;
@@ -558,9 +629,60 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
+			};
+			name = Release;
+		};
+		94F48B2F21D5B3970002753D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Around The ClockUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.angelo.com.Around-The-ClockUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = "Around The Clock";
+			};
+			name = Debug;
+		};
+		94F48B3021D5B3970002753D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Around The ClockUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.angelo.com.Around-The-ClockUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = "Around The Clock";
 			};
 			name = Release;
 		};
@@ -590,6 +712,15 @@
 			buildConfigurations = (
 				946E01111A0573B300D80296 /* Debug */,
 				946E01121A0573B300D80296 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94F48B2E21D5B3970002753D /* Build configuration list for PBXNativeTarget "Around The ClockUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94F48B2F21D5B3970002753D /* Debug */,
+				94F48B3021D5B3970002753D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
