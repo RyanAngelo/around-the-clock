@@ -43,7 +43,7 @@ class Alarm: NSManagedObject {
         }
     }
     
-    func setState(off state: String){
+    func setState(state: String){
         alarmstate = state
     }
 }

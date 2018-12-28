@@ -19,7 +19,7 @@ class Watch: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var splits: String
 
-    func setState(off state: String){
+    func setState(state: String){
         watchstate = state
     }
     

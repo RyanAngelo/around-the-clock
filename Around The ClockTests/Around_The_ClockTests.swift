@@ -12,33 +12,50 @@ import XCTest
 
 class Around_The_ClockTests: XCTestCase {
     
+    var alarm: Alarm? = nil
+    var watch: Watch? = nil
+    var countdown: Countdown? = nil
+    var context: NSManagedObjectContext? = nil
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.context = setUpInMemoryManagedObjectContext()
+        alarm = Alarm(context: self.context!)
+        alarm!.name = "Test Alarm"
+        watch = Watch(context: self.context!)
+        watch!.name = "Test Watch"
+        countdown = Countdown(context: self.context!)
+        countdown!.name = "Test Countdown"
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testObjectCreation() {
-        let alarm = Alarm()
-        alarm.setState(off: "paused")
-        XCTAssertEqual(alarm.alarmstate, "paused")
-        let watch = Watch()
-        watch.setState(off: "paused")
-        XCTAssertEqual(alarm.alarmstate, "paused")
-        let countdown = Countdown()
-        countdown.setState(off: "paused")
-        XCTAssertEqual(countdown.countdownstate, "paused")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+    func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
+        
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        } catch {
+            print("Adding in-memory persistent store failed")
         }
+        
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+        
+        return managedObjectContext
+    }//setUpInMemoryManagedObjectContext
+    
+    func testObjectCreation() {
+        alarm?.setState(state: "off")
+        XCTAssertEqual(alarm!.alarmstate, "off")
+        watch?.setState(state: "off")
+        XCTAssertEqual(watch!.watchstate, "off")
+        countdown?.setState(state: "off")
+        XCTAssertEqual(countdown!.countdownstate, "off")
     }
     
 }

@@ -54,7 +54,7 @@ class AlarmExecutionViewController: NSViewController {
         }
         else{
             print("File \(audiofile) does not exist. Using default")
-            audiopath = URL(fileURLWithPath: Bundle.main.path(forSoundResource: NSSound.Name(rawValue: "WakeUpShakeUp"))!)
+            audiopath = URL(fileURLWithPath: Bundle.main.path(forSoundResource: "WakeUpShakeUp")!)
         }
         return audiopath
     }

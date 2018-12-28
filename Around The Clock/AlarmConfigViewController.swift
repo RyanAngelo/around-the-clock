@@ -63,6 +63,6 @@ class AlarmConfigViewController: NSViewController {
             UserDefaults.standard.set(apsecurity, forKey:alarmobject.uid as String)
             alarmobject.audio=chosenaudio as String
         }
-        self.dismissViewController(self)
+        self.dismiss(self)
     }
 }

@@ -18,7 +18,7 @@ class Countdown: NSManagedObject {
     @NSManaged dynamic var name: String
     @NSManaged dynamic var uid: String
     
-    func setState(off state: String){
+    func setState(state: String){
         countdownstate = state
     }
 

@@ -48,7 +48,7 @@ class AlarmViewController: NSViewController {
         }
         for result in results{
             let alarm:Alarm=result as! Alarm
-            alarm.setState(off: "off")
+            alarm.setState(state: "off")
             alarm.changeDay()
         }
        self.saveAndReload()
@@ -65,24 +65,24 @@ class AlarmViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier!.rawValue == "AlarmConfiguration"){
+        if (segue.identifier! == "AlarmConfiguration"){
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             let svc = segue.destinationController as! AlarmConfigViewController;
             svc.alarmobject = alarm_obj
         }
-        if (segue.identifier!.rawValue == "AlarmExecution"){
+        if (segue.identifier! == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
-            svc.alarmobject = sender as! Alarm
+            svc.alarmobject = sender as? Alarm
         }
-        if (segue.identifier!.rawValue == "CountdownExecution"){
+        if (segue.identifier! == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
-            svc.countdown_obj = sender as! Countdown
+            svc.countdown_obj = sender as? Countdown
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
-        if identifier.rawValue == "AlarmConfiguration" &&  !self.alarmArrayController.canRemove{
+        if identifier == "AlarmConfiguration" &&  !self.alarmArrayController.canRemove{
             print("Can't configure an Alarm. No Alarms exist.")
             return false;
         }
@@ -92,14 +92,14 @@ class AlarmViewController: NSViewController {
     @objc func bringAlarmWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
+            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }
     }
     
     @objc func bringcountdownWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notifcation as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
+            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
         }
     }
     
@@ -125,7 +125,7 @@ class AlarmViewController: NSViewController {
         let alarm_obj = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
         alarm_obj.alarmtime = chosenDate!
         alarm_obj.name = "Alarm"
-        alarm_obj.setState(off: "off")
+        alarm_obj.setState(state: "off")
         let uid = UUID().uuidString //create unique user identifier
         alarm_obj.uid = uid
         self.alarmArrayController.addObject(alarm_obj)
@@ -137,7 +137,7 @@ class AlarmViewController: NSViewController {
         if alarmArrayController.canRemove==true{ //confirm there are actually more alarms to view
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
-            alarm_obj.setState(off: "off")
+            alarm_obj.setState(state: "off")
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.alarmArrayController.remove(atArrangedObjectIndex: selected_row)
@@ -165,7 +165,7 @@ class AlarmViewController: NSViewController {
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             alarm_obj.changeDay()
             if alarm_obj.alarmstate == "off"{
-                alarm_obj.setState(off: "on")
+                alarm_obj.setState(state: "on")
                 stopalarm_btn.isHidden=false
                 startalarm.isHidden=true
                 alarmtimechoice.isEnabled=false
@@ -180,7 +180,7 @@ class AlarmViewController: NSViewController {
             let selectedalarm: [Alarm]=self.alarmArrayController.selectedObjects as! [Alarm]
             let alarm_obj: Alarm = self.getAlarmObject(selectedalarm)!
             if alarm_obj.alarmstate == "on" || alarm_obj.alarmstate=="activated"{
-                alarm_obj.setState(off: "off")
+                alarm_obj.setState(state: "off")
                 stopalarm_btn.isHidden=true
                 startalarm.isHidden=false
                 alarmtimechoice.isEnabled=true
@@ -208,7 +208,7 @@ class AlarmViewController: NSViewController {
             let currentuid = currentselection.uid
             timeinterval=alarmtime.timeIntervalSinceNow
             if timeinterval.sign == .minus { //Alarm is going off
-                alarm_obj.setState(off: "activated")
+                alarm_obj.setState(state: "activated")
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
                 }
@@ -324,7 +324,7 @@ class AlarmViewController: NSViewController {
         }
         for result in results{
             let alarm = result as! Alarm
-            alarm.setState(off: "off")
+            alarm.setState(state: "off")
             alarm.changeDay()
             if alarm.uid as String==currentuid{
                 DispatchQueue.main.async {

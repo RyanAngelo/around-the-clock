@@ -53,7 +53,7 @@ class StopWatchViewController: NSViewController {
         for result in results{
             let watch:Watch=result as! Watch
             if watch.watchstate != "off"{
-                watch.setState(off: "off")
+                watch.setState(state: "off")
                 watch.elapsedtime="00:00:00.0"
             }
         }
@@ -87,27 +87,27 @@ class StopWatchViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier!.rawValue == "AlarmExecution"){
+        if (segue.identifier! == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
-            svc.alarmobject = sender as! Alarm
+            svc.alarmobject = sender as? Alarm
         }
-        if (segue.identifier!.rawValue == "CountdownExecution"){
+        if (segue.identifier! == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
-            svc.countdown_obj = sender as! Countdown
+            svc.countdown_obj = sender as? Countdown
         }
     }
     
     @objc func bringAlarmWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notifcation as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
+            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }
     }
     
     @objc func bringcountdownWindowUp(_ notifcation: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notifcation as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
+            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
         }
     }
     
@@ -127,7 +127,7 @@ class StopWatchViewController: NSViewController {
         newWatch.splits = ""
         newWatch.starttime = now
         newWatch.name = "Stopwatch"
-        newWatch.setState(off: "off")
+        newWatch.setState(state: "off")
         let uid = UUID().uuidString //create unique user identifier
         newWatch.setValue(uid, forKey:"uid")
         self.watchArrayController.addObject(newWatch)
@@ -168,7 +168,7 @@ class StopWatchViewController: NSViewController {
                 else{
                     watch_obj.setValue(now, forKey: "starttime")
                 }
-                watch_obj.setState(off: "on")
+                watch_obj.setState(state: "on")
                 resetwatch.isHidden=false
                 startwatch.isHidden=true
                 splitbutton.isHidden=false
@@ -186,7 +186,7 @@ class StopWatchViewController: NSViewController {
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
             let watch_obj: Watch = self.getWatchObject(selectedwatch)!
             if watch_obj.watchstate == "on" || watch_obj.watchstate == "paused" {
-                watch_obj.setState(off: "off")
+                watch_obj.setState(state: "off")
                 resetwatch.isHidden=true
                 startwatch.isHidden=false
                 splitbutton.isHidden=true
@@ -214,7 +214,7 @@ class StopWatchViewController: NSViewController {
             let watch_obj: Watch = self.getWatchObject(selectedwatch)!
             watch_obj.pausetime=Date()
             if watch_obj.watchstate == "on" {
-                watch_obj.setState(off: "paused")
+                watch_obj.setState(state: "paused")
                 resetwatch.isHidden=false
                 startwatch.isHidden=false
                 pausewatch.isHidden=true

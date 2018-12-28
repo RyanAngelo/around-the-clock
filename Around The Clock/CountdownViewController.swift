@@ -63,24 +63,24 @@ class CountdownViewController: NSViewController {
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if (segue.identifier!.rawValue == "CountdownConfiguration"){
+        if (segue.identifier! == "CountdownConfiguration"){
             let selectedcountdown: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             let svc = segue.destinationController as! CountdownConfigViewController;
             svc.countdown_obj = countdown_obj
         }
-        if (segue.identifier!.rawValue == "CountdownExecution"){
+        if (segue.identifier! == "CountdownExecution"){
             let svc = segue.destinationController as! CountdownExecutionViewController;
-            svc.countdown_obj = sender as! Countdown
+            svc.countdown_obj = sender as? Countdown
         }
-        if (segue.identifier!.rawValue == "AlarmExecution"){
+        if (segue.identifier! == "AlarmExecution"){
             let svc = segue.destinationController as! AlarmExecutionViewController;
-            svc.alarmobject = sender as! Alarm
+            svc.alarmobject = sender as? Alarm
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
-        if identifier.rawValue == "CountdownConfiguration" &&  !self.countdownArrayController.canRemove{
+        if identifier == "CountdownConfiguration" &&  !self.countdownArrayController.canRemove{
             print("Can't configure a Countdown. No Countdowns exist.")
             return false;
         }
@@ -91,14 +91,14 @@ class CountdownViewController: NSViewController {
     @objc func bringcountdownWindowUp(_ notification: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let countdown_obj: Countdown = (notification as NSNotification).userInfo!["countdown_obj"] as! Countdown
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "CountdownExecution"), sender: countdown_obj)
+            self.performSegue(withIdentifier: "CountdownExecution", sender: countdown_obj)
         }
     }
     
     @objc func bringAlarmWindowUp(_ notification: Notification){
         if self.view.window != nil || ((self.view.window != nil) && self.appDelegate.mainWindow.isMiniaturized){
             let alarm_obj: Alarm = (notification as NSNotification).userInfo!["alarm_obj"] as! Alarm
-            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "AlarmExecution"), sender: alarm_obj)
+            self.performSegue(withIdentifier: "AlarmExecution", sender: alarm_obj)
         }
     }
     
@@ -122,7 +122,7 @@ class CountdownViewController: NSViewController {
         mycountdown.startcountdowntime = startcountdowntime
         mycountdown.countdowntime = startcountdowntime
         mycountdown.name = "Countdown"
-        mycountdown.setState(off: "off")
+        mycountdown.setState(state: "off")
         let uid = UUID().uuidString //create unique user identifier
         mycountdown.uid = uid
         self.countdownArrayController.addObject(mycountdown)
@@ -132,7 +132,7 @@ class CountdownViewController: NSViewController {
     @IBAction func deletecountdown(_ sender: AnyObject) {
         if countdownArrayController.canRemove==true{ //confirm there are actually more countdowns to view
             let selectedcountdown: Countdown=self.countdownArrayController.selectedObjects[0] as! Countdown
-            selectedcountdown.setState(off: "off")
+            selectedcountdown.setState(state: "off")
             //dispatch UI task on the main queue
             let selected_row=self.timetable.selectedRow
             self.countdownArrayController.remove(atArrangedObjectIndex: selected_row)
@@ -187,7 +187,7 @@ class CountdownViewController: NSViewController {
                     countdown_obj.countdowntime=startcountdowntime
                     countdown_obj.startcountdowntime=startcountdowntime
                 }
-                countdown_obj.setState(off: "on")
+                countdown_obj.setState(state: "on")
                 resetcountdown.isHidden=false
                 pausecountdown.isHidden=false
                 hourstext.isEnabled=false
@@ -226,7 +226,7 @@ class CountdownViewController: NSViewController {
             let selectedcountdown: [Countdown] = self.countdownArrayController.selectedObjects as! [Countdown]
             let countdown_obj: Countdown = self.getcountdownObject(selectedcountdown)!
             if countdown_obj.countdownstate == "on" {
-                countdown_obj.setState(off: "paused")
+                countdown_obj.setState(state: "paused")
                 resetcountdown.isHidden=false
                 startcountdown.isHidden=false
                 pausecountdown.isHidden=true
@@ -411,7 +411,7 @@ class CountdownViewController: NSViewController {
 
         for result in results{
             let countdown = result as! Countdown
-            countdown.setState(off: "off")
+            countdown.setState(state: "off")
             countdown.countdowntime=countdown.startcountdowntime
             if countdown.uid==currentuid as String{
                 DispatchQueue.main.async {

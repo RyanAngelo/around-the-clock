@@ -62,7 +62,7 @@ class CountdownConfigViewController: NSViewController {
             UserDefaults.standard.set(apsecurity, forKey:countdown_obj.uid)
             countdown_obj.audio=chosenaudio as String
         }
-        self.dismissViewController(self)
+        self.dismiss(self)
     }
     
 }
