@@ -8,7 +8,7 @@
 
 import XCTest
 
-class Around_The_ClockUITests: XCTestCase {
+class AroundTheClockUITests: XCTestCase {
     
     override func setUp() {
         
@@ -24,24 +24,11 @@ class Around_The_ClockUITests: XCTestCase {
 
     func testAlarm() {
         
-        let aroundTheClockWindow = XCUIApplication().windows["AroundTheClock"]
+        let aroundTheClockWindow = XCUIApplication().windows["Around The Clock"]
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.radioButtons["Alarm"]/*[[".radioGroups.radioButtons[\"Alarm\"]",".radioButtons[\"Alarm\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         
         let addButton = aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Add"]/*[[".groups.buttons[\"Add\"]",".buttons[\"Add\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         addButton.click()
-        
-        let textField = aroundTheClockWindow/*@START_MENU_TOKEN@*/.tables/*[[".groups",".scrollViews.tables",".tables"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tableRows.children(matching: .textField).element
-        textField.doubleClick()
-        textField.typeText("Boop\r")
-        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Start"]/*[[".groups.buttons[\"Start\"]",".buttons[\"Start\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Stop"]/*[[".groups.buttons[\"Stop\"]",".buttons[\"Stop\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Properties"]/*[[".groups.buttons[\"Properties\"]",".buttons[\"Properties\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-        aroundTheClockWindow.sheets.buttons["Done"].click()
-        addButton.click()
-        
-        let deleteButton = aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".groups.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        deleteButton.click()
-        deleteButton.click()
         
         
         // Use recording to get started writing UI tests.

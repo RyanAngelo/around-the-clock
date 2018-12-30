@@ -88,7 +88,7 @@
                     </connections>
                 </application>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AroundTheClock"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AroundTheClock" customModuleProvider="target"/>
                 <userDefaultsController representsSharedInstance="YES" id="yAp-DS-eHy"/>
             </objects>
             <point key="canvasLocation" x="-82" y="163"/>
@@ -97,8 +97,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="AroundTheClock" sceneMemberID="viewController">
-                    <window key="window" title="AroundTheClock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="AroundTheClock" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Around The Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Around The Clock" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="748" y="60" width="480" height="330"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
@@ -147,7 +147,7 @@
         <!--Stopwatch-->
         <scene sceneID="RHy-ql-iGE">
             <objects>
-                <viewController title="Stopwatch" id="V2v-sL-nan" customClass="StopWatchViewController" customModule="AroundTheClock" sceneMemberID="viewController">
+                <viewController title="Stopwatch" id="V2v-sL-nan" customClass="StopWatchViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="FcY-vA-jNM">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,11 +291,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cuF-IQ-503">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="cuF-IQ-503">
                                     <rect key="frame" x="1" y="63" width="455" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="6jA-Tr-xQu">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="6jA-Tr-xQu">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -308,7 +308,7 @@
                                 <rect key="frame" x="12" y="35" width="457" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="Z8r-zw-VvM">
-                                    <rect key="frame" x="1" y="1" width="440" height="71"/>
+                                    <rect key="frame" x="1" y="1" width="455" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="nQ5-sV-ww2">
@@ -322,12 +322,12 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="TjC-Su-OED">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="TjC-Su-OED">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5wO-2f-GI7">
-                                    <rect key="frame" x="441" y="1" width="15" height="71"/>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5wO-2f-GI7">
+                                    <rect key="frame" x="440" y="1" width="16" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -382,7 +382,7 @@
         <!--Countdown-->
         <scene sceneID="CU5-zL-RIy">
             <objects>
-                <viewController title="Countdown" storyboardIdentifier="Countdown" id="TkM-1P-CUJ" userLabel="Countdown" customClass="CountdownViewController" customModule="AroundTheClock" sceneMemberID="viewController">
+                <viewController title="Countdown" storyboardIdentifier="Countdown" id="TkM-1P-CUJ" userLabel="Countdown" customClass="CountdownViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="Countdown" wantsLayer="YES" id="uAF-kM-veP">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -498,11 +498,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="uQ8-7a-3eZ">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="uQ8-7a-3eZ">
                                     <rect key="frame" x="1" y="96" width="455" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="uzJ-In-bVI">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="uzJ-In-bVI">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -648,7 +648,7 @@
         <!--Alarm-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="Alarm" id="XfG-lQ-9wD" customClass="AlarmViewController" customModule="AroundTheClock" sceneMemberID="viewController">
+                <viewController title="Alarm" id="XfG-lQ-9wD" customClass="AlarmViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -800,11 +800,11 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="kd5-FV-EV3">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="kd5-FV-EV3">
                                     <rect key="frame" x="1" y="118" width="455" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Ckc-C6-ljm">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Ckc-C6-ljm">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -973,7 +973,7 @@
         <scene sceneID="B6a-aB-fwZ">
             <objects>
                 <customObject id="6YD-Kt-MyJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="AroundTheClock" sceneMemberID="viewController">
+                <viewController id="ugT-lJ-0sh" customClass="CountdownConfigViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="92S-XW-QNw">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1051,7 +1051,7 @@
         <!--Countdown Execution View Controller-->
         <scene sceneID="Ovo-qH-lBH">
             <objects>
-                <viewController id="d1W-Dg-bax" customClass="CountdownExecutionViewController" customModule="AroundTheClock" sceneMemberID="viewController">
+                <viewController id="d1W-Dg-bax" customClass="CountdownExecutionViewController" customModule="AroundTheClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="ifG-Yr-pOU">
                         <rect key="frame" x="0.0" y="0.0" width="439" height="155"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1088,7 +1088,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fEz-rA-CkD"/>
-        <segue reference="kpr-ui-nET"/>
+        <segue reference="FXn-tM-6zD"/>
+        <segue reference="dVa-3F-cmW"/>
     </inferredMetricsTieBreakers>
 </document>

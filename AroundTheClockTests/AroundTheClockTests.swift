@@ -10,7 +10,7 @@ import Cocoa
 import XCTest
 @testable import Around_The_Clock
 
-class Around_The_ClockTests: XCTestCase {
+class AroundTheClockTests: XCTestCase {
     
     var alarm: Alarm? = nil
     var watch: Watch? = nil
