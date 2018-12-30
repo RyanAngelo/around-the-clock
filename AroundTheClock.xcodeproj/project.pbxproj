@@ -13,7 +13,6 @@
 		944D84BC21209865001A3E95 /* AlarmClockScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84B921209865001A3E95 /* AlarmClockScreenshot.jpg */; };
 		944D84BD21209865001A3E95 /* StopwatchScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */; };
 		944D84BE21209865001A3E95 /* CountdownScreenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D84BB21209865001A3E95 /* CountdownScreenshot.jpg */; };
-		946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F31A0573B300D80296 /* AppDelegate.swift */; };
 		946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */; };
 		946E00FB1A0573B300D80296 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946E00FA1A0573B300D80296 /* Images.xcassets */; };
 		946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */; };
@@ -32,6 +31,8 @@
 		94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */; };
 		94B88E1C1FF67565006A0196 /* StateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */; };
 		94B88E251FF6D5D3006A0196 /* StateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88E241FF6D5D3006A0196 /* StateValue.swift */; };
+		94B8BD4921D905B9003E770B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8BD4821D905B9003E770B /* AppDelegate.swift */; };
+		94B8BD4B21D906E7003E770B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8BD4A21D906E7003E770B /* StorageManager.swift */; };
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
 		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
 		94F48B2A21D5B3970002753D /* AroundTheClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F48B2921D5B3970002753D /* AroundTheClockUITests.swift */; };
@@ -64,7 +65,6 @@
 		944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		946E00EE1A0573B300D80296 /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		946E00F21A0573B300D80296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		946E00F31A0573B300D80296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		946E00F81A0573B300D80296 /* Around_The_Clock.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Around_The_Clock.xcdatamodel; sourceTree = "<group>"; };
 		946E00FA1A0573B300D80296 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		946E00FD1A0573B300D80296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +86,8 @@
 		94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownConfigViewController.swift; sourceTree = "<group>"; };
 		94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValueTransformer.swift; sourceTree = "<group>"; };
 		94B88E241FF6D5D3006A0196 /* StateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateValue.swift; sourceTree = "<group>"; };
+		94B8BD4821D905B9003E770B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		94B8BD4A21D906E7003E770B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		94C2D06F1B2A5F2B00E0378C /* AroundTheClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AroundTheClock.entitlements; sourceTree = "<group>"; };
 		94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueTransformer.swift; sourceTree = "<group>"; };
 		94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundTheClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +149,7 @@
 				94C2D06F1B2A5F2B00E0378C /* AroundTheClock.entitlements */,
 				946E29E31A12FE6200A8C9D2 /* Sounds */,
 				94C7C3731A0698C000EECD8D /* ViewControllers */,
-				946E00F31A0573B300D80296 /* AppDelegate.swift */,
+				94B8BD4821D905B9003E770B /* AppDelegate.swift */,
 				946E00FA1A0573B300D80296 /* Images.xcassets */,
 				946E00FC1A0573B300D80296 /* Main.storyboard */,
 				946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */,
@@ -184,7 +186,9 @@
 		94B88E231FF6D5B6006A0196 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				94B88E241FF6D5D3006A0196 /* StateValue.swift */,
+				94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */,
+				94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */,
+				94B8BD4A21D906E7003E770B /* StorageManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -222,10 +226,9 @@
 			isa = PBXGroup;
 			children = (
 				94A7BC691A45F473003C09AA /* Countdown.swift */,
+				94B88E241FF6D5D3006A0196 /* StateValue.swift */,
 				94246E3B1A3D55240091604E /* Watch.swift */,
 				9481AA571A0993EA000674AE /* Alarm.swift */,
-				94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */,
-				94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,12 +393,14 @@
 			files = (
 				946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */,
 				94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */,
+				94B8BD4921D905B9003E770B /* AppDelegate.swift in Sources */,
 				947092FF1A068BCD00EB9615 /* StopWatchViewController.swift in Sources */,
 				94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */,
 				9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */,
 				94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */,
 				94B88E1C1FF67565006A0196 /* StateValueTransformer.swift in Sources */,
 				94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */,
+				94B8BD4B21D906E7003E770B /* StorageManager.swift in Sources */,
 				9481AA581A0993EA000674AE /* Alarm.swift in Sources */,
 				94246E3C1A3D55240091604E /* Watch.swift in Sources */,
 				94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */,
@@ -403,7 +408,6 @@
 				94259318211E38B1008A0468 /* WindowController.swift in Sources */,
 				94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */,
 				94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */,
-				946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */,
 				946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +587,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

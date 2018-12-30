@@ -20,9 +20,33 @@ class StopWatchViewController: NSViewController {
     @IBOutlet weak var lapbutton: NSButton!
     @IBOutlet weak var pausewatch: NSButton!
     
-    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
-    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
-
+    let mgr = StorageManager()
+    
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+    
+    @objc var managedObjectContext : NSManagedObjectContext
+    
+    required init?(coder: NSCoder) {
+        self.managedObjectContext = mgr.persistentContainer.viewContext
+        super.init(coder: coder)
+    }
+    lazy var fetchedResultsController: NSFetchedResultsController<Watch> = {
+        
+        let fetchRequest: NSFetchRequest<Watch> = Watch.fetchRequest() as! NSFetchRequest<Watch>
+        let watchSort = NSSortDescriptor(key: #keyPath(Watch.name), ascending: true)
+        fetchRequest.sortDescriptors = [watchSort]
+        
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: mgr.persistentContainer.viewContext,
+            sectionNameKeyPath: #keyPath(Watch.name),
+            cacheName: nil)
+        
+        fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
+        
+        return fetchedResultsController
+    }()
+    
     override func awakeFromNib() {
     }
     
@@ -34,15 +58,6 @@ class StopWatchViewController: NSViewController {
     
         NotificationCenter.default.addObserver(self, selector: #selector(StopWatchViewController.bringAlarmWindowUp(_:)), name: NSNotification.Name(rawValue: "alarmExecuting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(StopWatchViewController.bringcountdownWindowUp(_:)), name: NSNotification.Name(rawValue: "countdownExecuting"), object: nil)
-       
-        var results = [NSManagedObject]()
-        let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Watch")
-        do{
-            results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
-        }
-        catch {
-            print("Unable to load existing stopwatches.")
-        }
         
         resetwatch.isHidden=false
         startwatch.isHidden=false
@@ -50,8 +65,14 @@ class StopWatchViewController: NSViewController {
         splitbutton.isHidden=true
         lapbutton.isHidden=true
         
-        for result in results{
-            let watch:Watch=result as! Watch
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
+        }
+        
+        for result in fetchedResultsController.fetchedObjects! {
+            let watch:Watch=result
             if watch.watchstate != "off"{
                 watch.setState(state: "off")
                 watch.elapsedtime="00:00:00.0"
@@ -80,10 +101,7 @@ class StopWatchViewController: NSViewController {
     }
     
     override func viewDidDisappear() {
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -119,18 +137,7 @@ class StopWatchViewController: NSViewController {
     func addWatch() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
-        let entityDescription=NSEntityDescription.entity(forEntityName: "Watch", in: self.managedObjectContext)
-        
-        let newWatch = Watch(entity: entityDescription!, insertInto: managedObjectContext)
-        let now = Date()
-        newWatch.elapsedtime = "00:00:00.0"
-        newWatch.splits = ""
-        newWatch.starttime = now
-        newWatch.name = "Stopwatch"
-        newWatch.setState(state: "off")
-        let uid = UUID().uuidString //create unique user identifier
-        newWatch.setValue(uid, forKey:"uid")
-        self.watchArrayController.addObject(newWatch)
+        mgr.addWatch(elapsedtime: "00:00:00.0", name: "Stopwatch", state: "off")
         self.saveAndReload()
     }
     
@@ -158,7 +165,7 @@ class StopWatchViewController: NSViewController {
         }
         if watchArrayController.canRemove==true{
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-            let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+            let watch_obj: Watch = self.getWatchObject(selectedwatch: selectedwatch)!
             let now = Date()
             if watch_obj.watchstate as NSString == "off" || watch_obj.watchstate == "paused"{
                 if watch_obj.watchstate=="paused"{
@@ -184,7 +191,7 @@ class StopWatchViewController: NSViewController {
     @IBAction func resetWatch(_ sender: AnyObject) {
         if watchArrayController.canRemove==true{
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-            let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+            let watch_obj: Watch = self.getWatchObject(selectedwatch: selectedwatch)!
             if watch_obj.watchstate == "on" || watch_obj.watchstate == "paused" {
                 watch_obj.setState(state: "off")
                 resetwatch.isHidden=true
@@ -200,10 +207,7 @@ class StopWatchViewController: NSViewController {
                 self.splittimes.string=watch_obj.splits
                 self.timelabel.stringValue=watch_obj.elapsedtime
             }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
-            }
+            mgr.save()
             self.timetable.reloadData()
         }
     }
@@ -211,7 +215,7 @@ class StopWatchViewController: NSViewController {
     @IBAction func pauseWatch(_ sender: AnyObject) {
         if watchArrayController.canRemove==true{
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-            let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+            let watch_obj: Watch = self.getWatchObject(selectedwatch: selectedwatch)!
             watch_obj.pausetime=Date()
             if watch_obj.watchstate == "on" {
                 watch_obj.setState(state: "paused")
@@ -268,21 +272,18 @@ class StopWatchViewController: NSViewController {
     
     @IBAction func updateSplitTime(_ sender: AnyObject) {
         let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-        let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+        let watch_obj: Watch = self.getWatchObject(selectedwatch: selectedwatch)!
         watch_obj.splits=String(watch_obj.splits+"Split Time:"+watch_obj.elapsedtime+"\n")
         DispatchQueue.main.async {
             self.splittimes.string=watch_obj.splits
         }
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
         self.timetable.reloadData()
     }
     
     @IBAction func updateLapTime(_ sender: AnyObject) {
         let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
-        let watch_obj: Watch = self.getWatchObject(selectedwatch)!
+        let watch_obj: Watch = self.getWatchObject(selectedwatch: selectedwatch)!
         watch_obj.splits=String(watch_obj.splits+"Lap Time:"+self.timelabel.stringValue+"\n")
         DispatchQueue.main.async {
             self.splittimes.string=watch_obj.splits
@@ -330,34 +331,18 @@ class StopWatchViewController: NSViewController {
         }
     }
     
-    func getWatchObject(_ selectedwatch: [Watch]) -> Watch?{
-        let identifier: NSString = selectedwatch[0].value(forKey: "uid") as! NSString
-        var results = [NSManagedObject]()
-        let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Watch")
-        var watch_obj: Watch
-        do{
-            watchrequest.returnsDistinctResults = true
-            watchrequest.returnsObjectsAsFaults = false
-            watchrequest.predicate = NSPredicate(format: "uid=%@", identifier)
-            results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
-        }
-        catch {
-            print("Unable to load existing stopwatch.")
-        }
-        if results.count == 1{
-            watch_obj = results[0] as! Watch
-            return watch_obj
-        }
-        else{
+    func getWatchObject(selectedwatch: [Watch]) -> Watch?{
+        let identifier: String = selectedwatch[0].value(forKey: "uid") as! String
+        var watch_obj = mgr.fetchWatch(uid: identifier)
+        if watch_obj.count == 1 {
+            return watch_obj[0]
+        } else {
             return nil
         }
     }
     
     func saveAndReload(){
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
         self.timetable.reloadData()
     }
     

@@ -22,9 +22,32 @@ class CountdownViewController: NSViewController {
     @IBOutlet weak var resetcountdown: NSButton!
     @IBOutlet weak var pausecountdown: NSButton!
     
-    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
+    let mgr = StorageManager()
     
-    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+    
+    @objc var managedObjectContext : NSManagedObjectContext
+    
+    required init?(coder: NSCoder) {
+        self.managedObjectContext = mgr.persistentContainer.viewContext
+        super.init(coder: coder)
+    }
+    lazy var fetchedResultsController: NSFetchedResultsController<Countdown> = {
+        
+        let fetchRequest: NSFetchRequest<Countdown> = Countdown.fetchRequest() as! NSFetchRequest<Countdown>
+        let countdownSort = NSSortDescriptor(key: #keyPath(Countdown.name), ascending: true)
+        fetchRequest.sortDescriptors = [countdownSort]
+        
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: mgr.persistentContainer.viewContext,
+            sectionNameKeyPath: #keyPath(Countdown.name),
+            cacheName: nil)
+        
+        fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
+        
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +59,15 @@ class CountdownViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(CountdownViewController.bringAlarmWindowUp(_:)), name: NSNotification.Name(rawValue: "alarmExecuting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CountdownViewController.bringcountdownWindowUp(_:)), name: NSNotification.Name(rawValue: "countdownExecuting"), object: nil)
 
-        let watchrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
-        var results = [NSManagedObject]()
-        do{
-            results = try managedObjectContext.fetch(watchrequest) as! [NSManagedObject]
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
         }
-        catch {
-            print("Unable to load existing Countdowns.")
-        }
-        for result in results{
-            let countdown:Countdown=result as! Countdown
+        
+        for result in fetchedResultsController.fetchedObjects! {
+            let countdown:Countdown=result
             countdown.countdownstate="off"
         }
         self.saveAndReload()
@@ -56,10 +78,7 @@ class CountdownViewController: NSViewController {
     }
     
     override func viewDidDisappear() {
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -108,24 +127,12 @@ class CountdownViewController: NSViewController {
     }
     
     func addCountdown(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        let entityDescription=NSEntityDescription.entity(forEntityName: "Countdown", in: self.managedObjectContext)
-        
-        let mycountdown = Countdown(entity: entityDescription!, insertInto: managedObjectContext)
         
         let hour=self.hourstext.integerValue
         let min=self.minstext.integerValue
         let second=self.secondstext.integerValue
         let startcountdowntime=((hour*60*60)+(min*60)+second)
-        
-        mycountdown.startcountdowntime = startcountdowntime
-        mycountdown.countdowntime = startcountdowntime
-        mycountdown.name = "Countdown"
-        mycountdown.setState(state: "off")
-        let uid = UUID().uuidString //create unique user identifier
-        mycountdown.uid = uid
-        self.countdownArrayController.addObject(mycountdown)
+        mgr.addCountdown(startcountdowntime: startcountdowntime, name: "Countdown", state: "off")
         self.saveAndReload()
     }
     
@@ -370,23 +377,9 @@ class CountdownViewController: NSViewController {
     
     func getcountdownObject(_ selectedcountdown: [Countdown]) -> Countdown?{
         let identifier: String = selectedcountdown[0].value(forKey: "uid") as! String
-        let countdownrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
-        
-        countdownrequest.returnsDistinctResults = true
-        countdownrequest.returnsObjectsAsFaults = false
-        countdownrequest.predicate = NSPredicate(format: "uid=%@", identifier)
-        var countdown_obj: Countdown
-        var results = [NSManagedObject]()
-        do{
-            results = try managedObjectContext.fetch(countdownrequest) as! [NSManagedObject]
-            
-        }
-        catch {
-            print("Unable to load existing stopwatches.")
-        }
-        if results.count == 1{
-            countdown_obj = results[0] as! Countdown
-            return countdown_obj
+        let countdown = mgr.fetchCountdown(uid: identifier)
+        if countdown.count == 1{
+            return countdown[0]
         }
         else{
             return nil
@@ -394,26 +387,14 @@ class CountdownViewController: NSViewController {
     }
     
     @objc func stopActivecountdowns(_ notifcation: Notification){
-        let currentselection: [Countdown]=self.countdownArrayController.selectedObjects as! [Countdown]
-        let currentuid: NSString = currentselection[0].value(forKey: "uid") as! NSString
-        let countdownrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
-        countdownrequest.returnsDistinctResults = true
-        countdownrequest.returnsObjectsAsFaults = false
-        countdownrequest.predicate = NSPredicate(format: "countdownstate='activated'")
-        var results = [NSManagedObject]()
-        do{
-            results = try managedObjectContext.fetch(countdownrequest) as! [NSManagedObject]
-            
-        }
-        catch {
-            print("Unable to load existing stopwatches.")
-        }
+        let currentSelection: Countdown=self.countdownArrayController.selectedObjects[0] as! Countdown
+        let identifier = currentSelection.uid
+        let activeCountdowns = mgr.fetchAllActiveCountdowns()
 
-        for result in results{
-            let countdown = result as! Countdown
+        for countdown in activeCountdowns{
             countdown.setState(state: "off")
             countdown.countdowntime=countdown.startcountdowntime
-            if countdown.uid==currentuid as String{
+            if countdown.uid==identifier as String{
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
                 }
@@ -424,10 +405,7 @@ class CountdownViewController: NSViewController {
     }
     
     func saveAndReload(){
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
         self.timetable.reloadData()
     }
     
