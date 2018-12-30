@@ -144,12 +144,12 @@
 		946E00F01A0573B300D80296 /* AroundTheClock */ = {
 			isa = PBXGroup;
 			children = (
+				94B8BD4821D905B9003E770B /* AppDelegate.swift */,
+				94B8BD4C21D959A3003E770B /* ViewControllers */,
 				94B88E231FF6D5B6006A0196 /* Tools */,
 				94EDD48E1F96DCC400EABA96 /* Models */,
+				94B8BD4F21D959E8003E770B /* Sounds */,
 				94C2D06F1B2A5F2B00E0378C /* AroundTheClock.entitlements */,
-				946E29E31A12FE6200A8C9D2 /* Sounds */,
-				94C7C3731A0698C000EECD8D /* ViewControllers */,
-				94B8BD4821D905B9003E770B /* AppDelegate.swift */,
 				946E00FA1A0573B300D80296 /* Images.xcassets */,
 				946E00FC1A0573B300D80296 /* Main.storyboard */,
 				946E00F71A0573B300D80296 /* Around_The_Clock.xcdatamodeld */,
@@ -175,14 +175,6 @@
 			path = AroundTheClockTests;
 			sourceTree = "<group>";
 		};
-		946E29E31A12FE6200A8C9D2 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				944D84B1212093FE001A3E95 /* WakeUpShakeUp.mp3 */,
-			);
-			name = Sounds;
-			sourceTree = "<group>";
-		};
 		94B88E231FF6D5B6006A0196 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +183,30 @@
 				94B8BD4A21D906E7003E770B /* StorageManager.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		94B8BD4C21D959A3003E770B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				94259317211E38B0008A0468 /* WindowController.swift */,
+				94725DF91A4113F8003A7186 /* TabViewController.swift */,
+				944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */,
+				9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */,
+				946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */,
+				947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */,
+				94A7BC671A45F33B003C09AA /* CountdownViewController.swift */,
+				94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */,
+				94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		94B8BD4F21D959E8003E770B /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				944D84B1212093FE001A3E95 /* WakeUpShakeUp.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		94C62B521B30FE5700F5DE72 /* Screenshots */ = {
@@ -204,22 +220,6 @@
 				944D84BA21209865001A3E95 /* StopwatchScreenshot.jpg */,
 			);
 			path = Screenshots;
-			sourceTree = "<group>";
-		};
-		94C7C3731A0698C000EECD8D /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				94259317211E38B0008A0468 /* WindowController.swift */,
-				94725DF91A4113F8003A7186 /* TabViewController.swift */,
-				944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */,
-				9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */,
-				946E29E11A12EFF800A8C9D2 /* AlarmConfigViewController.swift */,
-				947092FE1A068BCD00EB9615 /* StopWatchViewController.swift */,
-				94A7BC671A45F33B003C09AA /* CountdownViewController.swift */,
-				94A7BC6B1A45F574003C09AA /* CountdownExecutionViewController.swift */,
-				94A7BC6D1A45F64E003C09AA /* CountdownConfigViewController.swift */,
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		94EDD48E1F96DCC400EABA96 /* Models */ = {
