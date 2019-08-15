@@ -169,7 +169,11 @@ class AlarmViewController: NSViewController {
                 stopalarm_btn.isHidden=false
                 startalarm.isHidden=true
                 alarmtimechoice.isEnabled=false
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AlarmViewController.runAlarm(_:)), userInfo: alarm_obj, repeats: true)
+                let t = RepeatingTimer(timeInterval: 1)
+                t.eventHandler = {
+                    self.runAlarm(alarm_obj: alarm_obj, timer: t)
+                }
+                t.resume()
             }
            self.saveAndReload()
         }
@@ -192,10 +196,9 @@ class AlarmViewController: NSViewController {
         }
     }
     
-    @objc func runAlarm(_ timer: Timer) {
-        let alarm_obj = timer.userInfo as! Alarm
+   func runAlarm(alarm_obj: Alarm, timer: RepeatingTimer) {
         if alarm_obj.alarmstate=="off"{
-            timer.invalidate()
+            timer.suspend()
             return
         }
         else if alarm_obj.alarmstate=="on"{
@@ -211,8 +214,8 @@ class AlarmViewController: NSViewController {
                 alarm_obj.setState(state: "activated")
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "alarmExecuting"), object: self, userInfo:["alarm_obj":alarm_obj])
                 }
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "alarmExecuting"), object: self, userInfo:["alarm_obj":alarm_obj])
             }
             if currentuid == identifier as String{
                 var strHours="00"

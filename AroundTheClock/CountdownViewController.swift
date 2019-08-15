@@ -194,7 +194,13 @@ class CountdownViewController: NSViewController {
                 minstext.isEnabled=false
                 secondstext.isEnabled=false
                 startcountdown.isHidden=true
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(CountdownViewController.runcountdown(_:)), userInfo: countdown_obj, repeats: true)
+                
+                let t = RepeatingTimer(timeInterval: 1)
+                t.eventHandler = {
+                    self.runcountdown(countdown_obj: countdown_obj, timer: t)
+                }
+                t.resume()
+                
             }
             self.saveAndReload()
         }
@@ -238,11 +244,10 @@ class CountdownViewController: NSViewController {
         }
     }
     
-    @objc func runcountdown(_ timer: Timer) {
-        let countdown_obj = timer.userInfo as! Countdown
+    func runcountdown(countdown_obj: Countdown, timer: RepeatingTimer) {
         
         if countdown_obj.countdownstate=="off" || countdown_obj.countdownstate=="paused"{
-            timer.invalidate()
+            timer.suspend();
             return
         }
         
@@ -253,11 +258,12 @@ class CountdownViewController: NSViewController {
             countdown_obj.countdowntime = countdown_obj.countdowntime-1
             if countdown_obj.countdowntime <= 0 { //countdown is going off
                 countdown_obj.countdownstate="activated"
+                countdown_obj.countdowntime=0
+                //dispatchc UI task on the main queue
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "countdownExecuting"), object: self, userInfo:["countdown_obj":countdown_obj])
                 }
-                countdown_obj.countdowntime=0
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "countdownExecuting"), object: self, userInfo:["countdown_obj":countdown_obj])
             }
             if currentuid == identifier{
                 var strHours="00"

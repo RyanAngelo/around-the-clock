@@ -35,6 +35,7 @@
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
 		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
 		94F48B2A21D5B3970002753D /* AroundTheClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F48B2921D5B3970002753D /* AroundTheClockUITests.swift */; };
+		94F89B592304E24600F58825 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F89B582304E24600F58825 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundTheClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F48B2921D5B3970002753D /* AroundTheClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTheClockUITests.swift; sourceTree = "<group>"; };
 		94F48B2B21D5B3970002753D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94F89B582304E24600F58825 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				94B88E241FF6D5D3006A0196 /* StateValue.swift */,
+				94F89B582304E24600F58825 /* Timer.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				94259318211E38B1008A0468 /* WindowController.swift in Sources */,
 				94A7BC6A1A45F473003C09AA /* Countdown.swift in Sources */,
 				94725DFA1A4113F8003A7186 /* TabViewController.swift in Sources */,
+				94F89B592304E24600F58825 /* Timer.swift in Sources */,
 				946E00F41A0573B300D80296 /* AppDelegate.swift in Sources */,
 				946E00F91A0573B300D80296 /* Around_The_Clock.xcdatamodeld in Sources */,
 			);
