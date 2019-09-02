@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -310,7 +310,7 @@
                                 <rect key="frame" x="12" y="35" width="457" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="Z8r-zw-VvM">
-                                    <rect key="frame" x="1" y="1" width="440" height="71"/>
+                                    <rect key="frame" x="1" y="1" width="455" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="nQ5-sV-ww2">
@@ -318,7 +318,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="440" height="71"/>
+                                            <size key="minSize" width="410" height="71"/>
                                             <size key="maxSize" width="491" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -329,7 +329,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5wO-2f-GI7">
-                                    <rect key="frame" x="441" y="1" width="15" height="71"/>
+                                    <rect key="frame" x="440" y="1" width="16" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -372,12 +372,13 @@
                     </connections>
                 </viewController>
                 <customObject id="M81-eM-dIN" userLabel="StopWatchResponder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="Watch" automaticallyPreparesContent="YES" id="WEc-eF-A4h">
+                <arrayController mode="entity" entityName="Watch" automaticallyPreparesContent="YES" preservesSelection="NO" id="WEc-eF-A4h">
                     <connections>
-                        <binding destination="V2v-sL-nan" name="managedObjectContext" keyPath="self.managedObjectContext" id="MJf-pU-htc"/>
+                        <binding destination="V2v-sL-nan" name="managedObjectContext" keyPath="self.managedObjectContext" id="h1j-y6-StN"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController id="jmE-aC-eJZ"/>
+                <userDefaultsController id="7yo-mo-7Kr"/>
             </objects>
             <point key="canvasLocation" x="1188" y="665"/>
         </scene>
@@ -1091,7 +1092,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FXn-tM-6zD"/>
-        <segue reference="dVa-3F-cmW"/>
+        <segue reference="Y3A-uU-eao"/>
+        <segue reference="Nq2-Jf-vOz"/>
     </inferredMetricsTieBreakers>
 </document>
