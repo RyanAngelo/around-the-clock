@@ -98,9 +98,6 @@ class StopWatchViewController: NSViewController {
         self.saveAndReload()
     }
     
-    override func viewDidAppear() {
-    }
-    
     override func viewDidDisappear() {
         mgr.save()
     }
@@ -293,8 +290,7 @@ class StopWatchViewController: NSViewController {
     
     
     @IBAction func newSelection(_ sender: AnyObject?) {
-        let watchArray = self.watchArrayController.arrangedObjects as! [Watch]
-        print(watchArray.count)
+
         if watchArrayController.canRemove==true{ //confirm there are actually more watches to view
             let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
             let watchstate: NSString = watch_obj.watchstate as NSString
