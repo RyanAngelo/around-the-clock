@@ -36,6 +36,7 @@
 		94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F25ED1A11BA0E00C7DC98 /* AlarmViewController.swift */; };
 		94EDD4901F96DD0800EABA96 /* DateValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */; };
 		94F48B2A21D5B3970002753D /* AroundTheClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F48B2921D5B3970002753D /* AroundTheClockUITests.swift */; };
+		94FE9B9B231D6D4100987343 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FE9B9A231D6D4100987343 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		94F48B2721D5B3970002753D /* AroundTheClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundTheClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F48B2921D5B3970002753D /* AroundTheClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundTheClockUITests.swift; sourceTree = "<group>"; };
 		94F48B2B21D5B3970002753D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94FE9B9A231D6D4100987343 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 		94B88E231FF6D5B6006A0196 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				94FE9B9A231D6D4100987343 /* Timer.swift */,
 				94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */,
 				94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */,
 				94B8BD4A21D906E7003E770B /* StorageManager.swift */,
@@ -400,6 +403,7 @@
 				9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */,
 				94A7BC6C1A45F574003C09AA /* CountdownExecutionViewController.swift in Sources */,
 				94B88E1C1FF67565006A0196 /* StateValueTransformer.swift in Sources */,
+				94FE9B9B231D6D4100987343 /* Timer.swift in Sources */,
 				94A7BC6E1A45F64E003C09AA /* CountdownConfigViewController.swift in Sources */,
 				94B8BD4B21D906E7003E770B /* StorageManager.swift in Sources */,
 				9481AA581A0993EA000674AE /* Alarm.swift in Sources */,
@@ -489,6 +493,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -513,7 +518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AroundTheClock/AroundTheClock.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "";
@@ -537,8 +542,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -552,6 +560,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
 			};
@@ -617,7 +626,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AroundTheClock/AroundTheClock.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = "";
@@ -642,8 +651,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -657,6 +669,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Angelo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Around The Clock.app/Contents/MacOS/Around The Clock";
 			};

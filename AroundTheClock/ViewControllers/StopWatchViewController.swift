@@ -83,6 +83,7 @@ class StopWatchViewController: NSViewController {
             try self.watchArrayController.fetch(with: nil, merge: false)
         } catch _ {
         }
+        
         if watchArrayController.canRemove{
             let currentselection: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
             DispatchQueue.main.async {
@@ -95,9 +96,6 @@ class StopWatchViewController: NSViewController {
             }
         }
         self.saveAndReload()
-    }
-    
-    override func viewDidAppear() {
     }
     
     override func viewDidDisappear() {
@@ -131,7 +129,6 @@ class StopWatchViewController: NSViewController {
     
     @IBAction func addWatchItem(_ sender: AnyObject) {
         self.addWatch()
-        self.newSelection(nil)
     }
     
     func addWatch() {
@@ -139,6 +136,7 @@ class StopWatchViewController: NSViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         mgr.addWatch(elapsedtime: "00:00:00.0", name: "Stopwatch", state: "off")
         self.saveAndReload()
+        self.newSelection(nil)
     }
     
     @IBAction func deleteWatch(_ sender: AnyObject) {
@@ -152,8 +150,8 @@ class StopWatchViewController: NSViewController {
                 self.splittimes.string=""
                 self.timelabel.stringValue="00:00:00.0"
             }
-            self.timetable.reloadData()//confirm there are actually more alarms to view
             self.newSelection(sender)
+            self.saveAndReload()
         }
     }
     
@@ -161,7 +159,6 @@ class StopWatchViewController: NSViewController {
         // This means the person wants to add and start without clicking "add"
         if watchArrayController.selectedObjects.count == 0 {
             self.addWatch()
-            self.newSelection(nil)
         }
         if watchArrayController.canRemove==true{
             let selectedwatch: [Watch]=self.watchArrayController.selectedObjects as! [Watch]
@@ -183,7 +180,6 @@ class StopWatchViewController: NSViewController {
                 pausewatch.isHidden=false
                 self.saveAndReload()
                 Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(StopWatchViewController.calculateDisplayTime(_:)), userInfo: watch_obj, repeats: true)
-                
             }
         }
     }
@@ -207,8 +203,7 @@ class StopWatchViewController: NSViewController {
                 self.splittimes.string=watch_obj.splits
                 self.timelabel.stringValue=watch_obj.elapsedtime
             }
-            mgr.save()
-            self.timetable.reloadData()
+            self.saveAndReload()
         }
     }
     
@@ -278,7 +273,6 @@ class StopWatchViewController: NSViewController {
             self.splittimes.string=watch_obj.splits
         }
         mgr.save()
-        self.timetable.reloadData()
     }
     
     @IBAction func updateLapTime(_ sender: AnyObject) {
@@ -296,6 +290,7 @@ class StopWatchViewController: NSViewController {
     
     
     @IBAction func newSelection(_ sender: AnyObject?) {
+
         if watchArrayController.canRemove==true{ //confirm there are actually more watches to view
             let watch_obj: Watch=self.watchArrayController.selectedObjects[0] as! Watch
             let watchstate: NSString = watch_obj.watchstate as NSString

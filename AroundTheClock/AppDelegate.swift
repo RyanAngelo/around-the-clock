@@ -22,14 +22,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func applicationOntop(_ sender: NSMenuItem) {
-        
-        if sender.state == .off{
-            mainWindow.level=NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
-            sender.state = .on
+        if sender.state == NSControl.StateValue.off {
+            mainWindow.level = .floating
+            sender.state = NSControl.StateValue.on
         }
-        else if sender.state == .off {
-            mainWindow.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
-            sender.state = .off
+        else if sender.state == NSControl.StateValue.on {
+            mainWindow.level = .normal
+            sender.state = NSControl.StateValue.off
         }
         
     }

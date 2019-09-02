@@ -33,9 +33,14 @@ class AroundTheClockUITests: XCTestCase {
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Add"]/*[[".groups.buttons[\"Add\"]",".buttons[\"Add\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         
         let textField = aroundTheClockWindow/*@START_MENU_TOKEN@*/.tables/*[[".groups",".scrollViews.tables",".tables"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.children(matching: .tableRow).element(boundBy: 0).children(matching: .textField).element
-        textField.doubleClick()
+        textField.click()
+        sleep(1)
+        textField.typeText("\r")
+        sleep(1)
         textField.typeText("TestAlarm123\r")
+        sleep(1)
         XCTAssertTrue(aroundTheClockWindow.textFields["TestAlarm123"].exists)
+        
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Start"]/*[[".groups.buttons[\"Start\"]",".buttons[\"Start\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Stop"]/*[[".groups.buttons[\"Stop\"]",".buttons[\"Stop\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".groups.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
@@ -43,6 +48,30 @@ class AroundTheClockUITests: XCTestCase {
         
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testStopwatch() {
+        
+        
+        let aroundTheClockWindow = XCUIApplication().windows["Around The Clock"]
+        aroundTheClockWindow.radioButtons["Stopwatch"].click()
+        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Add"]/*[[".groups.buttons[\"Add\"]",".buttons[\"Add\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+        
+        let textField = aroundTheClockWindow/*@START_MENU_TOKEN@*/.tables/*[[".groups",".scrollViews.tables",".tables"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.children(matching: .tableRow).element(boundBy: 0).children(matching: .textField).element
+        textField.click()
+        sleep(1)
+        textField.typeText("\r")
+        sleep(1)
+        textField.typeText("TestStopwatch123\r")
+        sleep(1)
+        XCTAssertTrue(aroundTheClockWindow.textFields["TestStopwatch123"].exists)
+        
+        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Start"]/*[[".groups.buttons[\"Start\"]",".buttons[\"Start\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+        
+        aroundTheClockWindow.buttons["Pause"].click()
+        
+        aroundTheClockWindow/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".groups.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+        
     }
 
 }
