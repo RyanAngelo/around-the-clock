@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Around_The_Clock
 
 class AroundTheClockUITests: XCTestCase {
     
@@ -16,6 +17,8 @@ class AroundTheClockUITests: XCTestCase {
         continueAfterFailure = false
         let application = XCUIApplication()
         application.launchEnvironment = ["UITESTS":"1"]
+        
+        
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         application.launch()
 
