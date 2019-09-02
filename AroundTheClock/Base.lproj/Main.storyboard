@@ -314,11 +314,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="nQ5-sV-ww2">
-                                            <rect key="frame" x="0.0" y="0.0" width="425" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="410" height="71"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="425" height="71"/>
+                                            <size key="minSize" width="440" height="71"/>
                                             <size key="maxSize" width="491" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -374,7 +374,7 @@
                 <customObject id="M81-eM-dIN" userLabel="StopWatchResponder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Watch" automaticallyPreparesContent="YES" id="WEc-eF-A4h">
                     <connections>
-                        <binding destination="V2v-sL-nan" name="managedObjectContext" keyPath="self.managedObjectContext" id="91P-M1-ElE"/>
+                        <binding destination="V2v-sL-nan" name="managedObjectContext" keyPath="self.managedObjectContext" id="MJf-pU-htc"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController id="jmE-aC-eJZ"/>
@@ -640,10 +640,11 @@
                 <customObject id="Yjm-Sa-1db" userLabel="CountdownResponder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Countdown" automaticallyPreparesContent="YES" id="cBd-Tt-A6f">
                     <connections>
-                        <binding destination="TkM-1P-CUJ" name="managedObjectContext" keyPath="self.managedObjectContext" id="2pj-Eb-CS5"/>
+                        <binding destination="TkM-1P-CUJ" name="managedObjectContext" keyPath="self.managedObjectContext" id="A4K-sj-7Kc"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController id="Le5-XR-30I"/>
+                <userDefaultsController id="cbY-zw-7nF"/>
             </objects>
             <point key="canvasLocation" x="1188" y="1201"/>
         </scene>
@@ -847,7 +848,7 @@
                         <string>enabled</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="self.managedObjectContext" id="way-jd-o69"/>
+                        <binding destination="XfG-lQ-9wD" name="managedObjectContext" keyPath="self.managedObjectContext" id="2UA-Zi-taU"/>
                     </connections>
                 </arrayController>
                 <userDefaultsController id="Qki-3s-nhv"/>

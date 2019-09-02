@@ -20,13 +20,37 @@ class AlarmViewController: NSViewController {
     @IBOutlet weak var stopalarm_btn: NSButton!
     @IBOutlet weak var addalarm_btn: NSButton!
 
-    let appDelegate = (NSApplication.shared.delegate as! AppDelegate)
-    @objc var managedObjectContext=(NSApplication.shared.delegate as! AppDelegate).managedObjectContext
+    let mgr = StorageManager()
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+    
+    @objc var managedObjectContext : NSManagedObjectContext
+    
+    required init?(coder: NSCoder) {
+        self.managedObjectContext = mgr.persistentContainer.viewContext
+        super.init(coder: coder)
+    }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<Alarm> = {
+        
+        let fetchRequest: NSFetchRequest<Alarm> = Alarm.fetchRequest() as! NSFetchRequest<Alarm>
+        let alarmSort = NSSortDescriptor(key: #keyPath(Alarm.name), ascending: true)
+        fetchRequest.sortDescriptors = [alarmSort]
+        
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: mgr.persistentContainer.viewContext,
+            sectionNameKeyPath: #keyPath(Alarm.name),
+            cacheName: nil)
+        
+        fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
+        
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Alarm View Controller Has Loaded.");
-        
+
         DispatchQueue.main.async {
             self.timelabel.stringValue="00:00:00"
         }
@@ -36,18 +60,14 @@ class AlarmViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.bringcountdownWindowUp(_:)), name: NSNotification.Name(rawValue: "countdownExecuting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AlarmViewController.stopActiveAlarms(_:)), name: NSNotification.Name(rawValue: "stopAlarms"), object: nil)
         
-        let alarmrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
-        var results = [NSManagedObject]()
-
-        do{
-            results = try managedObjectContext.fetch(alarmrequest) as! [NSManagedObject]
-            
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
         }
-        catch {
-            print("Unable to load existing Countdowns.")
-        }
-        for result in results{
-            let alarm:Alarm=result as! Alarm
+        
+        for result in fetchedResultsController.fetchedObjects! {
+            let alarm:Alarm=result
             alarm.setState(state: "off")
             alarm.changeDay()
         }
@@ -58,10 +78,7 @@ class AlarmViewController: NSViewController {
     }
     
     override func viewDidDisappear() {
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -114,22 +131,13 @@ class AlarmViewController: NSViewController {
         let today = Date()
         let cal = Calendar.current
         
-        let entityDescription=NSEntityDescription.entity(forEntityName: "Alarm", in: self.managedObjectContext)
-        
         let hour = cal.component(.hour, from: alarmtimechoice.dateValue)
         let minutes = cal.component(.minute, from: alarmtimechoice.dateValue)
         let seconds = cal.component(.second, from: alarmtimechoice.dateValue)
-        
         let chosenDate = cal.date(bySettingHour: hour, minute: minutes, second: seconds, of: today)
         
-        let alarm_obj = Alarm(entity: entityDescription!, insertInto: managedObjectContext)
-        alarm_obj.alarmtime = chosenDate!
-        alarm_obj.name = "Alarm"
-        alarm_obj.setState(state: "off")
-        let uid = UUID().uuidString //create unique user identifier
-        alarm_obj.uid = uid
-        self.alarmArrayController.addObject(alarm_obj)
-        alarm_obj.changeDay()
+        let alarm_obj = mgr.addAlarm(time: chosenDate!, name: "Alarm", state: "off")
+        alarm_obj?.changeDay()
         self.saveAndReload()
     }
     
@@ -288,55 +296,25 @@ class AlarmViewController: NSViewController {
     
     func getAlarmObject(_ selectedalarm: [Alarm]) -> Alarm?{
         let identifier: String = selectedalarm[0].value(forKey: "uid") as! String
-        let alarmrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Alarm")
-        alarmrequest.returnsDistinctResults = true
-        alarmrequest.returnsObjectsAsFaults = false
-        alarmrequest.predicate = NSPredicate(format: "uid=%@", identifier)
-        var alarm_obj: Alarm
-        var results = [NSManagedObject]()
-        do{
-            results = try managedObjectContext.fetch(alarmrequest) as! [NSManagedObject]
-            
-        }
-        catch {
-            print("Unable to load existing alarms.")
-        }
-        if results.count == 1{
-            alarm_obj = results[0] as! Alarm
-            return alarm_obj
-        }
-        else{
+        var alarm_obj = mgr.fetchAlarm(uid: identifier)
+        if alarm_obj.count == 1 {
+            return alarm_obj[0]
+        } else {
             return nil
         }
     }
     
     @objc func stopActiveAlarms(_ notifcation: Notification){
         let currentselection: Alarm=self.alarmArrayController.selectedObjects[0] as! Alarm
-        let currentuid = currentselection.uid
-        let alarmrequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Alarm")
-        alarmrequest.returnsDistinctResults = true
-        alarmrequest.returnsObjectsAsFaults = false
-        alarmrequest.predicate = NSPredicate(format: "alarmstate='activated'")
-        var results = [NSManagedObject]()
-        do{
-            results = try managedObjectContext.fetch(alarmrequest) as! [NSManagedObject]
-            
-        }
-        catch {
-            print("Unable to load existing Alarms.")
-        }
-        for result in results{
-            let alarm = result as! Alarm
+        let identifier = currentselection.uid
+        let active_alarms = mgr.fetchAllActiveAlarms()
+        for alarm in active_alarms{
             alarm.setState(state: "off")
             alarm.changeDay()
-            if alarm.uid as String==currentuid{
+            if alarm.uid as String==identifier{
                 DispatchQueue.main.async {
                     self.timelabel.stringValue="00:00:00"
                 }
-            }
-            do {
-                try self.managedObjectContext.save()
-            } catch _ {
             }
         }
         self.newSelection(self)
@@ -344,10 +322,7 @@ class AlarmViewController: NSViewController {
     }
     
     func saveAndReload(){
-        do {
-            try self.managedObjectContext.save()
-        } catch _ {
-        }
+        mgr.save()
         self.timetable.reloadData()
     }
 
