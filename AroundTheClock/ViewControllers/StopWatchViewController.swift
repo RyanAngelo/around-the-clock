@@ -328,7 +328,7 @@ class StopWatchViewController: NSViewController {
     
     func getWatchObject(selectedwatch: [Watch]) -> Watch?{
         let identifier: String = selectedwatch[0].value(forKey: "uid") as! String
-        var watch_obj = mgr.fetchWatch(uid: identifier)
+        let watch_obj = mgr.fetchWatch(uid: identifier)
         if watch_obj.count == 1 {
             return watch_obj[0]
         } else {

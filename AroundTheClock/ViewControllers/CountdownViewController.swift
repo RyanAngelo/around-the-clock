@@ -287,6 +287,9 @@ class CountdownViewController: NSViewController {
                     self.timelabel.stringValue="\(strHours):\(strMinutes):\(strSeconds)"
                 }
             }
+            DispatchQueue.main.async {
+                self.saveAndReload()
+            }
         }
     }
     

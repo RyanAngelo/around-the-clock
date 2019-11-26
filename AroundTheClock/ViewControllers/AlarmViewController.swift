@@ -296,7 +296,7 @@ class AlarmViewController: NSViewController {
     
     func getAlarmObject(_ selectedalarm: [Alarm]) -> Alarm?{
         let identifier: String = selectedalarm[0].value(forKey: "uid") as! String
-        var alarm_obj = mgr.fetchAlarm(uid: identifier)
+        let alarm_obj = mgr.fetchAlarm(uid: identifier)
         if alarm_obj.count == 1 {
             return alarm_obj[0]
         } else {

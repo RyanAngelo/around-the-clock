@@ -12,6 +12,7 @@ import Foundation
 class RepeatingTimer {
     
     let timeInterval: TimeInterval
+    var activity: NSObjectProtocol?
     
     //Constructor with time interval in seconds
     init(timeInterval: TimeInterval) {
@@ -54,11 +55,17 @@ class RepeatingTimer {
             return
         }
         state = .resumed
+        //Disable App Nap for timer accuracy
+        activity = ProcessInfo().beginActivity(options: .userInitiated, reason: "User created timer, requiring active thread")
         timer.resume()
     }
     
     //Suspend the timer
     func suspend() {
+        //Re-enable App Nap
+        if let pinfo = activity {
+            ProcessInfo().endActivity(pinfo)
+        }
         if state == .suspended {
             return
         }

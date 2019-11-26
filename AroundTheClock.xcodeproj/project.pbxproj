@@ -23,6 +23,7 @@
 		9476128621D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9476128321D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg */; };
 		9476128721D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9476128421D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg */; };
 		9481AA581A0993EA000674AE /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9481AA571A0993EA000674AE /* Alarm.swift */; };
+		9482D422238DB2910051C7F5 /* TimeValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482D421238DB2910051C7F5 /* TimeValueTransformer.swift */; };
 		9489A0AB1A2427FE000EA508 /* AlarmExecutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */; };
 		94A5F82C21D88F3200B986BB /* AroundTheClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946E01091A0573B300D80296 /* AroundTheClockTests.swift */; };
 		94A7BC681A45F33B003C09AA /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7BC671A45F33B003C09AA /* CountdownViewController.swift */; };
@@ -79,6 +80,7 @@
 		9476128321D67B6E00D4B728 /* StopwatchScreenshot_DarkMode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = StopwatchScreenshot_DarkMode.jpg; sourceTree = "<group>"; };
 		9476128421D67B6E00D4B728 /* CountdownScreenshot_DarkMode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountdownScreenshot_DarkMode.jpg; sourceTree = "<group>"; };
 		9481AA571A0993EA000674AE /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		9482D421238DB2910051C7F5 /* TimeValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeValueTransformer.swift; sourceTree = "<group>"; };
 		9489A0AA1A2427FE000EA508 /* AlarmExecutionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmExecutionViewController.swift; sourceTree = "<group>"; };
 		948AC4051B92695500B1E5D1 /* Around_The_Clock 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Around_The_Clock 2.xcdatamodel"; sourceTree = "<group>"; };
 		94A7BC671A45F33B003C09AA /* CountdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				94B88E1B1FF67565006A0196 /* StateValueTransformer.swift */,
 				94EDD48F1F96DD0800EABA96 /* DateValueTransformer.swift */,
 				94B8BD4A21D906E7003E770B /* StorageManager.swift */,
+				9482D421238DB2910051C7F5 /* TimeValueTransformer.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -309,7 +312,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Ryan Angelo";
 				TargetAttributes = {
 					946E00ED1A0573B300D80296 = {
@@ -395,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9482D422238DB2910051C7F5 /* TimeValueTransformer.swift in Sources */,
 				946E29E21A12EFF800A8C9D2 /* AlarmConfigViewController.swift in Sources */,
 				94D59AA41A11CC0E00473D36 /* AlarmViewController.swift in Sources */,
 				94B8BD4921D905B9003E770B /* AppDelegate.swift in Sources */,
@@ -502,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Around The Clock";
 				SDKROOT = macosx;
@@ -521,7 +525,7 @@
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "";
+				CURRENT_PROJECT_VERSION = 3.3.4;
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
 				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = AroundTheClock/Info.plist;
@@ -529,7 +533,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
 				PRODUCT_NAME = "Around The Clock";
 				PROVISIONING_PROFILE = "";
@@ -609,7 +614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Around The Clock";
@@ -629,16 +634,18 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = "";
+				CURRENT_PROJECT_VERSION = 3.3.4;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8L34TTJ3PA;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = AroundTheClock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelo.aroundtheclock;
 				PRODUCT_NAME = "Around The Clock";
 				PROVISIONING_PROFILE = "";
