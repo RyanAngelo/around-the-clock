@@ -14,8 +14,10 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = AtcAlarm(context: viewContext)
+            newItem.start_time = Date()
+            newItem.stop_time = Date()
+            newItem.name = "New Alarm"
         }
         do {
             try viewContext.save()

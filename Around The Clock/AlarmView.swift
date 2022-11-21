@@ -8,41 +8,47 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct AlarmView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \AtcAlarm.start_time, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var items: FetchedResults<AtcAlarm>
 
+    @State private var atcAlarmId: AtcAlarm.ID?
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        NavigationSplitView {
+            List(items, selection: $atcAlarmId) { alarm in
+                Text(alarm.name!)
             }
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+        } detail: {
+            if let atcAlarmId {
+                //Get the selected alarm object
+                if let selectedAlarm = items.first(where: {$0.id == atcAlarmId}) {
+                    Text(selectedAlarm.name!) //TODO: Replace with view for alarm content
+                    Text("\(atcAlarmId.debugDescription)")
+                } else {
+                   Text("Unknown Alarm!")
+                }
+            } else {
+                Text("Select an alarm")
+            }
+        }
+        .toolbar {
+            ToolbarItem {
+                Button(action: addItem) {
+                    Label("Add Alarm", systemImage: "plus")
                 }
             }
-            Text("Select an item")
         }
     }
-
+    
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = AtcAlarm(context: viewContext)
+            newItem.start_time = Date()
 
             do {
                 try viewContext.save()
@@ -80,6 +86,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        AlarmView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -13,7 +13,7 @@ struct Around_The_ClockApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AlarmView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

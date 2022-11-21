@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604A28708F410002795C /* Around_The_ClockApp.swift */; };
-		94DE604D28708F410002795C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604C28708F410002795C /* ContentView.swift */; };
+		94DE604D28708F410002795C /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604C28708F410002795C /* AlarmView.swift */; };
 		94DE604F28708F420002795C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DE604E28708F420002795C /* Assets.xcassets */; };
 		94DE605228708F420002795C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DE605128708F420002795C /* Preview Assets.xcassets */; };
 		94DE605428708F420002795C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE605328708F420002795C /* Persistence.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		94DE604728708F410002795C /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DE604A28708F410002795C /* Around_The_ClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockApp.swift; sourceTree = "<group>"; };
-		94DE604C28708F410002795C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		94DE604C28708F410002795C /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		94DE604E28708F420002795C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94DE605128708F420002795C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		94DE605328708F420002795C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				94DE604A28708F410002795C /* Around_The_ClockApp.swift */,
-				94DE604C28708F410002795C /* ContentView.swift */,
+				94DE604C28708F410002795C /* AlarmView.swift */,
 				94DE604E28708F420002795C /* Assets.xcassets */,
 				94DE605328708F420002795C /* Persistence.swift */,
 				94DE605828708F420002795C /* Around_The_Clock.entitlements */,
@@ -267,7 +267,7 @@
 			files = (
 				94DE605428708F420002795C /* Persistence.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
-				94DE604D28708F410002795C /* ContentView.swift in Sources */,
+				94DE604D28708F410002795C /* AlarmView.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +437,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.angelo.Around-The-Clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,6 +465,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.angelo.Around-The-Clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
