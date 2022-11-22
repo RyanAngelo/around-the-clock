@@ -13,11 +13,15 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = AtcAlarm(context: viewContext)
-            newItem.start_time = Date()
-            newItem.stop_time = Date()
-            newItem.name = "New Alarm"
+        for _ in 0..<5 {
+            let newAlarm = AtcAlarm(context: viewContext)
+            newAlarm.stop_time = Date()
+            newAlarm.name = "New Alarm"
+            newAlarm.state = ClockState.PAUSED.rawValue
+            let newCountdown = AtcCountdown(context: viewContext)
+            newCountdown.timeRemaining = 100
+            newCountdown.name = "New Countdown"
+            newCountdown.state = ClockState.PAUSED.rawValue
         }
         do {
             try viewContext.save()

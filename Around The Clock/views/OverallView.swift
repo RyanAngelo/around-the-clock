@@ -8,26 +8,43 @@
 import SwiftUI
 import CoreData
 
-struct AlarmView: View {
+struct OverallView: View {
+    
     @Environment(\.managedObjectContext) private var viewContext
-
+    @EnvironmentObject var observableManager: ObservableManager
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \AtcAlarm.start_time, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \AtcAlarm.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<AtcAlarm>
+    private var alarmItems: FetchedResults<AtcAlarm>
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \AtcCountdown.name, ascending: true)],
+        animation: .default)
+    private var countdownItems: FetchedResults<AtcCountdown>
 
-    @State private var atcAlarmId: AtcAlarm.ID?
+
+    @State private var atcIdentifier: ObjectIdentifier?
     @State private var atcAlarm: AtcAlarm?
         
     var body: some View {
         NavigationSplitView {
-            List(items, selection: $atcAlarmId) { alarm in
-                Text(alarm.name!)
+            List(selection: $atcIdentifier) {
+                Section(header: Text("Alarms")) {
+                    ForEach(alarmItems) { alarm in
+                        Text(alarm.name!)
+                    }
+                }
+                Section(header: Text("Countdowns")) {
+                    ForEach(countdownItems) { cd in
+                        Text(cd.name!)
+                    }
+                }
             }
         } detail: {
-            if let atcAlarmId {
+            if let atcIdentifier {
                 //Get the selected alarm object
-                if let atcAlarm = items.first(where: {$0.id == atcAlarmId}) {
+                if let atcAlarm = alarmItems.first(where: {$0.id == atcIdentifier}) {
                     Text("\(atcAlarm.debugDescription)")
                     let time: String = "00:00:00" //TODO: Change to time remaining
                     TimeWindowView(timeRemaining: .constant(time));
@@ -50,8 +67,8 @@ struct AlarmView: View {
     private func addItem() {
         withAnimation {
             let newItem = AtcAlarm(context: viewContext)
-            newItem.start_time = Date()
-
+            newItem.stop_time = Date()
+            //TODO: Add to ObservableManager
             do {
                 try viewContext.save()
             } catch {
@@ -65,7 +82,7 @@ struct AlarmView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { alarmItems[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -88,6 +105,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AlarmView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        OverallView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

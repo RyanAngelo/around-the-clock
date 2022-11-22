@@ -7,11 +7,17 @@
 
 import Foundation
 
-class AlarmClock: ObservableObject {
+/**
+ AlarmClock manages a single alarm
+ The AlarmClock calculates the time remaining
+ The AlarmClock is tied to an alarmObject
+ */
+class AlarmClock: ObservableObject, ClockObjectProtocol {
     
     private var timer = Timer()
     private var updateInterval: TimeInterval
     private var alarmObject: AtcAlarm
+    private var objectIdManaged: ObjectIdentifier;
     
     //time remaining in Alarm in seconds
     @Published var timeRemainingSecs: Double = 0;
@@ -19,11 +25,12 @@ class AlarmClock: ObservableObject {
     init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.updateInterval = updateInterval
         self.alarmObject = alarmObject
+        self.objectIdManaged = alarmObject.id
     }
     
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
-            self.updateAlarmData()
+            self.updateData()
         }
     }
     
@@ -31,9 +38,13 @@ class AlarmClock: ObservableObject {
         timer.invalidate()
     }
     
-    func updateAlarmData() {
-        let timeRemainingInterval: TimeInterval = (alarmObject.start_time?.timeIntervalSince(Date.now))!
+    func updateData() {
+        let timeRemainingInterval: TimeInterval = (alarmObject.stop_time?.timeIntervalSince(Date.now))!
         timeRemainingSecs = timeRemainingInterval
+    }
+    
+    func getManagedIdentifier() -> ObjectIdentifier {
+        return self.alarmObject.id
     }
     
 }

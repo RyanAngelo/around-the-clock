@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AtcAlarm" representedClassName=".AtcAlarm" syncable="YES" codeGenerationType="class">
-        <attribute name="name" attributeType="String" defaultValueString="Alarm"/>
-        <attribute name="start_time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="AtcAlarm" representedClassName=".AtcAlarm" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
         <attribute name="stop_time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="AtcCountdown" representedClassName="AtcCountdown" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
+        <attribute name="timeRemaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="AtcObject" representedClassName="AtcObject" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="state" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
 </model>
