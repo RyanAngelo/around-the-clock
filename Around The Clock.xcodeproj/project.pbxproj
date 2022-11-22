@@ -16,6 +16,9 @@
 		94DE606228708F430002795C /* Around_The_ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606128708F430002795C /* Around_The_ClockTests.swift */; };
 		94DE606C28708F430002795C /* Around_The_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606B28708F430002795C /* Around_The_ClockUITests.swift */; };
 		94DE606E28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */; };
+		94E4B91E292CF63000B71C05 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B91D292CF63000B71C05 /* TimeWindowView.swift */; };
+		94E4B921292D0A7600B71C05 /* AlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* AlarmClock.swift */; };
+		94E4B924292D0F0700B71C05 /* ObservableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B923292D0F0700B71C05 /* ObservableManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		94DE606728708F430002795C /* Around The ClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Around The ClockUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DE606B28708F430002795C /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
 		94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		94E4B91D292CF63000B71C05 /* TimeWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWindowView.swift; sourceTree = "<group>"; };
+		94E4B920292D0A7600B71C05 /* AlarmClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmClock.swift; sourceTree = "<group>"; };
+		94E4B923292D0F0700B71C05 /* ObservableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +105,9 @@
 		94DE604928708F410002795C /* Around The Clock */ = {
 			isa = PBXGroup;
 			children = (
+				94E4B91F292D062500B71C05 /* observables */,
+				94E4B91C292CF5A400B71C05 /* views */,
 				94DE604A28708F410002795C /* Around_The_ClockApp.swift */,
-				94DE604C28708F410002795C /* AlarmView.swift */,
 				94DE604E28708F420002795C /* Assets.xcassets */,
 				94DE605328708F420002795C /* Persistence.swift */,
 				94DE605828708F420002795C /* Around_The_Clock.entitlements */,
@@ -133,6 +140,24 @@
 				94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */,
 			);
 			path = "Around The ClockUITests";
+			sourceTree = "<group>";
+		};
+		94E4B91C292CF5A400B71C05 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				94DE604C28708F410002795C /* AlarmView.swift */,
+				94E4B91D292CF63000B71C05 /* TimeWindowView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		94E4B91F292D062500B71C05 /* observables */ = {
+			isa = PBXGroup;
+			children = (
+				94E4B920292D0A7600B71C05 /* AlarmClock.swift */,
+				94E4B923292D0F0700B71C05 /* ObservableManager.swift */,
+			);
+			path = observables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,10 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E4B921292D0A7600B71C05 /* AlarmClock.swift in Sources */,
 				94DE605428708F420002795C /* Persistence.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
 				94DE604D28708F410002795C /* AlarmView.swift in Sources */,
+				94E4B91E292CF63000B71C05 /* TimeWindowView.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
+				94E4B924292D0F0700B71C05 /* ObservableManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

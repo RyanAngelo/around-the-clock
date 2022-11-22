@@ -17,7 +17,8 @@ struct AlarmView: View {
     private var items: FetchedResults<AtcAlarm>
 
     @State private var atcAlarmId: AtcAlarm.ID?
-    
+    @State private var atcAlarm: AtcAlarm?
+        
     var body: some View {
         NavigationSplitView {
             List(items, selection: $atcAlarmId) { alarm in
@@ -26,9 +27,10 @@ struct AlarmView: View {
         } detail: {
             if let atcAlarmId {
                 //Get the selected alarm object
-                if let selectedAlarm = items.first(where: {$0.id == atcAlarmId}) {
-                    Text(selectedAlarm.name!) //TODO: Replace with view for alarm content
-                    Text("\(atcAlarmId.debugDescription)")
+                if let atcAlarm = items.first(where: {$0.id == atcAlarmId}) {
+                    Text("\(atcAlarm.debugDescription)")
+                    let time: String = "00:00:00" //TODO: Change to time remaining
+                    TimeWindowView(timeRemaining: .constant(time));
                 } else {
                    Text("Unknown Alarm!")
                 }
