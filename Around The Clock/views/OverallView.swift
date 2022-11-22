@@ -12,12 +12,12 @@ struct OverallView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var observableManager: ObservableManager
-    
+        
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \AtcAlarm.name, ascending: true)],
         animation: .default)
     private var alarmItems: FetchedResults<AtcAlarm>
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \AtcCountdown.name, ascending: true)],
         animation: .default)
@@ -25,7 +25,6 @@ struct OverallView: View {
 
 
     @State private var atcIdentifier: ObjectIdentifier?
-    @State private var atcAlarm: AtcAlarm?
         
     var body: some View {
         NavigationSplitView {
@@ -48,6 +47,8 @@ struct OverallView: View {
                     Text("\(atcAlarm.debugDescription)")
                     let time: String = "00:00:00" //TODO: Change to time remaining
                     TimeWindowView(timeRemaining: .constant(time));
+                } else if let atcCountdown = countdownItems.first(where: {$0.id == atcIdentifier}) {
+                    Text("\(atcCountdown.debugDescription)")
                 } else {
                    Text("Unknown Alarm!")
                 }
@@ -55,43 +56,67 @@ struct OverallView: View {
                 Text("Select an alarm")
             }
         }
+        .navigationSplitViewStyle(AutomaticNavigationSplitViewStyle())
         .toolbar {
             ToolbarItem {
-                Button(action: addItem) {
-                    Label("Add Alarm", systemImage: "plus")
+                Button(action: addAlarm) {
+                    Label("Add Alarm", systemImage: "plus.app")
+                        .labelStyle(VerticalLabelStyle())
+                }
+            }
+            ToolbarItem {
+                Button(action: addCountdown) {
+                    Label("Add Countdown", systemImage: "plus.app")
+                        .labelStyle(VerticalLabelStyle())
                 }
             }
         }
     }
     
-    private func addItem() {
-        withAnimation {
-            let newItem = AtcAlarm(context: viewContext)
-            newItem.stop_time = Date()
-            //TODO: Add to ObservableManager
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    struct VerticalLabelStyle: LabelStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                configuration.icon.font(.headline)
+                configuration.title.font(.subheadline)
             }
         }
     }
-
+    
+    private func addAlarm() {
+        withAnimation {
+            let newItem = AtcAlarm(context: viewContext)
+            newItem.stop_time = Date()
+            newItem.name = "New Alarm"
+            //TODO: Add to ObservableManager
+            self.saveContext()
+        }
+    }
+    
+    private func addCountdown() {
+        withAnimation {
+            let newItem = AtcCountdown(context: viewContext)
+            newItem.timeRemaining = 0
+            newItem.name = "New Countdown"
+            //TODO: Add to ObservableManager
+            self.saveContext()
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { alarmItems[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            self.saveContext()
         }
     }
 }
