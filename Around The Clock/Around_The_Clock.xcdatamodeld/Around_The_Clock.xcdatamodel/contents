@@ -3,11 +3,11 @@
     <entity name="AtcAlarm" representedClassName=".AtcAlarm" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
         <attribute name="stop_time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
-    <entity name="AtcCountdown" representedClassName="AtcCountdown" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
-        <attribute name="timeRemaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
     <entity name="AtcObject" representedClassName="AtcObject" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
         <attribute name="state" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="AtcTimer" representedClassName="AtcTimer" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
+        <attribute name="timeRemaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

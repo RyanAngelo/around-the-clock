@@ -12,10 +12,10 @@ import Foundation
  The AlarmClock calculates the time remaining
  The AlarmClock is tied to an alarmObject
  */
-class AlarmClock: ObservableObject, ClockObjectProtocol {
+class ClockAlarm: ObservableObject, ClockObjectProtocol {
     
     private var timer = Timer()
-    private var updateInterval: TimeInterval
+    private var updateInterval: TimeInterval //Seconds
     private var alarmObject: AtcAlarm
     private var objectIdManaged: ObjectIdentifier;
     

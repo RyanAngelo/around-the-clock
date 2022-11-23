@@ -17,11 +17,13 @@
 		94DE606C28708F430002795C /* Around_The_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606B28708F430002795C /* Around_The_ClockUITests.swift */; };
 		94DE606E28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */; };
 		94E4B91E292CF63000B71C05 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B91D292CF63000B71C05 /* TimeWindowView.swift */; };
-		94E4B921292D0A7600B71C05 /* AlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* AlarmClock.swift */; };
+		94E4B921292D0A7600B71C05 /* ClockAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* ClockAlarm.swift */; };
 		94E4B924292D0F0700B71C05 /* ObservableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B923292D0F0700B71C05 /* ObservableManager.swift */; };
 		94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B926292D4F7700B71C05 /* ClockState.swift */; };
 		94E4B929292D5CDD00B71C05 /* ClockObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */; };
-		94E4B92B292D608300B71C05 /* ClockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92A292D608300B71C05 /* ClockType.swift */; };
+		94E4B92D292E649F00B71C05 /* ClockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92C292E649F00B71C05 /* ClockTimer.swift */; };
+		94E4B92F292E6AFA00B71C05 /* AlarmMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92E292E6AFA00B71C05 /* AlarmMenuView.swift */; };
+		94E4B931292E714D00B71C05 /* AlarmDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B930292E714D00B71C05 /* AlarmDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +58,13 @@
 		94DE606B28708F430002795C /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
 		94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94E4B91D292CF63000B71C05 /* TimeWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWindowView.swift; sourceTree = "<group>"; };
-		94E4B920292D0A7600B71C05 /* AlarmClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmClock.swift; sourceTree = "<group>"; };
+		94E4B920292D0A7600B71C05 /* ClockAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockAlarm.swift; sourceTree = "<group>"; };
 		94E4B923292D0F0700B71C05 /* ObservableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableManager.swift; sourceTree = "<group>"; };
 		94E4B926292D4F7700B71C05 /* ClockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockState.swift; sourceTree = "<group>"; };
 		94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockObjectProtocol.swift; sourceTree = "<group>"; };
-		94E4B92A292D608300B71C05 /* ClockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockType.swift; sourceTree = "<group>"; };
+		94E4B92C292E649F00B71C05 /* ClockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTimer.swift; sourceTree = "<group>"; };
+		94E4B92E292E6AFA00B71C05 /* AlarmMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmMenuView.swift; sourceTree = "<group>"; };
+		94E4B930292E714D00B71C05 /* AlarmDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 			children = (
 				94DE604C28708F410002795C /* OverallView.swift */,
 				94E4B91D292CF63000B71C05 /* TimeWindowView.swift */,
+				94E4B92E292E6AFA00B71C05 /* AlarmMenuView.swift */,
+				94E4B930292E714D00B71C05 /* AlarmDisplayView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -161,7 +167,8 @@
 		94E4B91F292D062500B71C05 /* observables */ = {
 			isa = PBXGroup;
 			children = (
-				94E4B920292D0A7600B71C05 /* AlarmClock.swift */,
+				94E4B920292D0A7600B71C05 /* ClockAlarm.swift */,
+				94E4B92C292E649F00B71C05 /* ClockTimer.swift */,
 				94E4B923292D0F0700B71C05 /* ObservableManager.swift */,
 				94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */,
 			);
@@ -172,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				94E4B926292D4F7700B71C05 /* ClockState.swift */,
-				94E4B92A292D608300B71C05 /* ClockType.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -307,12 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E4B921292D0A7600B71C05 /* AlarmClock.swift in Sources */,
+				94E4B921292D0A7600B71C05 /* ClockAlarm.swift in Sources */,
 				94E4B929292D5CDD00B71C05 /* ClockObjectProtocol.swift in Sources */,
 				94DE605428708F420002795C /* Persistence.swift in Sources */,
+				94E4B92F292E6AFA00B71C05 /* AlarmMenuView.swift in Sources */,
+				94E4B92D292E649F00B71C05 /* ClockTimer.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
-				94E4B92B292D608300B71C05 /* ClockType.swift in Sources */,
 				94DE604D28708F410002795C /* OverallView.swift in Sources */,
+				94E4B931292E714D00B71C05 /* AlarmDisplayView.swift in Sources */,
 				94E4B91E292CF63000B71C05 /* TimeWindowView.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
 				94E4B924292D0F0700B71C05 /* ObservableManager.swift in Sources */,

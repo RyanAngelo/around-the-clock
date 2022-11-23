@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct Around_The_ClockApp: App {
     let persistenceController = PersistenceController.shared
+    let om: ObservableManager = ObservableManager()
     
     var body: some Scene {
         WindowGroup {
             OverallView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(om)
         }
     }
 }

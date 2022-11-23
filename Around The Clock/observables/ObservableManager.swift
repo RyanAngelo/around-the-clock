@@ -22,7 +22,7 @@ class ObservableManager: ObservableObject {
         
     }
     
-    public func addManagementObject(observableObject: ClockObjectProtocol) {
+    public func addManagementObject(observableObject: ClockAlarm) {
         managementDictionary.updateValue(observableObject, forKey: observableObject.getManagedIdentifier())
     }
     

@@ -10,63 +10,61 @@ import CoreData
 
 struct OverallView: View {
     
+    //Environment passed from parent
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var observableManager: ObservableManager
-        
+    
+    //Fetch managed object data
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \AtcAlarm.name, ascending: true)],
         animation: .default)
     private var alarmItems: FetchedResults<AtcAlarm>
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \AtcCountdown.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \AtcTimer.name, ascending: true)],
         animation: .default)
-    private var countdownItems: FetchedResults<AtcCountdown>
+    private var timerItems: FetchedResults<AtcTimer>
 
-
+    //State representing currently selected item identifier
     @State private var atcIdentifier: ObjectIdentifier?
+    @State private var atcObject: AtcObject?
         
     var body: some View {
         NavigationSplitView {
-            List(selection: $atcIdentifier) {
+            List(selection: $atcObject) {
                 Section(header: Text("Alarms")) {
                     ForEach(alarmItems) { alarm in
-                        Text(alarm.name!)
+                        NavigationLink(value: alarm) {
+                            Text(alarm.name!)
+                        }
                     }
                 }
-                Section(header: Text("Countdowns")) {
-                    ForEach(countdownItems) { cd in
-                        Text(cd.name!)
+                Section(header: Text("Timers")) {
+                    ForEach(timerItems) { t in
+                        Text(t.name!)
                     }
                 }
             }
         } detail: {
-            if let atcIdentifier {
+            if $atcObject.wrappedValue != nil {
                 //Get the selected alarm object
-                if let atcAlarm = alarmItems.first(where: {$0.id == atcIdentifier}) {
-                    Text("\(atcAlarm.debugDescription)")
-                    let time: String = "00:00:00" //TODO: Change to time remaining
-                    TimeWindowView(timeRemaining: .constant(time));
-                } else if let atcCountdown = countdownItems.first(where: {$0.id == atcIdentifier}) {
-                    Text("\(atcCountdown.debugDescription)")
-                } else {
-                   Text("Unknown Alarm!")
-                }
+                AlarmDisplayView(alarmObject: $atcObject)
+                AlarmMenuView(alarmObject: $atcObject)
             } else {
-                Text("Select an alarm")
+                Text("Select or create an item")
             }
         }
         .navigationSplitViewStyle(AutomaticNavigationSplitViewStyle())
         .toolbar {
             ToolbarItem {
                 Button(action: addAlarm) {
-                    Label("Add Alarm", systemImage: "plus.app")
+                    Label("Add Alarm", systemImage: "alarm")
                         .labelStyle(VerticalLabelStyle())
                 }
             }
             ToolbarItem {
-                Button(action: addCountdown) {
-                    Label("Add Countdown", systemImage: "plus.app")
+                Button(action: addTimer) {
+                    Label("Add Timer", systemImage: "timer")
                         .labelStyle(VerticalLabelStyle())
                 }
             }
@@ -87,17 +85,32 @@ struct OverallView: View {
             let newItem = AtcAlarm(context: viewContext)
             newItem.stop_time = Date()
             newItem.name = "New Alarm"
+            let alarmClock: ClockAlarm = ClockAlarm(updateInterval: 1, alarmObject: newItem)
+            observableManager.addManagementObject(observableObject: alarmClock)
+            self.saveContext()
+        }
+    }
+    
+    private func deleteAlarm(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { alarmItems[$0] }.forEach(viewContext.delete)
+            self.saveContext()
+        }
+    }
+    
+    private func addTimer() {
+        withAnimation {
+            let newItem = AtcTimer(context: viewContext)
+            newItem.timeRemaining = 0
+            newItem.name = "New Countdown"
             //TODO: Add to ObservableManager
             self.saveContext()
         }
     }
     
-    private func addCountdown() {
+    private func deleteTimer(offsets: IndexSet) {
         withAnimation {
-            let newItem = AtcCountdown(context: viewContext)
-            newItem.timeRemaining = 0
-            newItem.name = "New Countdown"
-            //TODO: Add to ObservableManager
+            offsets.map { timerItems[$0] }.forEach(viewContext.delete)
             self.saveContext()
         }
     }
@@ -113,12 +126,6 @@ struct OverallView: View {
         }
     }
     
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { alarmItems[$0] }.forEach(viewContext.delete)
-            self.saveContext()
-        }
-    }
 }
 
 private let itemFormatter: DateFormatter = {

@@ -18,10 +18,10 @@ struct PersistenceController {
             newAlarm.stop_time = Date()
             newAlarm.name = "New Alarm"
             newAlarm.state = ClockState.PAUSED.rawValue
-            let newCountdown = AtcCountdown(context: viewContext)
-            newCountdown.timeRemaining = 100
-            newCountdown.name = "New Countdown"
-            newCountdown.state = ClockState.PAUSED.rawValue
+            let newTimer = AtcTimer(context: viewContext)
+            newTimer.timeRemaining = 100
+            newTimer.name = "New Timer"
+            newTimer.state = ClockState.PAUSED.rawValue
         }
         do {
             try viewContext.save()
