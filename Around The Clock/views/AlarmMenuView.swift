@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlarmMenuView: View {
     
-    @Binding var alarmObject: AtcObject?
+    @ObservedObject var dataController: DataController
     
     var body: some View {
         Text("Menu")
@@ -18,6 +18,7 @@ struct AlarmMenuView: View {
 
 struct AlarmMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        AlarmMenuView(alarmObject: .constant(AtcAlarm()))
+        let dc: DataController = DataController()
+        AlarmMenuView(dataController: dc)
     }
 }

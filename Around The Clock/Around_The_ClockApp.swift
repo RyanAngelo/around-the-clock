@@ -9,14 +9,13 @@ import SwiftUI
 
 @main
 struct Around_The_ClockApp: App {
-    let persistenceController = PersistenceController.shared
-    let om: ObservableManager = ObservableManager()
+    @StateObject private var dc = DataController()
     
     var body: some Scene {
+        //managedObjectContext = "live" version of data
         WindowGroup {
-            OverallView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(om)
+            OverallView(dc: self.dc)
+                .environment(\.managedObjectContext, dc.container.viewContext)
         }
     }
 }

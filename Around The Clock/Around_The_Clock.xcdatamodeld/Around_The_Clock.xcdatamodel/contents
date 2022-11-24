@@ -4,6 +4,7 @@
         <attribute name="stop_time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="AtcObject" representedClassName="AtcObject" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="state" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
