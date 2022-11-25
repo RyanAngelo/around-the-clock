@@ -11,11 +11,11 @@ import CoreData
 struct OverallView: View {
     
     //Environment passed from parent
-    @Environment(\.managedObjectContext) var moc
     @ObservedObject var dc: DataController
 
     //State representing currently selected item identifier
     @State private var atcObject: AtcObject?
+    @State private var selectedObjectId: ObjectIdentifier?
     
     var body: some View {
         NavigationSplitView {
@@ -39,7 +39,7 @@ struct OverallView: View {
             if $atcObject.wrappedValue != nil {
                 //Get the selected alarm object
                 //AlarmDisplayView(alarmObject: $atcObject)
-                AlarmMenuView(dataController: dc)
+                AlarmMenuView(dc: dc, selectedObject: atcObject!)
             } else {
                 Text("Select or create an item")
             }
@@ -80,9 +80,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let dc: DataController = DataController()
-        OverallView(dc: dc).environment(\.managedObjectContext, DataController.preview.container.viewContext)
-        
-    
+        let dc: DataController = DataController.preview
+        OverallView(dc: dc)
     }
 }
