@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85B729324B7400AC2686 /* AlarmConfigView.swift */; };
+		944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85BC29326F5A00AC2686 /* AudioController.swift */; };
 		94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604A28708F410002795C /* Around_The_ClockApp.swift */; };
 		94DE604D28708F410002795C /* ParentClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604C28708F410002795C /* ParentClockView.swift */; };
 		94DE604F28708F420002795C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DE604E28708F420002795C /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		944C85B729324B7400AC2686 /* AlarmConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigView.swift; sourceTree = "<group>"; };
+		944C85BC29326F5A00AC2686 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		94DE604728708F410002795C /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DE604A28708F410002795C /* Around_The_ClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockApp.swift; sourceTree = "<group>"; };
 		94DE604C28708F410002795C /* ParentClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentClockView.swift; sourceTree = "<group>"; };
@@ -90,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		944C85BB29326F4500AC2686 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				94E4B923292D0F0700B71C05 /* DataController.swift */,
+				944C85BC29326F5A00AC2686 /* AudioController.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		94DE603E28708F410002795C = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +127,7 @@
 		94DE604928708F410002795C /* Around The Clock */ = {
 			isa = PBXGroup;
 			children = (
-				94E4B923292D0F0700B71C05 /* DataController.swift */,
+				944C85BB29326F4500AC2686 /* utils */,
 				94E4B925292D4F5600B71C05 /* models */,
 				94E4B91F292D062500B71C05 /* observables */,
 				94E4B91C292CF5A400B71C05 /* views */,
@@ -158,6 +171,7 @@
 				94DE604C28708F410002795C /* ParentClockView.swift */,
 				94E4B92E292E6AFA00B71C05 /* StatusView.swift */,
 				94E4B91D292CF63000B71C05 /* ConfigView.swift */,
+				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -312,6 +326,7 @@
 			files = (
 				94E4B921292D0A7600B71C05 /* ClockAlarm.swift in Sources */,
 				94E4B929292D5CDD00B71C05 /* ClockObjectProtocol.swift in Sources */,
+				944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */,
 				94E4B92F292E6AFA00B71C05 /* StatusView.swift in Sources */,
 				94E4B92D292E649F00B71C05 /* ClockTimer.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
@@ -321,6 +336,7 @@
 				94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */,
 				94E4B924292D0F0700B71C05 /* DataController.swift in Sources */,
 				94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */,
+				944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

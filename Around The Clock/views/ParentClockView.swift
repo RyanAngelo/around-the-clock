@@ -23,14 +23,14 @@ struct ParentClockView: View {
                 Section(header: Text("Alarms")) {
                     ForEach(dc.alarmItems) { alarm in
                         NavigationLink(value: alarm) {
-                            Text(alarm.name ?? "Unknown")
+                            Text(alarm.name ?? "Unknown Alarm")
                         }
                     }
                 }
                 Section(header: Text("Timers")) {
                     ForEach(dc.timerItems) { t in
                         NavigationLink(value: t) {
-                            Text(t.name ?? "Unknown")
+                            Text(t.name ?? "Unknown Timer")
                         }
                     }
                 }
