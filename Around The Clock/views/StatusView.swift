@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct AlarmMenuView: View {
+struct StatusView: View {
     
     @ObservedObject var dc: DataController
     @ObservedObject var selectedObject: AtcObject
+    @State var statusValue: String = "00:00:00"
     
     var body: some View {
         VStack {
@@ -21,6 +22,10 @@ struct AlarmMenuView: View {
             .multilineTextAlignment(.center)
             .font(.largeTitle)
             .padding()
+            Text(statusValue)
+                .font(.system(size: 60))
+                .background(Color(.clear))
+                .padding()
         }
     }
 }
@@ -29,6 +34,6 @@ struct AlarmMenuView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         let alarm: AtcAlarm = dc.alarmItems[0]
-        AlarmMenuView(dc: dc, selectedObject: alarm)
+        StatusView(dc: dc, selectedObject: alarm)
     }
 }

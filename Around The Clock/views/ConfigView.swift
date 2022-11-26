@@ -7,22 +7,21 @@
 
 import SwiftUI
 
-struct TimeWindowView: View {
+struct ConfigView: View {
     
-    //HH:mm:ss
-    @Binding var timeRemaining: String
+    @ObservedObject var dc: DataController
+    @ObservedObject var selectedObject: AtcObject
     
     var body: some View {
         VStack {
-            Text(timeRemaining)
-                .font(.largeTitle)
         }
     }
 }
 
 struct TimeWindowView_Previews: PreviewProvider {
     static var previews: some View {
-        let time: String = "00:00:00"
-        TimeWindowView(timeRemaining: .constant(time))
+        let dc: DataController = DataController.preview
+        let alarm: AtcAlarm = dc.alarmItems[0]
+        ConfigView(dc: dc, selectedObject: alarm)
     }
 }

@@ -14,7 +14,7 @@ struct Around_The_ClockApp: App {
     var body: some Scene {
         //managedObjectContext = "live" version of data
         WindowGroup {
-            OverallView(dc: self.dc)
+            ParentClockView(dc: self.dc)
                 .environment(\.managedObjectContext, dc.container.viewContext)
         }
     }

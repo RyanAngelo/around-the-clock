@@ -21,13 +21,12 @@ class DataController: ObservableObject {
     //Use "Around_The_Clock data model, prepare it
     let container = NSPersistentContainer(name: "Around_The_Clock")
     
-    private var managementDictionary: [ObjectIdentifier: ClockObjectProtocol] = [:]
-    
     private let alarmController: NSFetchedResultsController<AtcAlarm>
     private let timerController: NSFetchedResultsController<AtcTimer>
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
+    @Published var managementDictionary: [UUID: ClockObjectProtocol] = [:]
     
     //var alarmDictionary: [ObjectIdentifier: AtcAlarm] = [:]
     
@@ -67,7 +66,20 @@ class DataController: ObservableObject {
         
         fetchTimers()
         fetchAlarms()
-
+        createClocks()
+    }
+    
+    /**
+     Create clocks that are associated with the lists that have been generated
+     from the content of CoreData.
+     The clocks manage the logic behind the persisted objects (e.g. counting).
+     */
+    private func createClocks() {
+        //Create alarm clock associated with object
+        for alarm in self.alarmItems {
+            let alarmClock: ClockAlarm = ClockAlarm(updateInterval: 1, alarmObject: alarm)
+            addManagementObject(observableObject: alarmClock)
+        }
     }
     
     public func addAlarm() {
@@ -78,6 +90,7 @@ class DataController: ObservableObject {
             newItem.name = "New Alarm"
             newItem.state = ClockState.PAUSED.rawValue
             let alarmClock: ClockAlarm = ClockAlarm(updateInterval: 1, alarmObject: newItem)
+            managementDictionary[newItem.uniqueId!] = alarmClock
             self.saveContext()
             self.fetchAlarms()
         }
@@ -144,11 +157,11 @@ class DataController: ObservableObject {
     }
     
     public func addManagementObject(observableObject: ClockAlarm) {
-        managementDictionary.updateValue(observableObject, forKey: observableObject.getManagedIdentifier())
+        managementDictionary.updateValue(observableObject, forKey: observableObject.getManagedObjectUniqueId())
     }
     
-    public func removeManagementObject(objIdToRemove: ObjectIdentifier) {
-        self.managementDictionary.removeValue(forKey: objIdToRemove)
+    public func removeManagementObject(uniqueIdToRemove: UUID) {
+        self.managementDictionary.removeValue(forKey: uniqueIdToRemove)
     }
     
     //For preview generation

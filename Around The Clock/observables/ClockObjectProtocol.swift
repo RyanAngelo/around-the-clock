@@ -15,5 +15,5 @@ protocol ClockObjectProtocol {
     func start()
     func stop()
     func updateData()
-    func getManagedIdentifier() -> ObjectIdentifier
+    func getManagedObjectUniqueId() -> UUID
 }

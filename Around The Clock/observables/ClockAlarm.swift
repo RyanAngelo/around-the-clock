@@ -17,7 +17,6 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
     private var timer = Timer()
     private var updateInterval: TimeInterval //Seconds
     private var alarmObject: AtcAlarm
-    private var objectIdManaged: ObjectIdentifier;
     
     //time remaining in Alarm in seconds
     @Published var timeRemainingSecs: Double = 0;
@@ -25,7 +24,6 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
     init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.updateInterval = updateInterval
         self.alarmObject = alarmObject
-        self.objectIdManaged = alarmObject.id
     }
     
     func start() {
@@ -43,8 +41,8 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
         timeRemainingSecs = timeRemainingInterval
     }
     
-    func getManagedIdentifier() -> ObjectIdentifier {
-        return self.alarmObject.id
+    func getManagedObjectUniqueId() -> UUID {
+        return self.alarmObject.uniqueId!
     }
     
 }

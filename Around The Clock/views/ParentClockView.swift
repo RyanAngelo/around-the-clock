@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct OverallView: View {
+struct ParentClockView: View {
     
     //Environment passed from parent
     @ObservedObject var dc: DataController
@@ -38,8 +38,8 @@ struct OverallView: View {
         } detail: {
             if $atcObject.wrappedValue != nil {
                 //Get the selected alarm object
-                //AlarmDisplayView(alarmObject: $atcObject)
-                AlarmMenuView(dc: dc, selectedObject: atcObject!)
+                StatusView(dc: dc, selectedObject: atcObject!)
+                ConfigView(dc: dc, selectedObject: atcObject!)
             } else {
                 Text("Select or create an item")
             }
@@ -81,6 +81,6 @@ private let itemFormatter: DateFormatter = {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
-        OverallView(dc: dc)
+        ParentClockView(dc: dc)
     }
 }

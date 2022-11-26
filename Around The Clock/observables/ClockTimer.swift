@@ -12,12 +12,10 @@ class ClockTimer: ObservableObject, ClockObjectProtocol {
     private var timer = Timer()
     private var updateInterval: TimeInterval //Seconds
     private var timerObject: AtcTimer
-    private var objectIdManaged: ObjectIdentifier;
     
     init(updateInterval: TimeInterval, timerObject: AtcTimer) {
         self.updateInterval = updateInterval
         self.timerObject = timerObject
-        self.objectIdManaged = timerObject.id
     }
     
     func start() {
@@ -32,8 +30,8 @@ class ClockTimer: ObservableObject, ClockObjectProtocol {
         
     }
     
-    func getManagedIdentifier() -> ObjectIdentifier {
-        return self.objectIdManaged
+    func getManagedObjectUniqueId() -> UUID {
+        return self.timerObject.uniqueId!
     }
     
     
