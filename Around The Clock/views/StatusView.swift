@@ -30,7 +30,7 @@ struct StatusView: View {
     }
 }
 
-struct AlarmMenuView_Previews: PreviewProvider {
+struct StatusView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         let alarm: AtcAlarm = dc.alarmItems[0]

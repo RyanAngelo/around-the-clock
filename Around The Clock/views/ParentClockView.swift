@@ -78,7 +78,7 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
-struct ContentView_Previews: PreviewProvider {
+struct ParentClockView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         ParentClockView(dc: dc)

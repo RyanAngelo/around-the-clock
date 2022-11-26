@@ -18,7 +18,7 @@ struct ConfigView: View {
     }
 }
 
-struct TimeWindowView_Previews: PreviewProvider {
+struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         let alarm: AtcAlarm = dc.alarmItems[0]
