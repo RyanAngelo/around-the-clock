@@ -26,6 +26,7 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
         self.alarmObject = alarmObject
     }
     
+    //TODO: Make sure that this runs when window minimized
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
             self.updateData()
@@ -37,7 +38,7 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
     }
     
     func updateData() {
-        let timeRemainingInterval: TimeInterval = (alarmObject.stop_time?.timeIntervalSince(Date.now))!
+        let timeRemainingInterval: TimeInterval = (alarmObject.stopTime?.timeIntervalSince(Date.now))!
         timeRemainingSecs = timeRemainingInterval
     }
     

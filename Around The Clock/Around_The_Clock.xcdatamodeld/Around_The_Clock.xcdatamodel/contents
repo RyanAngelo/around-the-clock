@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AtcAlarm" representedClassName=".AtcAlarm" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
-        <attribute name="audio_file" optional="YES" attributeType="String"/>
-        <attribute name="stop_time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="audioFile" optional="YES" attributeType="String"/>
+        <attribute name="stopTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="AtcObject" representedClassName="AtcObject" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
-        <attribute name="state" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="state" attributeType="Integer 16" minValueString="0" maxValueString="3" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="uniqueId" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="AtcTimer" representedClassName="AtcTimer" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">

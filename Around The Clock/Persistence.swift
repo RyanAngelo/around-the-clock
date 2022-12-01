@@ -15,7 +15,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<5 {
             let newAlarm = AtcAlarm(context: viewContext)
-            newAlarm.stop_time = Date()
+            newAlarm.stopTime = Date()
             newAlarm.name = "New Alarm"
             newAlarm.state = ClockState.PAUSED.rawValue
             let newTimer = AtcTimer(context: viewContext)

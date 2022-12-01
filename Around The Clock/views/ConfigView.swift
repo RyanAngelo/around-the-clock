@@ -11,9 +11,7 @@ struct ConfigView: View {
     
     @ObservedObject var dc: DataController
     @ObservedObject var selectedObject: AtcObject
-    
-    @State private var date = Date()
-    
+        
     var body: some View {
         if selectedObject is AtcAlarm {
             //We know that the selectedObject is an instanceOf AtcAlarm, therefore we force downcast.

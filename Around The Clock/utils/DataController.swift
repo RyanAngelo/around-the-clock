@@ -27,9 +27,7 @@ class DataController: ObservableObject {
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
     @Published var managementDictionary: [UUID: ClockObjectProtocol] = [:]
-    
-    //var alarmDictionary: [ObjectIdentifier: AtcAlarm] = [:]
-    
+        
     init(inMemory: Bool = false) {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -45,7 +43,7 @@ class DataController: ObservableObject {
         let alarmFetchRequest: NSFetchRequest<AtcAlarm>
         alarmFetchRequest = AtcAlarm.fetchRequest()
         alarmFetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \AtcAlarm.name, ascending: true)
+            NSSortDescriptor(keyPath: \AtcAlarm.state, ascending: true)
         ]
         alarmController = NSFetchedResultsController(
             fetchRequest: alarmFetchRequest,
@@ -86,7 +84,8 @@ class DataController: ObservableObject {
         withAnimation {
             let newItem = AtcAlarm(context: container.viewContext)
             newItem.uniqueId = UUID()
-            newItem.stop_time = Date()
+            //Default time is now + 60 minutes
+            newItem.stopTime = Date.now.advanced(by: 60 * 60)
             newItem.name = "New Alarm"
             newItem.state = ClockState.PAUSED.rawValue
             let alarmClock: ClockAlarm = ClockAlarm(updateInterval: 1, alarmObject: newItem)
@@ -114,6 +113,23 @@ class DataController: ObservableObject {
             self.saveContext()
             self.fetchAlarms()
         }
+    }
+    
+    public func setState(atcObject: AtcObject, newState: ClockState) {
+        atcObject.state = newState.rawValue
+        if let co: ClockObjectProtocol = managementDictionary[atcObject.uniqueId!] {
+            if (newState == ClockState.ACTIVE) {
+                co.start()
+            } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
+                co.stop()
+            }
+        } else {
+            print("Error! No ClockObjectProtocol for associated ATC Object")
+        }
+        saveContext()
+        //TODO: Manage this in a less intensive manner
+        fetchTimers()
+        fetchAlarms()
     }
     
     public func addTimer() {
@@ -156,6 +172,16 @@ class DataController: ObservableObject {
         }
     }
     
+    public func saveAndUpdateAlarms() {
+        saveContext()
+        fetchAlarms()
+    }
+    
+    public func saveAndUpdateTimers() {
+        saveContext()
+        fetchTimers()
+    }
+    
     public func addManagementObject(observableObject: ClockAlarm) {
         managementDictionary.updateValue(observableObject, forKey: observableObject.getManagedObjectUniqueId())
     }
@@ -168,13 +194,27 @@ class DataController: ObservableObject {
     static var preview: DataController = {
         let result = DataController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<5 {
-            let newAlarm = AtcAlarm(context: viewContext)
-            newAlarm.stop_time = Date()
+        
+        for _ in 0..<2 {
+            var newAlarm = AtcAlarm(context: viewContext)
+            newAlarm.stopTime = Date()
+            newAlarm.name = "Active Alarm"
+            newAlarm.uniqueId = UUID()
+            newAlarm.state = ClockState.ACTIVE.rawValue
+            var newTimer = AtcTimer(context: viewContext)
+            newTimer.timeRemaining = 100
+            newTimer.name = "Active Timer"
+            newTimer.uniqueId = UUID()
+            newTimer.state = ClockState.ACTIVE.rawValue
+            
+        }
+        for _ in 0..<2 {
+            var newAlarm = AtcAlarm(context: viewContext)
+            newAlarm.stopTime = Date()
             newAlarm.name = "New Alarm"
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.PAUSED.rawValue
-            let newTimer = AtcTimer(context: viewContext)
+            var newTimer = AtcTimer(context: viewContext)
             newTimer.timeRemaining = 100
             newTimer.name = "New Timer"
             newTimer.uniqueId = UUID()
@@ -195,7 +235,7 @@ class DataController: ObservableObject {
 
 extension Binding {
      func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
-        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+         Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
     }
 }
 
