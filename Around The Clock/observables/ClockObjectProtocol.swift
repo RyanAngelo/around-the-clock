@@ -11,9 +11,13 @@ import Foundation
  Protocol for defining the management objects that handle the logic behind
  different models, such as alarm clock, timer, stopwatch
  */
-protocol ClockObjectProtocol {
+protocol ClockObjectProtocol: ObservableObject {
+    
     func start()
     func stop()
     func updateData()
     func getManagedObjectUniqueId() -> UUID
+    func getDisplayText() -> String
+    
+    var timeRemainingString: String { get set }
 }

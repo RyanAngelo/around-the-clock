@@ -17,7 +17,7 @@ import SwiftUI
  knowing the Identifier of the underlying object (e.g. AtcAlarm, AtcStopwatch)
  */
 class DataController: ObservableObject {
-    
+        
     //Use "Around_The_Clock data model, prepare it
     let container = NSPersistentContainer(name: "Around_The_Clock")
     
@@ -26,7 +26,7 @@ class DataController: ObservableObject {
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
-    @Published var managementDictionary: [UUID: ClockObjectProtocol] = [:]
+    @Published var managementDictionary: [UUID: ClockAlarm] = [:]
         
     init(inMemory: Bool = false) {
         if inMemory {
@@ -117,7 +117,7 @@ class DataController: ObservableObject {
     
     public func setState(atcObject: AtcObject, newState: ClockState) {
         atcObject.state = newState.rawValue
-        if let co: ClockObjectProtocol = managementDictionary[atcObject.uniqueId!] {
+        if let co: any ClockObjectProtocol = managementDictionary[atcObject.uniqueId!] {
             if (newState == ClockState.ACTIVE) {
                 co.start()
             } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
@@ -188,6 +188,11 @@ class DataController: ObservableObject {
     
     public func removeManagementObject(uniqueIdToRemove: UUID) {
         self.managementDictionary.removeValue(forKey: uniqueIdToRemove)
+    }
+    
+    //TODO: Create a management object if one does not exist wrather than force unwrap.
+    public func getManagementObject(uniqueIdentifier: UUID) -> any ObservableObject {
+        return self.managementDictionary[uniqueIdentifier]!
     }
     
     //For preview generation

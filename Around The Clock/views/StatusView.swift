@@ -11,7 +11,8 @@ struct StatusView: View {
     
     @ObservedObject var dc: DataController
     @ObservedObject var selectedObject: AtcObject
-    @State var statusValue: String = "00:00:00"
+    
+    var statusValue: String = "00:00:00"
     
     var body: some View {
         VStack {
@@ -30,10 +31,16 @@ struct StatusView: View {
                     dc.saveAndUpdateTimers()
                 }
             })
-            Text(statusValue)
+            Text(dc.managementDictionary[selectedObject.uniqueId!]?.timeRemainingString ?? statusValue)
                 .font(.system(size: 60))
                 .background(Color(.clear))
                 .padding()
+            /*
+            Text(dc.managementDictionary[selectedObject.uniqueId!]?.timeRemainingString ?? statusValue)
+                .font(.system(size: 60))
+                .background(Color(.clear))
+                .padding()
+             */
         }
     }
 }

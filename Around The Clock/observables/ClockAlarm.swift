@@ -12,14 +12,13 @@ import Foundation
  The AlarmClock calculates the time remaining
  The AlarmClock is tied to an alarmObject
  */
-class ClockAlarm: ObservableObject, ClockObjectProtocol {
+class ClockAlarm: ClockObjectProtocol {
     
     private var timer = Timer()
-    private var updateInterval: TimeInterval //Seconds
     private var alarmObject: AtcAlarm
-    
-    //time remaining in Alarm in seconds
-    @Published var timeRemainingSecs: Double = 0;
+    private var updateInterval: TimeInterval
+
+    var timeRemainingString: String = "00:00:00"
 
     init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.updateInterval = updateInterval
@@ -39,11 +38,16 @@ class ClockAlarm: ObservableObject, ClockObjectProtocol {
     
     func updateData() {
         let timeRemainingInterval: TimeInterval = (alarmObject.stopTime?.timeIntervalSince(Date.now))!
-        timeRemainingSecs = timeRemainingInterval
+        //TODO: Update with a nicely formatted time remaining HH:MM:SS
+        timeRemainingString = timeRemainingInterval.description
     }
     
     func getManagedObjectUniqueId() -> UUID {
         return self.alarmObject.uniqueId!
+    }
+    
+    func getDisplayText() -> String {
+        return self.timeRemainingString
     }
     
 }

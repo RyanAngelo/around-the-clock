@@ -9,6 +9,9 @@ import Foundation
 
 class ClockTimer: ObservableObject, ClockObjectProtocol {
     
+    @Published var timeRemainingString: String = "00:00:00"
+    
+    
     private var timer = Timer()
     private var updateInterval: TimeInterval //Seconds
     private var timerObject: AtcTimer
@@ -24,6 +27,10 @@ class ClockTimer: ObservableObject, ClockObjectProtocol {
     
     func stop() {
         
+    }
+    
+    func getDisplayText() -> String {
+        return "00:00:00"
     }
     
     func updateData() {
