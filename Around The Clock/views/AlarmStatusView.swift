@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct StatusView: View  {
+struct AlarmStatusView: View  {
     
     @ObservedObject var dc: DataController
     @ObservedObject var selectedManager: AlarmManager
         
     init(dc: DataController, uid: UUID) {
         self.dc = dc
-        self.selectedManager = dc.getAlarmManager(uniqueIdentifier: uid)
+        self.selectedManager = dc.getManager(uniqueIdentifier: uid) as! AlarmManager
     }
     
     var body: some View {
@@ -26,10 +26,10 @@ struct StatusView: View  {
     
 }
 
-struct StatusView_Previews: PreviewProvider {
+struct AlarmStatusView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         let alarm: AtcAlarm = dc.alarmItems[0]
-        StatusView(dc: dc, uid: alarm.uniqueId!)
+        AlarmStatusView(dc: dc, uid: alarm.uniqueId!)
     }
 }

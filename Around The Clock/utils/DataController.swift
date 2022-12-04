@@ -10,11 +10,7 @@ import CoreData
 import SwiftUI
 
 /**
- ObservableManager manages ObservableObjects
- The Observable objects include AlarmClock, StopWatch, etc.
- Multiple instances of each can be present at any given time and the
- ObservableManager keeps track of them. They are acquired by
- knowing the Identifier of the underlying object (e.g. AtcAlarm, AtcStopwatch)
+ DataController manages all data interactions with CoreData and the management observables
  */
 class DataController: ObservableObject {
         
@@ -25,7 +21,7 @@ class DataController: ObservableObject {
     private let timerController: NSFetchedResultsController<AtcTimer>
 
     var clockStatus: [UUID: ClockStatus] = [:]
-    var alarmManagers: [UUID: AlarmManager] = [:]
+    var managers: [UUID: any AtcManager] = [:]
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
@@ -78,7 +74,11 @@ class DataController: ObservableObject {
         //Create alarm clock associated with object
         for alarm in self.alarmItems {
             let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: alarm)
-            addAlarmManager(am: manager)
+            addManager(am: manager)
+        }
+        for timer in self.timerItems {
+            let manager: TimerManager = TimerManager(updateInterval: 0.1, timerObject: timer)
+            addManager(am: manager)
         }
     }
     
@@ -91,7 +91,7 @@ class DataController: ObservableObject {
             newItem.name = "New Alarm"
             newItem.state = ClockState.PAUSED.rawValue
             let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newItem)
-            addAlarmManager(am: manager)
+            addManager(am: manager)
             self.saveContext()
             self.fetchAlarms()
         }
@@ -117,16 +117,16 @@ class DataController: ObservableObject {
         }
     }
     
-    public func setAlarmState(atcObject: AtcObject, newState: ClockState) {
+    public func setManagerState(atcObject: AtcObject, newState: ClockState) {
         atcObject.state = newState.rawValue
-        if let co: AlarmManager = alarmManagers[atcObject.uniqueId!] {
+        if let co: any AtcManager = managers[atcObject.uniqueId!] {
             if (newState == ClockState.ACTIVE) {
                 co.start()
             } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
                 co.stop()
             }
         } else {
-            print("Error! No ClockObjectProtocol for associated ATC Object")
+            print("Error! No Manager for associated ATC Object")
         }
         saveContext()
         //TODO: Manage this in a less intensive manner
@@ -138,9 +138,11 @@ class DataController: ObservableObject {
         withAnimation {
             let newItem = AtcTimer(context: container.viewContext)
             newItem.uniqueId = UUID()
-            newItem.timeRemaining = 0
+            newItem.stopTime = 0
             newItem.name = "New Timer"
             newItem.state = ClockState.PAUSED.rawValue
+            let manager: TimerManager = TimerManager(updateInterval: 1, timerObject: newItem)
+            addManager(am: manager)
             self.saveContext()
             self.fetchTimers()
         }
@@ -184,20 +186,21 @@ class DataController: ObservableObject {
         fetchTimers()
     }
     
-    public func addAlarmManager(am: AlarmManager) {
-        alarmManagers.updateValue(am, forKey: am.getManagedObjectUniqueId())
+    public func addManager(am: any AtcManager) {
+        managers.updateValue(am, forKey: am.getManagedObjectUniqueId())
         clockStatus.updateValue(am.getStatus(), forKey: am.getManagedObjectUniqueId())
     }
     
-    public func removeAlarmManager(uniqueIdToRemove: UUID) {
-        self.alarmManagers.removeValue(forKey: uniqueIdToRemove)
+    public func removeManager(uniqueIdToRemove: UUID) {
+        self.managers.removeValue(forKey: uniqueIdToRemove)
         self.clockStatus.removeValue(forKey: uniqueIdToRemove)
     }
     
     //TODO: Create a management object if one does not exist wrather than force unwrap.
-    public func getAlarmManager(uniqueIdentifier: UUID) -> AlarmManager {
-        return self.alarmManagers[uniqueIdentifier]!
+    public func getManager(uniqueIdentifier: UUID) -> any AtcManager {
+        return self.managers[uniqueIdentifier]!
     }
+    
     
     public func getClockStatus(uniqueIdentifier: UUID) -> ClockStatus {
         return self.clockStatus[uniqueIdentifier]!
@@ -215,9 +218,9 @@ class DataController: ObservableObject {
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.ACTIVE.rawValue
             let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
-            result.addAlarmManager(am: manager)
+            result.addManager(am: manager)
             var newTimer = AtcTimer(context: viewContext)
-            newTimer.timeRemaining = 100
+            newTimer.stopTime = 100
             newTimer.name = "Active Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.ACTIVE.rawValue
@@ -230,9 +233,9 @@ class DataController: ObservableObject {
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.PAUSED.rawValue
             let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
-            result.addAlarmManager(am: manager)
+            result.addManager(am: manager)
             var newTimer = AtcTimer(context: viewContext)
-            newTimer.timeRemaining = 100
+            newTimer.stopTime = 100
             newTimer.name = "New Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.PAUSED.rawValue

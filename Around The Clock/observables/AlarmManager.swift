@@ -1,5 +1,5 @@
 //
-//  AlarmClock.swift
+//  AlarmManager.swift
 //  Around The Clock
 //
 //  Created by Ryan Angelo on 11/22/22.
@@ -45,7 +45,6 @@ class AlarmManager: ObservableObject, AtcManager{
     
     func updateData() {
         let timeRemainingInterval: TimeInterval = (alarmObject.stopTime?.timeIntervalSince(Date.now))!
-        //TODO: Update with a nicely formatted time remaining HH:MM:SS
         clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
     }
     

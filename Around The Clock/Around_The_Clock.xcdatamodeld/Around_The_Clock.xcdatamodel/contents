@@ -10,6 +10,6 @@
         <attribute name="uniqueId" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="AtcTimer" representedClassName="AtcTimer" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
-        <attribute name="timeRemaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stopTime" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

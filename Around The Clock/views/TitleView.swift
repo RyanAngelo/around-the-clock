@@ -21,7 +21,6 @@ struct TitleView: View {
         .font(.largeTitle)
         .padding()
         .onChange(of: selectedObject.name, perform: { (value) in
-            //TODO: Consider whether its worth having an AtcObject abstraction
             if selectedObject is AtcAlarm {
                 dc.saveAndUpdateAlarms()
             } else if selectedObject is AtcTimer {

@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct AlarmConfigView: View {
+struct TimerConfigView: View {
     
     @ObservedObject var dc: DataController
-    @ObservedObject var selectedObject: AtcAlarm
+    @ObservedObject var selectedObject: AtcTimer
     
     var body: some View {
         VStack {
             HStack {
+                /*
                 DatePicker(
                     "Date & Time",
                     selection: $selectedObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
@@ -25,22 +26,8 @@ struct AlarmConfigView: View {
                 .onChange(of: selectedObject.stopTime, perform: { (value) in
                     //When the date is changed, save the context CoreData
                     dc.saveContext()
-                })
-                Picker("Audio:", selection: $selectedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
-                    ForEach(AudioFiles.allCases) { audio in
-                        Text(audio.rawValue.capitalized)
-                            .tag(audio.rawValue)
-                    }
-                    .pickerStyle(.menu)
-                    .scaledToFit()
-                }
-                .onChange(of: selectedObject.audioFile, perform: { (value) in
-                    //When the date is changed, save the context CoreData
-                    dc.saveContext()
-                })
-                .help("Select the audio to play when the alarm goes off")
+                })*/
             }
-            .padding()
         }
         HStack {
             if (selectedObject.state != ClockState.ACTIVE.rawValue && selectedObject.state != ClockState.TRIGGERED.rawValue) {
@@ -78,11 +65,11 @@ struct AlarmConfigView: View {
     
 }
 
-struct AlarmConfigView_Previews: PreviewProvider {
+struct TimerConfigView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         //index 0 is an active alarm, index 3 is a paused alarm
-        let alarm: AtcAlarm = dc.alarmItems[0]
-        AlarmConfigView(dc: dc, selectedObject: alarm)
+        let timer: AtcTimer = dc.timerItems[0]
+        TimerConfigView(dc: dc, selectedObject: timer)
     }
 }
