@@ -8,21 +8,28 @@
 import Foundation
 
 /**
- AlarmClock manages a single alarm
- The AlarmClock calculates the time remaining
- The AlarmClock is tied to an alarmObject
+ AlarmManager manages a single alarm
+ The AlarmManager calculates the time remaining
+ The AlarmManager is tied to an alarmObject
  */
-class ClockAlarm: ClockObjectProtocol {
-    
+class AlarmManager: ObservableObject, AtcManager{
+        
     private var timer = Timer()
     private var alarmObject: AtcAlarm
     private var updateInterval: TimeInterval
-
-    var timeRemainingString: String = "00:00:00"
+    let formatter = DateComponentsFormatter()
+    
+    @Published var clockStatus: ClockStatus
 
     init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.updateInterval = updateInterval
         self.alarmObject = alarmObject
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", associatedObject: alarmObject.uniqueId!)
+        if (self.alarmObject.state == ClockState.ACTIVE.rawValue) {
+            self.start()
+        } else {
+            self.stop()
+        }
     }
     
     //TODO: Make sure that this runs when window minimized
@@ -39,15 +46,19 @@ class ClockAlarm: ClockObjectProtocol {
     func updateData() {
         let timeRemainingInterval: TimeInterval = (alarmObject.stopTime?.timeIntervalSince(Date.now))!
         //TODO: Update with a nicely formatted time remaining HH:MM:SS
-        timeRemainingString = timeRemainingInterval.description
+        clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
     }
     
     func getManagedObjectUniqueId() -> UUID {
         return self.alarmObject.uniqueId!
     }
     
-    func getDisplayText() -> String {
-        return self.timeRemainingString
+    func getStatus() -> ClockStatus {
+        return self.clockStatus
+    }
+    
+    func getManagedObject() -> AtcObject {
+        return alarmObject
     }
     
 }

@@ -69,11 +69,11 @@ struct AlarmConfigView: View {
     }
     
     func start() {
-        dc.setState(atcObject: selectedObject, newState: ClockState.ACTIVE)
+        dc.setAlarmState(atcObject: selectedObject, newState: ClockState.ACTIVE)
     }
     
     func stop() {
-        dc.setState(atcObject: selectedObject, newState: ClockState.PAUSED)
+        dc.setAlarmState(atcObject: selectedObject, newState: ClockState.PAUSED)
     }
     
 }

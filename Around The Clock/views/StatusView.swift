@@ -7,48 +7,29 @@
 
 import SwiftUI
 
-struct StatusView: View {
+struct StatusView: View  {
     
     @ObservedObject var dc: DataController
-    @ObservedObject var selectedObject: AtcObject
-    
-    var statusValue: String = "00:00:00"
+    @ObservedObject var selectedManager: AlarmManager
+        
+    init(dc: DataController, uid: UUID) {
+        self.dc = dc
+        self.selectedManager = dc.getAlarmManager(uniqueIdentifier: uid)
+    }
     
     var body: some View {
-        VStack {
-            TextField("Name",
-                      text: $selectedObject.name.toUnwrapped(defaultValue: "Unknown"),
-                      onCommit: { dc.saveContext() }
-            )
-            .multilineTextAlignment(.center)
-            .font(.largeTitle)
+        Text(selectedManager.clockStatus.displayValue )
+            .font(.system(size: 60))
+            .background(Color(.clear))
             .padding()
-            .onChange(of: selectedObject.name, perform: { (value) in
-                //TODO: Consider whether its worth having an AtcObject abstraction
-                if selectedObject is AtcAlarm {
-                    dc.saveAndUpdateAlarms()
-                } else if selectedObject is AtcTimer {
-                    dc.saveAndUpdateTimers()
-                }
-            })
-            Text(dc.managementDictionary[selectedObject.uniqueId!]?.timeRemainingString ?? statusValue)
-                .font(.system(size: 60))
-                .background(Color(.clear))
-                .padding()
-            /*
-            Text(dc.managementDictionary[selectedObject.uniqueId!]?.timeRemainingString ?? statusValue)
-                .font(.system(size: 60))
-                .background(Color(.clear))
-                .padding()
-             */
-        }
     }
+    
 }
 
 struct StatusView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
         let alarm: AtcAlarm = dc.alarmItems[0]
-        StatusView(dc: dc, selectedObject: alarm)
+        StatusView(dc: dc, uid: alarm.uniqueId!)
     }
 }

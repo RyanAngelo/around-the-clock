@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ClockTimer: ObservableObject, ClockObjectProtocol {
+class TimerManager: ObservableObject, AtcManager {
     
     @Published var timeRemainingString: String = "00:00:00"
     
@@ -39,6 +39,10 @@ class ClockTimer: ObservableObject, ClockObjectProtocol {
     
     func getManagedObjectUniqueId() -> UUID {
         return self.timerObject.uniqueId!
+    }
+    
+    func getManagedObject() -> AtcObject {
+        return timerObject
     }
     
     

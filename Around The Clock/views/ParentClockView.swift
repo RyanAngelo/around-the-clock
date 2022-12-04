@@ -38,7 +38,8 @@ struct ParentClockView: View {
         } detail: {
             if $atcObject.wrappedValue != nil {
                 //Get the selected alarm object
-                StatusView(dc: dc, selectedObject: atcObject!)
+                TitleView(dc: dc, selectedObject: atcObject!)
+                StatusView(dc: dc, uid: (atcObject?.uniqueId)!)
                 ConfigView(dc: dc, selectedObject: atcObject!)
             } else {
                 Text("Select or create an item")

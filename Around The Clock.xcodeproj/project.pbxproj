@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85B729324B7400AC2686 /* AlarmConfigView.swift */; };
 		944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85BC29326F5A00AC2686 /* AudioController.swift */; };
+		94532AF7293C01D9008845FB /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94532AF6293C01D9008845FB /* TitleView.swift */; };
+		94532AF9293CD4FA008845FB /* ClockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94532AF8293CD4FA008845FB /* ClockStatus.swift */; };
 		94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604A28708F410002795C /* Around_The_ClockApp.swift */; };
 		94DE604D28708F410002795C /* ParentClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE604C28708F410002795C /* ParentClockView.swift */; };
 		94DE604F28708F420002795C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DE604E28708F420002795C /* Assets.xcassets */; };
@@ -18,11 +20,11 @@
 		94DE606C28708F430002795C /* Around_The_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606B28708F430002795C /* Around_The_ClockUITests.swift */; };
 		94DE606E28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */; };
 		94E4B91E292CF63000B71C05 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B91D292CF63000B71C05 /* ConfigView.swift */; };
-		94E4B921292D0A7600B71C05 /* ClockAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* ClockAlarm.swift */; };
+		94E4B921292D0A7600B71C05 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* AlarmManager.swift */; };
 		94E4B924292D0F0700B71C05 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B923292D0F0700B71C05 /* DataController.swift */; };
 		94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B926292D4F7700B71C05 /* ClockState.swift */; };
-		94E4B929292D5CDD00B71C05 /* ClockObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */; };
-		94E4B92D292E649F00B71C05 /* ClockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92C292E649F00B71C05 /* ClockTimer.swift */; };
+		94E4B929292D5CDD00B71C05 /* AtcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B928292D5CDD00B71C05 /* AtcManager.swift */; };
+		94E4B92D292E649F00B71C05 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92C292E649F00B71C05 /* TimerManager.swift */; };
 		94E4B92F292E6AFA00B71C05 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92E292E6AFA00B71C05 /* StatusView.swift */; };
 		94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B942292FB94D00B71C05 /* Persistence.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 /* Begin PBXFileReference section */
 		944C85B729324B7400AC2686 /* AlarmConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigView.swift; sourceTree = "<group>"; };
 		944C85BC29326F5A00AC2686 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		94532AF6293C01D9008845FB /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		94532AF8293CD4FA008845FB /* ClockStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockStatus.swift; sourceTree = "<group>"; };
 		94DE604728708F410002795C /* Around The Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Around The Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DE604A28708F410002795C /* Around_The_ClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockApp.swift; sourceTree = "<group>"; };
 		94DE604C28708F410002795C /* ParentClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentClockView.swift; sourceTree = "<group>"; };
@@ -60,11 +64,11 @@
 		94DE606B28708F430002795C /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
 		94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94E4B91D292CF63000B71C05 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
-		94E4B920292D0A7600B71C05 /* ClockAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockAlarm.swift; sourceTree = "<group>"; };
+		94E4B920292D0A7600B71C05 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		94E4B923292D0F0700B71C05 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		94E4B926292D4F7700B71C05 /* ClockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockState.swift; sourceTree = "<group>"; };
-		94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockObjectProtocol.swift; sourceTree = "<group>"; };
-		94E4B92C292E649F00B71C05 /* ClockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTimer.swift; sourceTree = "<group>"; };
+		94E4B928292D5CDD00B71C05 /* AtcManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtcManager.swift; sourceTree = "<group>"; };
+		94E4B92C292E649F00B71C05 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		94E4B92E292E6AFA00B71C05 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		94E4B942292FB94D00B71C05 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Persistence.swift; path = "Around The Clock/Persistence.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +174,7 @@
 			children = (
 				94DE604C28708F410002795C /* ParentClockView.swift */,
 				94E4B92E292E6AFA00B71C05 /* StatusView.swift */,
+				94532AF6293C01D9008845FB /* TitleView.swift */,
 				94E4B91D292CF63000B71C05 /* ConfigView.swift */,
 				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
 			);
@@ -179,9 +184,9 @@
 		94E4B91F292D062500B71C05 /* observables */ = {
 			isa = PBXGroup;
 			children = (
-				94E4B920292D0A7600B71C05 /* ClockAlarm.swift */,
-				94E4B92C292E649F00B71C05 /* ClockTimer.swift */,
-				94E4B928292D5CDD00B71C05 /* ClockObjectProtocol.swift */,
+				94E4B920292D0A7600B71C05 /* AlarmManager.swift */,
+				94E4B92C292E649F00B71C05 /* TimerManager.swift */,
+				94E4B928292D5CDD00B71C05 /* AtcManager.swift */,
 			);
 			path = observables;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				94E4B926292D4F7700B71C05 /* ClockState.swift */,
+				94532AF8293CD4FA008845FB /* ClockStatus.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -324,13 +330,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E4B921292D0A7600B71C05 /* ClockAlarm.swift in Sources */,
-				94E4B929292D5CDD00B71C05 /* ClockObjectProtocol.swift in Sources */,
+				94E4B921292D0A7600B71C05 /* AlarmManager.swift in Sources */,
+				94E4B929292D5CDD00B71C05 /* AtcManager.swift in Sources */,
 				944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */,
+				94532AF7293C01D9008845FB /* TitleView.swift in Sources */,
 				94E4B92F292E6AFA00B71C05 /* StatusView.swift in Sources */,
-				94E4B92D292E649F00B71C05 /* ClockTimer.swift in Sources */,
+				94E4B92D292E649F00B71C05 /* TimerManager.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
 				94DE604D28708F410002795C /* ParentClockView.swift in Sources */,
+				94532AF9293CD4FA008845FB /* ClockStatus.swift in Sources */,
 				94E4B91E292CF63000B71C05 /* ConfigView.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
 				94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */,
