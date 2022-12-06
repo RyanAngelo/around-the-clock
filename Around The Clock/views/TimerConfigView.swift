@@ -12,21 +12,30 @@ struct TimerConfigView: View {
     @ObservedObject var dc: DataController
     @ObservedObject var selectedObject: AtcTimer
     
+    let hours = Array(0...23)
+    let minutes = Array(0...59)
+    let seconds = Array(0...59)
+    
+    @State private var selectedHours: Int = 0
+    @State private var selectedMinutes: Int = 0
+    @State private var selectedSeconds: Int = 0
+    
     var body: some View {
-        VStack {
-            HStack {
-                /*
-                DatePicker(
-                    "Date & Time",
-                    selection: $selectedObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
-                    in: Date.now...,
-                    displayedComponents: [.date, .hourAndMinute] )
-                .datePickerStyle(.field)
-                .help("Select the date and time that you want the alarm to go off")
-                .onChange(of: selectedObject.stopTime, perform: { (value) in
-                    //When the date is changed, save the context CoreData
-                    dc.saveContext()
-                })*/
+        HStack {
+            Picker("Hours", selection: $selectedHours) {
+                ForEach(hours, id: \.self) { hour in
+                    Text(hour.description)
+                }
+            }
+            Picker("Minutes", selection: $selectedMinutes) {
+                ForEach(minutes, id: \.self) { minute in
+                    Text(minute.description)
+                }
+            }
+            Picker("Seconds", selection: $selectedSeconds) {
+                ForEach(seconds, id: \.self) { second in
+                    Text(second.description)
+                }
             }
         }
         HStack {
