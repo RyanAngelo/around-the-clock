@@ -125,6 +125,7 @@ class DataController: ObservableObject {
             } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
                 co.stop()
             }
+            atcObject.state = newState.rawValue
         } else {
             print("Error! No Manager for associated ATC Object")
         }
@@ -132,6 +133,12 @@ class DataController: ObservableObject {
         //TODO: Manage this in a less intensive manner
         fetchTimers()
         fetchAlarms()
+    }
+    
+    public func resetManager(atcObject: AtcObject) {
+        if let co: any AtcManager = managers[atcObject.uniqueId!] {
+            co.reset()
+        }
     }
     
     public func addTimer() {
@@ -165,6 +172,12 @@ class DataController: ObservableObject {
             offsets.map { timerItems[$0] }.forEach(container.viewContext.delete)
             self.saveContext()
         }
+    }
+    
+    public func updateTimerManager(id: UUID) {
+        self.saveContext()
+        let tm: TimerManager = getManager(uniqueIdentifier: id) as! TimerManager;
+        tm.updateData()
     }
     
     public func saveContext() {
@@ -217,28 +230,25 @@ class DataController: ObservableObject {
             newAlarm.name = "Active Alarm"
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.ACTIVE.rawValue
-            let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
-            result.addManager(am: manager)
+            let am: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
+            result.addManager(am: am)
             var newTimer = AtcTimer(context: viewContext)
             newTimer.stopTime = 100
             newTimer.name = "Active Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.ACTIVE.rawValue
+            let tm: TimerManager = TimerManager(updateInterval: 1, timerObject: newTimer)
+            result.addManager(am: tm)
             
         }
         for _ in 0..<2 {
-            var newAlarm = AtcAlarm(context: viewContext)
-            newAlarm.stopTime = Date()
-            newAlarm.name = "New Alarm"
-            newAlarm.uniqueId = UUID()
-            newAlarm.state = ClockState.PAUSED.rawValue
-            let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
-            result.addManager(am: manager)
             var newTimer = AtcTimer(context: viewContext)
-            newTimer.stopTime = 100
+            newTimer.stopTime = 10
             newTimer.name = "New Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.PAUSED.rawValue
+            let manager: TimerManager = TimerManager(updateInterval: 1, timerObject: newTimer)
+            result.addManager(am: manager)
         }
         do {
             try viewContext.save()

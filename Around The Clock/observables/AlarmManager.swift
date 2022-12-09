@@ -13,7 +13,7 @@ import Foundation
  The AlarmManager is tied to an alarmObject
  */
 class AlarmManager: ObservableObject, AtcManager{
-        
+            
     private var timer = Timer()
     private var alarmObject: AtcAlarm
     private var updateInterval: TimeInterval
@@ -24,7 +24,7 @@ class AlarmManager: ObservableObject, AtcManager{
     init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.updateInterval = updateInterval
         self.alarmObject = alarmObject
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", associatedObject: alarmObject.uniqueId!)
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
         if (self.alarmObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -59,5 +59,7 @@ class AlarmManager: ObservableObject, AtcManager{
     func getManagedObject() -> AtcObject {
         return alarmObject
     }
+    
+    func reset() {}
     
 }

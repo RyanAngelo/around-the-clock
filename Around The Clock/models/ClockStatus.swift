@@ -17,5 +17,6 @@ import Foundation
  */
 struct ClockStatus {
     var displayValue: String
+    var activated: Bool
     var associatedObject: UUID
 }

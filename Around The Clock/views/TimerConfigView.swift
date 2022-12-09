@@ -9,16 +9,25 @@ import SwiftUI
 
 struct TimerConfigView: View {
     
-    @ObservedObject var dc: DataController
-    @ObservedObject var selectedObject: AtcTimer
-    
     let hours = Array(0...23)
     let minutes = Array(0...59)
     let seconds = Array(0...59)
     
-    @State private var selectedHours: Int = 0
-    @State private var selectedMinutes: Int = 0
-    @State private var selectedSeconds: Int = 0
+    @ObservedObject var dc: DataController
+    @ObservedObject var selectedObject: AtcTimer
+    
+    @State private var selectedHours: Int
+    @State private var selectedMinutes: Int
+    @State private var selectedSeconds: Int
+    
+    init(dc: DataController, selectedObject: AtcTimer) {
+        self.dc = dc
+        self.selectedObject = selectedObject
+        self.selectedHours = TimerConfigView.getHours(countdownTime: selectedObject.stopTime)
+        self.selectedMinutes = TimerConfigView.getMinutes(countdownTime: selectedObject.stopTime)
+        self.selectedSeconds = TimerConfigView.getSeconds(countdownTime: selectedObject.stopTime)
+        self.assignHoursMinutesSeconds()
+    }
     
     var body: some View {
         HStack {
@@ -37,7 +46,19 @@ struct TimerConfigView: View {
                     Text(second.description)
                 }
             }
-        }
+        }.padding()
+            .onChange(of: selectedHours, perform: { (value) in
+                setManagedObjectTime()
+                dc.updateTimerManager(id: selectedObject.uniqueId!)
+            })
+            .onChange(of: selectedMinutes, perform: { (value) in
+                setManagedObjectTime()
+                dc.updateTimerManager(id: selectedObject.uniqueId!)
+            })
+            .onChange(of: selectedSeconds, perform: { (value) in
+                setManagedObjectTime()
+                dc.updateTimerManager(id: selectedObject.uniqueId!)
+            })
         HStack {
             if (selectedObject.state != ClockState.ACTIVE.rawValue && selectedObject.state != ClockState.TRIGGERED.rawValue) {
                 Button(action: start) {
@@ -51,17 +72,50 @@ struct TimerConfigView: View {
                     
             } else {
                 Button(role: .cancel, action: stop) {
-                    Text("Stop")
+                    Text("Pause")
                         .padding()
-                        .frame(width: 70, height: 30, alignment: .center)
+                        .frame(width: 75, height: 30, alignment: .center)
                         .background(RoundedRectangle(cornerRadius: 8)
                             .fill(Color.red))
                         .font(.system(.title3))
                 }.buttonStyle(PlainButtonStyle())
             }
+            Button(role: .cancel, action: reset) {
+                Text("Reset")
+                    .padding()
+                    .frame(width: 75, height: 30, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.yellow))
+                    .font(.system(.title3))
+            }.buttonStyle(PlainButtonStyle())
         }
         .padding()
         
+    }
+    
+    func setManagedObjectTime() {
+        selectedObject.stopTime =
+        Double(selectedHours * 60 * 60 +
+               selectedMinutes * 60 +
+               selectedSeconds)
+    }
+    
+    func assignHoursMinutesSeconds() {
+        selectedHours = TimerConfigView.getHours(countdownTime: selectedObject.stopTime)
+        selectedMinutes = TimerConfigView.getMinutes(countdownTime: selectedObject.stopTime)
+        selectedSeconds = TimerConfigView.getSeconds(countdownTime: selectedObject.stopTime)
+    }
+    
+    static func getHours(countdownTime: Double) -> Int {
+        return Int(countdownTime / 3600)
+    }
+    
+    static func getMinutes(countdownTime: Double) -> Int {
+        return Int((countdownTime.truncatingRemainder(dividingBy: 3600)) / 60)
+    }
+    
+    static func getSeconds(countdownTime: Double) -> Int {
+        return Int((countdownTime.truncatingRemainder(dividingBy: 3600)).truncatingRemainder(dividingBy: 60))
     }
     
     func start() {
@@ -70,6 +124,10 @@ struct TimerConfigView: View {
     
     func stop() {
         dc.setManagerState(atcObject: selectedObject, newState: ClockState.PAUSED)
+    }
+    
+    func reset() {
+        dc.resetManager(atcObject: selectedObject)
     }
     
 }

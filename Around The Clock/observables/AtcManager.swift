@@ -23,5 +23,7 @@ protocol AtcManager: ObservableObject {
     func getManagedObject() -> AtcObject
     //Returns the associated ClockStatus object
     func getStatus() -> ClockStatus
+    //Reset the manager to the initial state
+    func reset()
     
 }
