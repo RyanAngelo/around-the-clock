@@ -44,7 +44,7 @@ struct TimerConfigView: View {
                 selectedManager.setManagedObjectTime()
             })
             .padding()
-            Picker("Audio:", selection: $selectedManager.timerObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
+            Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
                 ForEach(AudioFiles.allCases) { audio in
                     Text(audio.rawValue.capitalized)
                         .tag(audio.rawValue)
@@ -52,7 +52,7 @@ struct TimerConfigView: View {
                 .pickerStyle(.menu)
                 .scaledToFit()
             }
-            .onChange(of: selectedManager.timerObject.audioFile, perform: { (value) in
+            .onChange(of: selectedManager.managedObject.audioFile, perform: { (value) in
                 //When the date is changed, save the context CoreData
                 //TODO: Update alarm
             })

@@ -16,16 +16,15 @@ struct AlarmConfigView: View {
             HStack {
                 DatePicker(
                     "Date & Time",
-                    selection: $selectedManager.alarmObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
+                    selection: $selectedManager.managedObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
                     in: Date.now...,
                     displayedComponents: [.date, .hourAndMinute] )
                 .datePickerStyle(.field)
                 .help("Select the date and time that you want the alarm to go off")
-                .onChange(of: selectedManager.alarmObject.stopTime, perform: { (value) in
-                    //When the date is changed, save the context CoreData
-                    //TODO: Save date change
+                .onChange(of: selectedManager.managedObject.stopTime!, perform: { (value) in
+                    selectedManager.updateDate(newDate: value)
                 })
-                Picker("Audio:", selection: $selectedManager.alarmObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
+                Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
                     ForEach(AudioFiles.allCases) { audio in
                         Text(audio.rawValue.capitalized)
                             .tag(audio.rawValue)
@@ -33,7 +32,7 @@ struct AlarmConfigView: View {
                     .pickerStyle(.menu)
                     .scaledToFit()
                 }
-                .onChange(of: selectedManager.alarmObject.audioFile, perform: { (value) in
+                .onChange(of: selectedManager.managedObject.audioFile, perform: { (value) in
                     //When the date is changed, save the context CoreData
                     //TODO: Save audio change
                 })

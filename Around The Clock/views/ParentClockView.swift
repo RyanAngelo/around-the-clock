@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreData
 
+//ParentClockView pulls all the other views together.
+//This is the only view that should need to direclty use the DataController
 struct ParentClockView: View {
     
     //Environment passed from parent

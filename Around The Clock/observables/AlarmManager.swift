@@ -23,16 +23,16 @@ class AlarmManager: ObservableObject, AtcManager{
     @ObservedObject var dc: DataController
     
     @Published var clockStatus: ClockStatus
-    @Published var alarmObject: AtcAlarm
+    @Published var managedObject: AtcAlarm
     @Published var currentState: ClockState
     
     init(dc: DataController, updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.dc = dc
         self.updateInterval = updateInterval
-        self.alarmObject = alarmObject
+        self.managedObject = alarmObject
         self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
         self.currentState = ClockState(rawValue: alarmObject.state) ?? ClockState.STOPPED
-        if (self.alarmObject.state == ClockState.ACTIVE.rawValue) {
+        if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
             self.stop()
@@ -51,12 +51,17 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func updateData() {
-        let timeRemainingInterval: TimeInterval = (alarmObject.stopTime?.timeIntervalSince(Date.now))!
+        let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSince(Date.now))!
         clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
     }
     
+    func updateDate(newDate: Date) {
+        managedObject.stopTime = newDate
+        updateData()
+    }
+    
     func getManagedObjectUniqueId() -> UUID {
-        return self.alarmObject.uniqueId!
+        return self.managedObject.uniqueId!
     }
     
     func getStatus() -> ClockStatus {
@@ -64,7 +69,7 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func getManagedObject() -> AtcObject {
-        return alarmObject
+        return managedObject
     }
     
     func setManagedObjectState(newState: ClockState) {
@@ -74,7 +79,7 @@ class AlarmManager: ObservableObject, AtcManager{
             stop()
         }
         currentState = newState
-        alarmObject.state = newState.rawValue
+        managedObject.state = newState.rawValue
         dc.saveContext()
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class TimerManager: ObservableObject, AtcManager {
+class TimerManager: ObservableObject, AtcManager {    
     
     private var timer = Timer()
     let formatter = DateComponentsFormatter()
@@ -25,20 +25,20 @@ class TimerManager: ObservableObject, AtcManager {
     @Published var seconds: Int
     @Published var currentState: ClockState
     
-    //TODO: Should I just publish timerObject?
-    @Published var timerObject: AtcTimer
+    //TODO: Should I publish timerObject?
+    @Published var managedObject: AtcTimer
         
     init(dc: DataController, updateInterval: TimeInterval, timerObject: AtcTimer) {
         self.dc = dc
         self.updateInterval = updateInterval
-        self.timerObject = timerObject
+        self.managedObject = timerObject
         self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, associatedObject: timerObject.uniqueId!)
         self.hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
         self.minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
         self.seconds = TimerManager.getSeconds(countdownTime: timerObject.stopTime)
         self.currentState = ClockState(rawValue: timerObject.state) ?? ClockState.STOPPED
         self.updateData()
-        if (self.timerObject.state == ClockState.ACTIVE.rawValue) {
+        if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
             self.stop()
@@ -46,12 +46,12 @@ class TimerManager: ObservableObject, AtcManager {
     }
     
     func start() {
-        self.timerObject.lastCheckDate = Date.now
+        self.managedObject.lastCheckDate = Date.now
         timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
             self.updateData()
-            let timeSinceLastCheck = -self.timerObject.lastCheckDate!.timeIntervalSinceNow
+            let timeSinceLastCheck = -self.managedObject.lastCheckDate!.timeIntervalSinceNow
             self.timeElapsed = self.timeElapsed.advanced(by: timeSinceLastCheck)
-            self.timerObject.lastCheckDate = Date.now
+            self.managedObject.lastCheckDate = Date.now
         }
     }
     
@@ -60,7 +60,7 @@ class TimerManager: ObservableObject, AtcManager {
     }
     
     func updateData() {
-        let timeRemaining: TimeInterval = timerObject.stopTime.advanced(by: -timeElapsed)
+        let timeRemaining: TimeInterval = managedObject.stopTime.advanced(by: -timeElapsed)
         if (timeRemaining <= 0) {
             clockStatus.activated = true
             self.timer.invalidate()
@@ -73,15 +73,15 @@ class TimerManager: ObservableObject, AtcManager {
         self.timeElapsed = 0
         self.updateData()
         self.clockStatus.activated = false
-        if (!self.timer.isValid && self.timerObject.state == ClockState.ACTIVE.rawValue) {
+        if (!self.timer.isValid && self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         }
     }
     
     func assignHoursMinutesSeconds() {
-        hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
-        minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
-        seconds = TimerManager.getSeconds(countdownTime: timerObject.stopTime)
+        hours = TimerManager.getHours(countdownTime: managedObject.stopTime)
+        minutes = TimerManager.getMinutes(countdownTime: managedObject.stopTime)
+        seconds = TimerManager.getSeconds(countdownTime: managedObject.stopTime)
     }
     
     static func getHours(countdownTime: Double) -> Int {
@@ -97,7 +97,7 @@ class TimerManager: ObservableObject, AtcManager {
     }
     
     func setManagedObjectTime() {
-        timerObject.stopTime =
+        managedObject.stopTime =
         Double(self.hours * 60 * 60 +
                self.minutes * 60 +
                self.seconds)
@@ -111,21 +111,26 @@ class TimerManager: ObservableObject, AtcManager {
         } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
             stop()
         }
-        timerObject.state = newState.rawValue
+        managedObject.state = newState.rawValue
         currentState = newState
         dc.saveContext()
     }
     
     func getManagedObjectUniqueId() -> UUID {
-        return self.timerObject.uniqueId!
+        return self.managedObject.uniqueId!
     }
     
     func getManagedObject() -> AtcObject {
-        return timerObject
+        return managedObject
     }
     
     func getStatus() -> ClockStatus {
         return clockStatus
+    }
+    
+    func updateName(newName: String) {
+        managedObject.name = newName
+        dc.saveAndUpdateTimers()
     }
     
 }
