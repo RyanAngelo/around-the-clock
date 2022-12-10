@@ -20,8 +20,7 @@ class DataController: ObservableObject {
     private let alarmController: NSFetchedResultsController<AtcAlarm>
     private let timerController: NSFetchedResultsController<AtcTimer>
 
-    var clockStatus: [UUID: ClockStatus] = [:]
-    var managers: [UUID: any AtcManager] = [:]
+    private var managers: [UUID: any AtcManager] = [:]
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
@@ -73,11 +72,11 @@ class DataController: ObservableObject {
     private func createClocks() {
         //Create alarm clock associated with object
         for alarm in self.alarmItems {
-            let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: alarm)
+            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: 1, alarmObject: alarm)
             addManager(am: manager)
         }
         for timer in self.timerItems {
-            let manager: TimerManager = TimerManager(updateInterval: 0.1, timerObject: timer)
+            let manager: TimerManager = TimerManager(dc: self, updateInterval: 0.1, timerObject: timer)
             addManager(am: manager)
         }
     }
@@ -89,11 +88,11 @@ class DataController: ObservableObject {
             //Default time is now + 60 minutes
             newItem.stopTime = Date.now.advanced(by: 60 * 60)
             newItem.name = "New Alarm"
-            newItem.state = ClockState.PAUSED.rawValue
-            let manager: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newItem)
+            newItem.state = ClockState.STOPPED.rawValue
+            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: 1, alarmObject: newItem)
             addManager(am: manager)
-            self.saveContext()
-            self.fetchAlarms()
+            saveContext()
+            fetchAlarms()
         }
     }
     
@@ -112,8 +111,8 @@ class DataController: ObservableObject {
     public func deleteAlarm(offsets: IndexSet) {
         withAnimation {
             offsets.map { alarmItems[$0] }.forEach(container.viewContext.delete)
-            self.saveContext()
-            self.fetchAlarms()
+            saveContext()
+            fetchAlarms()
         }
     }
     
@@ -147,11 +146,11 @@ class DataController: ObservableObject {
             newItem.uniqueId = UUID()
             newItem.stopTime = 0
             newItem.name = "New Timer"
-            newItem.state = ClockState.PAUSED.rawValue
-            let manager: TimerManager = TimerManager(updateInterval: 1, timerObject: newItem)
+            newItem.state = ClockState.STOPPED.rawValue
+            let manager: TimerManager = TimerManager(dc: self, updateInterval: 1, timerObject: newItem)
             addManager(am: manager)
-            self.saveContext()
-            self.fetchTimers()
+            saveContext()
+            fetchTimers()
         }
     }
     
@@ -175,8 +174,9 @@ class DataController: ObservableObject {
     }
     
     public func updateTimerManager(id: UUID) {
-        self.saveContext()
+        saveContext()
         let tm: TimerManager = getManager(uniqueIdentifier: id) as! TimerManager;
+        tm.reset()
         tm.updateData()
     }
     
@@ -201,22 +201,16 @@ class DataController: ObservableObject {
     
     public func addManager(am: any AtcManager) {
         managers.updateValue(am, forKey: am.getManagedObjectUniqueId())
-        clockStatus.updateValue(am.getStatus(), forKey: am.getManagedObjectUniqueId())
     }
     
     public func removeManager(uniqueIdToRemove: UUID) {
-        self.managers.removeValue(forKey: uniqueIdToRemove)
-        self.clockStatus.removeValue(forKey: uniqueIdToRemove)
+        managers.removeValue(forKey: uniqueIdToRemove)
     }
     
     //TODO: Create a management object if one does not exist wrather than force unwrap.
+    //This could be accomplished by passing the managed object rather than the UUID
     public func getManager(uniqueIdentifier: UUID) -> any AtcManager {
-        return self.managers[uniqueIdentifier]!
-    }
-    
-    
-    public func getClockStatus(uniqueIdentifier: UUID) -> ClockStatus {
-        return self.clockStatus[uniqueIdentifier]!
+        return managers[uniqueIdentifier]!
     }
     
     //For preview generation
@@ -230,14 +224,14 @@ class DataController: ObservableObject {
             newAlarm.name = "Active Alarm"
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.ACTIVE.rawValue
-            let am: AlarmManager = AlarmManager(updateInterval: 1, alarmObject: newAlarm)
+            let am: AlarmManager = AlarmManager(dc: result, updateInterval: 1, alarmObject: newAlarm)
             result.addManager(am: am)
             var newTimer = AtcTimer(context: viewContext)
-            newTimer.stopTime = 100
+            newTimer.stopTime = 10000
             newTimer.name = "Active Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.ACTIVE.rawValue
-            let tm: TimerManager = TimerManager(updateInterval: 1, timerObject: newTimer)
+            let tm: TimerManager = TimerManager(dc: result, updateInterval: 1, timerObject: newTimer)
             result.addManager(am: tm)
             
         }
@@ -247,7 +241,7 @@ class DataController: ObservableObject {
             newTimer.name = "New Timer"
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.PAUSED.rawValue
-            let manager: TimerManager = TimerManager(updateInterval: 1, timerObject: newTimer)
+            let manager: TimerManager = TimerManager(dc: result, updateInterval: 1, timerObject: newTimer)
             result.addManager(am: manager)
         }
         do {

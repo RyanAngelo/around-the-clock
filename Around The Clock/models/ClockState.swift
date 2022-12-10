@@ -12,5 +12,4 @@ public enum ClockState: Int16 {
     case ACTIVE = 0
     case PAUSED = 1
     case STOPPED = 2
-    case TRIGGERED = 3
 }

@@ -39,12 +39,12 @@ struct ParentClockView: View {
             if $atcObject.wrappedValue != nil {
                 if atcObject! is AtcAlarm {
                     TitleView(dc: dc, selectedObject: atcObject!)
-                    AlarmStatusView(dc: dc, uid: (atcObject?.uniqueId)!)
-                    AlarmConfigView(dc: dc, selectedObject: atcObject! as! AtcAlarm)
+                    AlarmStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
+                    AlarmConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
                 } else if atcObject! is AtcTimer {
                     TitleView(dc: dc, selectedObject: atcObject!)
-                    TimerStatusView(dc: dc, uid: (atcObject?.uniqueId)!)
-                    TimerConfigView(dc: dc, selectedObject: atcObject! as! AtcTimer)
+                    TimerStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
+                    TimerConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
                 }
             } else {
                 Text("Select or create an item")

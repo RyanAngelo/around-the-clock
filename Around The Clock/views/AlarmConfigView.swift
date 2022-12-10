@@ -9,24 +9,23 @@ import SwiftUI
 
 struct AlarmConfigView: View {
     
-    @ObservedObject var dc: DataController
-    @ObservedObject var selectedObject: AtcAlarm
+    @ObservedObject var selectedManager: AlarmManager
     
     var body: some View {
         VStack {
             HStack {
                 DatePicker(
                     "Date & Time",
-                    selection: $selectedObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
+                    selection: $selectedManager.alarmObject.stopTime.toUnwrapped(defaultValue: Date.now.addingTimeInterval(60*60)),
                     in: Date.now...,
                     displayedComponents: [.date, .hourAndMinute] )
                 .datePickerStyle(.field)
                 .help("Select the date and time that you want the alarm to go off")
-                .onChange(of: selectedObject.stopTime, perform: { (value) in
+                .onChange(of: selectedManager.alarmObject.stopTime, perform: { (value) in
                     //When the date is changed, save the context CoreData
-                    dc.saveContext()
+                    //TODO: Save date change
                 })
-                Picker("Audio:", selection: $selectedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
+                Picker("Audio:", selection: $selectedManager.alarmObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
                     ForEach(AudioFiles.allCases) { audio in
                         Text(audio.rawValue.capitalized)
                             .tag(audio.rawValue)
@@ -34,16 +33,16 @@ struct AlarmConfigView: View {
                     .pickerStyle(.menu)
                     .scaledToFit()
                 }
-                .onChange(of: selectedObject.audioFile, perform: { (value) in
+                .onChange(of: selectedManager.alarmObject.audioFile, perform: { (value) in
                     //When the date is changed, save the context CoreData
-                    dc.saveContext()
+                    //TODO: Save audio change
                 })
                 .help("Select the audio to play when the alarm goes off")
             }
             .padding()
         }
         HStack {
-            if (selectedObject.state != ClockState.ACTIVE.rawValue && selectedObject.state != ClockState.TRIGGERED.rawValue) {
+            if (selectedManager.currentState != ClockState.ACTIVE) {
                 Button(action: start) {
                     Text("Start")
                         .padding()
@@ -69,11 +68,11 @@ struct AlarmConfigView: View {
     }
     
     func start() {
-        dc.setManagerState(atcObject: selectedObject, newState: ClockState.ACTIVE)
+        selectedManager.setManagedObjectState(newState: ClockState.ACTIVE)
     }
     
     func stop() {
-        dc.setManagerState(atcObject: selectedObject, newState: ClockState.PAUSED)
+        selectedManager.setManagedObjectState(newState: ClockState.PAUSED)
     }
     
 }
@@ -81,8 +80,7 @@ struct AlarmConfigView: View {
 struct AlarmConfigView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
-        //index 0 is an active alarm, index 3 is a paused alarm
-        let alarm: AtcAlarm = dc.alarmItems[0]
-        AlarmConfigView(dc: dc, selectedObject: alarm)
+        let manager: AlarmManager = dc.getManager(uniqueIdentifier: dc.alarmItems[0].uniqueId!) as! AlarmManager
+        AlarmConfigView(selectedManager: manager)
     }
 }

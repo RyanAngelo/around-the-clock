@@ -13,6 +13,9 @@ import Foundation
  */
 protocol AtcManager: ObservableObject {
     
+    var dc: DataController { get set }
+    var currentState: ClockState { get set }
+
     func start()
     func stop()
     //Update the data in the manager
@@ -25,5 +28,6 @@ protocol AtcManager: ObservableObject {
     func getStatus() -> ClockStatus
     //Reset the manager to the initial state
     func reset()
-    
+    func setManagedObjectState(newState: ClockState
+    )
 }

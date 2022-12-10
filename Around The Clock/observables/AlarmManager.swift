@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /**
  AlarmManager manages a single alarm
@@ -13,18 +14,24 @@ import Foundation
  The AlarmManager is tied to an alarmObject
  */
 class AlarmManager: ObservableObject, AtcManager{
+    
             
     private var timer = Timer()
-    private var alarmObject: AtcAlarm
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
     
+    @ObservedObject var dc: DataController
+    
     @Published var clockStatus: ClockStatus
-
-    init(updateInterval: TimeInterval, alarmObject: AtcAlarm) {
+    @Published var alarmObject: AtcAlarm
+    @Published var currentState: ClockState
+    
+    init(dc: DataController, updateInterval: TimeInterval, alarmObject: AtcAlarm) {
+        self.dc = dc
         self.updateInterval = updateInterval
         self.alarmObject = alarmObject
         self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
+        self.currentState = ClockState(rawValue: alarmObject.state) ?? ClockState.STOPPED
         if (self.alarmObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -58,6 +65,17 @@ class AlarmManager: ObservableObject, AtcManager{
     
     func getManagedObject() -> AtcObject {
         return alarmObject
+    }
+    
+    func setManagedObjectState(newState: ClockState) {
+        if (newState == ClockState.ACTIVE) {
+            start()
+        } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
+            stop()
+        }
+        currentState = newState
+        alarmObject.state = newState.rawValue
+        dc.saveContext()
     }
     
     func reset() {}

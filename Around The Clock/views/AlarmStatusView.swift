@@ -9,13 +9,7 @@ import SwiftUI
 
 struct AlarmStatusView: View  {
     
-    @ObservedObject var dc: DataController
     @ObservedObject var selectedManager: AlarmManager
-        
-    init(dc: DataController, uid: UUID) {
-        self.dc = dc
-        self.selectedManager = dc.getManager(uniqueIdentifier: uid) as! AlarmManager
-    }
     
     var body: some View {
         Text(selectedManager.clockStatus.displayValue )
@@ -29,7 +23,7 @@ struct AlarmStatusView: View  {
 struct AlarmStatusView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
-        let alarm: AtcAlarm = dc.alarmItems[0]
-        AlarmStatusView(dc: dc, uid: alarm.uniqueId!)
+        let manager: AlarmManager = dc.getManager(uniqueIdentifier: dc.alarmItems[0].uniqueId!) as! AlarmManager
+        AlarmStatusView(selectedManager: manager)
     }
 }
