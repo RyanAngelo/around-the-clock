@@ -30,4 +30,8 @@ class AudioController {
         }
     }
     
+    func stopSound() {
+        player?.stop()
+    }
+    
 }

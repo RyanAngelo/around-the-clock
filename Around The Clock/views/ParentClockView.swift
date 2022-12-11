@@ -25,15 +25,38 @@ struct ParentClockView: View {
                 Section(header: Text("Alarms")) {
                     ForEach(dc.alarmItems) { alarm in
                         NavigationLink(value: alarm) {
-                            Text(alarm.name ?? "Unknown Alarm")
+                            HStack {
+                                Text(alarm.name ?? "Unknown Alarm")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                if (alarm.isEqual(to: atcObject)) {
+                                    Button(action: {deleteObject(objectToDelete: alarm) }) {
+                                        Label("", systemImage: "minus.circle")
+                                            .labelStyle(IconOnlyLabelStyle())
+                                            .foregroundColor(Color(.white))
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                            }
                         }
                     }
                 }
                 Section(header: Text("Timers")) {
-                    ForEach(dc.timerItems) { t in
-                        NavigationLink(value: t) {
-                            Text(t.name ?? "Unknown Timer")
-                        }
+                    ForEach(dc.timerItems) { timer in
+                        NavigationLink(value: timer) {
+                            HStack {
+                                Text(timer.name ?? "Unknown Timer")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                if (timer.isEqual(to: atcObject)) {
+                                    Button(action: {deleteObject(objectToDelete: timer) }) {
+                                        Label("", systemImage: "minus.circle")
+                                            .labelStyle(IconOnlyLabelStyle())
+                                            .foregroundColor(Color(.white))
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                            }                        }
                     }
                 }
             }
@@ -77,6 +100,12 @@ struct ParentClockView: View {
             }
         }
     }
+    
+    private func deleteObject(objectToDelete: AtcObject) {
+        atcObject = nil
+        dc.deleteManagedObject(atcObject: objectToDelete)
+    }
+    
 }
 
 private let itemFormatter: DateFormatter = {

@@ -15,7 +15,7 @@ class TimerManager: ObservableObject, AtcManager {
 
     private var updateInterval: TimeInterval //Seconds
     private var timeElapsed: TimeInterval = 0
-    
+
     @ObservedObject var dc: DataController
     
     @Published var clockStatus: ClockStatus
@@ -32,6 +32,9 @@ class TimerManager: ObservableObject, AtcManager {
         self.dc = dc
         self.updateInterval = updateInterval
         self.managedObject = timerObject
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
         self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, associatedObject: timerObject.uniqueId!)
         self.hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
         self.minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
@@ -48,9 +51,9 @@ class TimerManager: ObservableObject, AtcManager {
     func start() {
         self.managedObject.lastCheckDate = Date.now
         timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
-            self.updateData()
             let timeSinceLastCheck = -self.managedObject.lastCheckDate!.timeIntervalSinceNow
             self.timeElapsed = self.timeElapsed.advanced(by: timeSinceLastCheck)
+            self.updateData()
             self.managedObject.lastCheckDate = Date.now
         }
     }
@@ -60,10 +63,10 @@ class TimerManager: ObservableObject, AtcManager {
     }
     
     func updateData() {
-        let timeRemaining: TimeInterval = managedObject.stopTime.advanced(by: -timeElapsed)
+        let timeRemaining: TimeInterval = ceil(managedObject.stopTime.advanced(by: -timeElapsed))
         if (timeRemaining <= 0) {
             clockStatus.activated = true
-            self.timer.invalidate()
+            self.stop()
         }
         clockStatus.displayValue = formatter.string(from: timeRemaining) ?? "00:00:00"
     }

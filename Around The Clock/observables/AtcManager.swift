@@ -28,6 +28,7 @@ protocol AtcManager: ObservableObject {
     func getStatus() -> ClockStatus
     //Reset the manager to the initial state
     func reset()
+    //Set the current state of the object (Active/Paused, etc.)
     func setManagedObjectState(newState: ClockState)
     
 }

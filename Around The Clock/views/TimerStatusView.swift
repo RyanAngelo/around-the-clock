@@ -16,6 +16,9 @@ struct TimerStatusView: View  {
             .font(.system(size: 60))
             .background(Color(.clear))
             .padding()
+        if (selectedManager.clockStatus.activated) {
+            Text("Done")
+        }
     }
     
 }

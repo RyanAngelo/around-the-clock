@@ -108,12 +108,12 @@ class DataController: ObservableObject {
         return nil
     }
     
-    public func deleteAlarm(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { alarmItems[$0] }.forEach(container.viewContext.delete)
-            saveContext()
-            fetchAlarms()
-        }
+    public func deleteManagedObject(atcObject: AtcObject) {
+        removeManager(uniqueIdToRemove: atcObject.uniqueId!)
+        container.viewContext.delete(atcObject)
+        saveContext()
+        fetchAlarms()
+        fetchTimers()
     }
     
     public func setManagerState(atcObject: AtcObject, newState: ClockState) {
@@ -166,13 +166,6 @@ class DataController: ObservableObject {
         return nil
     }
     
-    public func deleteTimer(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { timerItems[$0] }.forEach(container.viewContext.delete)
-            self.saveContext()
-        }
-    }
-    
     public func updateTimerManager(id: UUID) {
         saveContext()
         let tm: TimerManager = getManager(uniqueIdentifier: id) as! TimerManager;
@@ -204,6 +197,11 @@ class DataController: ObservableObject {
     }
     
     public func removeManager(uniqueIdToRemove: UUID) {
+        if let manager = managers[uniqueIdToRemove] {
+            // now val is not nil and the Optional has been unwrapped, so use it
+            manager.stop()
+            managers.removeValue(forKey: uniqueIdToRemove)
+        }
         managers.removeValue(forKey: uniqueIdToRemove)
     }
     
