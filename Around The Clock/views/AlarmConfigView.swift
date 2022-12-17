@@ -21,8 +21,8 @@ struct AlarmConfigView: View {
                     displayedComponents: [.date, .hourAndMinute] )
                 .datePickerStyle(.field)
                 .help("Select the date and time that you want the alarm to go off")
-                .onChange(of: selectedManager.managedObject.stopTime!, perform: { (value) in
-                    selectedManager.updateDate(newDate: value)
+                .onChange(of: selectedManager.managedObject.stopTime!, perform: { _ in
+                    selectedManager.dateHasChanged()
                 })
                 Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
                     ForEach(AudioFiles.allCases) { audio in
@@ -41,7 +41,7 @@ struct AlarmConfigView: View {
             .padding()
         }
         HStack {
-            if (selectedManager.currentState != ClockState.ACTIVE) {
+            if (selectedManager.clockStatus.currentState != ClockState.ACTIVE) {
                 Button(action: start) {
                     Text("Start")
                         .padding()

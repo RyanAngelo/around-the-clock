@@ -60,7 +60,7 @@ struct TimerConfigView: View {
             .padding()
         }
         HStack {
-            if (selectedManager.currentState != ClockState.ACTIVE) {
+            if (selectedManager.clockStatus.currentState != ClockState.ACTIVE) {
                 Button(action: start) {
                     Text("Start")
                         .padding()

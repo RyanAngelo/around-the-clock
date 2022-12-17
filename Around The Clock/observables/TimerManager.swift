@@ -23,7 +23,6 @@ class TimerManager: ObservableObject, AtcManager {
     @Published var hours: Int
     @Published var minutes: Int
     @Published var seconds: Int
-    @Published var currentState: ClockState
     
     //TODO: Should I publish timerObject?
     @Published var managedObject: AtcTimer
@@ -35,11 +34,10 @@ class TimerManager: ObservableObject, AtcManager {
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, associatedObject: timerObject.uniqueId!)
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, currentState: ClockState(rawValue: timerObject.state) ?? ClockState.STOPPED, associatedObject: timerObject.uniqueId!)
         self.hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
         self.minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
         self.seconds = TimerManager.getSeconds(countdownTime: timerObject.stopTime)
-        self.currentState = ClockState(rawValue: timerObject.state) ?? ClockState.STOPPED
         self.updateData()
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
@@ -65,10 +63,14 @@ class TimerManager: ObservableObject, AtcManager {
     func updateData() {
         let timeRemaining: TimeInterval = ceil(managedObject.stopTime.advanced(by: -timeElapsed))
         if (timeRemaining <= 0) {
-            clockStatus.activated = true
-            self.stop()
+            triggerActivation()
         }
         clockStatus.displayValue = formatter.string(from: timeRemaining) ?? "00:00:00"
+    }
+    
+    func triggerActivation() {
+        clockStatus.activated = true
+        self.stop()
     }
     
     func reset() {
@@ -115,7 +117,7 @@ class TimerManager: ObservableObject, AtcManager {
             stop()
         }
         managedObject.state = newState.rawValue
-        currentState = newState
+        clockStatus.currentState = newState
         dc.saveContext()
     }
     

@@ -26,7 +26,8 @@ struct TitleView: View {
             } else if selectedObject is AtcTimer {
                 dc.saveAndUpdateTimers()
             }
-        })    }
+        })
+    }
 }
 
 struct TitleView_Previews: PreviewProvider {

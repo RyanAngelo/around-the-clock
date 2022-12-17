@@ -40,7 +40,7 @@ class DataController: ObservableObject {
         let alarmFetchRequest: NSFetchRequest<AtcAlarm>
         alarmFetchRequest = AtcAlarm.fetchRequest()
         alarmFetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \AtcAlarm.state, ascending: true)
+            NSSortDescriptor(keyPath: \AtcAlarm.name, ascending: true)
         ]
         alarmController = NSFetchedResultsController(
             fetchRequest: alarmFetchRequest,

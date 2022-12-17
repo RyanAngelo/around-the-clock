@@ -24,14 +24,12 @@ class AlarmManager: ObservableObject, AtcManager{
     
     @Published var clockStatus: ClockStatus
     @Published var managedObject: AtcAlarm
-    @Published var currentState: ClockState
     
     init(dc: DataController, updateInterval: TimeInterval, alarmObject: AtcAlarm) {
         self.dc = dc
         self.updateInterval = updateInterval
         self.managedObject = alarmObject
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
-        self.currentState = ClockState(rawValue: alarmObject.state) ?? ClockState.STOPPED
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, currentState: ClockState(rawValue: alarmObject.state) ?? ClockState.STOPPED, associatedObject: alarmObject.uniqueId!)
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -55,9 +53,9 @@ class AlarmManager: ObservableObject, AtcManager{
         clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
     }
     
-    func updateDate(newDate: Date) {
-        managedObject.stopTime = newDate
+    func dateHasChanged() {
         updateData()
+        dc.saveContext()
     }
     
     func getManagedObjectUniqueId() -> UUID {
@@ -78,7 +76,7 @@ class AlarmManager: ObservableObject, AtcManager{
         } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
             stop()
         }
-        currentState = newState
+        clockStatus.currentState = newState
         managedObject.state = newState.rawValue
         dc.saveContext()
     }

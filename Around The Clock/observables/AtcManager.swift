@@ -14,7 +14,7 @@ import Foundation
 protocol AtcManager: ObservableObject {
     
     var dc: DataController { get set }
-    var currentState: ClockState { get set }
+    //var currentState: ClockState { get set }
 
     func start()
     func stop()
