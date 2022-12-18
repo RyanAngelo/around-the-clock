@@ -34,13 +34,13 @@ class TimerManager: ObservableObject, AtcManager {
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, currentState: ClockState(rawValue: timerObject.state) ?? ClockState.STOPPED, associatedObject: timerObject.uniqueId!)
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, associatedObject: timerObject.uniqueId!)
         self.hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
         self.minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
         self.seconds = TimerManager.getSeconds(countdownTime: timerObject.stopTime)
         self.updateData()
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
-            self.start()
+            self.managedObject.state = ClockState.PAUSED.rawValue
         } else {
             self.stop()
         }
@@ -111,14 +111,14 @@ class TimerManager: ObservableObject, AtcManager {
     }
     
     func setManagedObjectState(newState: ClockState) {
+        managedObject.state = newState.rawValue
+        dc.saveContext()
         if (newState == ClockState.ACTIVE) {
             start()
         } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
             stop()
         }
-        managedObject.state = newState.rawValue
-        clockStatus.currentState = newState
-        dc.saveContext()
+        updateData() //Update data after timer stops
     }
     
     func getManagedObjectUniqueId() -> UUID {

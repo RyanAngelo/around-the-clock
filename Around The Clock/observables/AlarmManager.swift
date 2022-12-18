@@ -15,7 +15,6 @@ import SwiftUI
  */
 class AlarmManager: ObservableObject, AtcManager{
     
-            
     private var timer = Timer()
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
@@ -29,7 +28,7 @@ class AlarmManager: ObservableObject, AtcManager{
         self.dc = dc
         self.updateInterval = updateInterval
         self.managedObject = alarmObject
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, currentState: ClockState(rawValue: alarmObject.state) ?? ClockState.STOPPED, associatedObject: alarmObject.uniqueId!)
+        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -71,14 +70,14 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func setManagedObjectState(newState: ClockState) {
+        managedObject.state = newState.rawValue
+        dc.saveContext()
         if (newState == ClockState.ACTIVE) {
             start()
         } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
             stop()
         }
-        clockStatus.currentState = newState
-        managedObject.state = newState.rawValue
-        dc.saveContext()
+        updateData() //Update data after timer stops
     }
     
     func reset() {}

@@ -41,7 +41,7 @@ struct AlarmConfigView: View {
             .padding()
         }
         HStack {
-            if (selectedManager.clockStatus.currentState != ClockState.ACTIVE) {
+            if (selectedManager.managedObject.state != ClockState.ACTIVE.rawValue) {
                 Button(action: start) {
                     Text("Start")
                         .padding()
@@ -50,7 +50,6 @@ struct AlarmConfigView: View {
                             .fill(Color.green))
                         .font(.system(.title3))
                 }.buttonStyle(PlainButtonStyle())
-                    
             } else {
                 Button(role: .cancel, action: stop) {
                     Text("Stop")
