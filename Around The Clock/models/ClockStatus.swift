@@ -17,6 +17,6 @@ import Foundation
  */
 struct ClockStatus {
     var displayValue: String
-    var activated: Bool //TODO: Should this be in the ClockState?
+    var activated: Bool
     var associatedObject: UUID
 }

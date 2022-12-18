@@ -48,8 +48,12 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func updateData() {
-        let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSince(Date.now))!
-        clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
+        if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
+            let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSince(Date.now))!
+            clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
+        } else {
+            clockStatus.displayValue = "00:00:00"
+        }
     }
     
     func dateHasChanged() {

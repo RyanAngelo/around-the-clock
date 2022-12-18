@@ -70,9 +70,13 @@ class DataController: ObservableObject {
      The clocks manage the logic behind the persisted objects (e.g. counting).
      */
     private func createClocks() {
-        //Create alarm clock associated with object
+        //Create alarm manager associated with object
         for alarm in self.alarmItems {
             let manager: AlarmManager = AlarmManager(dc: self, updateInterval: 1, alarmObject: alarm)
+            if (alarm.stopTime!.timeIntervalSinceNow < 0) {
+                //Set alarm time to one hour ahead if time is in the past
+                alarm.stopTime = Date().advanced(by: 60*60)
+            }
             addManager(am: manager)
         }
         for timer in self.timerItems {

@@ -23,8 +23,6 @@ class TimerManager: ObservableObject, AtcManager {
     @Published var hours: Int
     @Published var minutes: Int
     @Published var seconds: Int
-    
-    //TODO: Should I publish timerObject?
     @Published var managedObject: AtcTimer
         
     init(dc: DataController, updateInterval: TimeInterval, timerObject: AtcTimer) {
