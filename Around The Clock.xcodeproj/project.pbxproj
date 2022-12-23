@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
 		944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85B729324B7400AC2686 /* AlarmConfigView.swift */; };
 		944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85BC29326F5A00AC2686 /* AudioController.swift */; };
 		94532AF7293C01D9008845FB /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94532AF6293C01D9008845FB /* TitleView.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
 		944C85B729324B7400AC2686 /* AlarmConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigView.swift; sourceTree = "<group>"; };
 		944C85BC29326F5A00AC2686 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		94532AF6293C01D9008845FB /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9447959129563D6A0001D404 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				9447959229563DBB0001D404 /* Simple-Bells.mp3 */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		944C85BB29326F4500AC2686 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		94DE604928708F410002795C /* Around The Clock */ = {
 			isa = PBXGroup;
 			children = (
+				9447959129563D6A0001D404 /* audio */,
 				944C85BB29326F4500AC2686 /* utils */,
 				94E4B925292D4F5600B71C05 /* models */,
 				94E4B91F292D062500B71C05 /* observables */,
@@ -309,6 +320,7 @@
 			files = (
 				94DE605228708F420002795C /* Preview Assets.xcassets in Resources */,
 				94DE604F28708F420002795C /* Assets.xcassets in Resources */,
+				9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
