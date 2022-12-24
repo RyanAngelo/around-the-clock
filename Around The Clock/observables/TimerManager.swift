@@ -81,6 +81,10 @@ class TimerManager: ObservableObject, AtcManager {
         }
     }
     
+    func audioHasChanged() {
+        dc.saveContext()
+    }
+    
     func assignHoursMinutesSeconds() {
         hours = TimerManager.getHours(countdownTime: managedObject.stopTime)
         minutes = TimerManager.getMinutes(countdownTime: managedObject.stopTime)

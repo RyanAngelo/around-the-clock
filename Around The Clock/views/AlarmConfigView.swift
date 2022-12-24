@@ -24,17 +24,16 @@ struct AlarmConfigView: View {
                 .onChange(of: selectedManager.managedObject.stopTime!, perform: { _ in
                     selectedManager.dateHasChanged()
                 })
-                Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.nuts.rawValue)) {
+                Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.SimpleBells.rawValue)) {
                     ForEach(AudioFiles.allCases) { audio in
-                        Text(audio.rawValue.capitalized)
-                            .tag(audio.rawValue)
+                        Text(audio.rawValue)
+                        .tag(audio.rawValue)
                     }
                     .pickerStyle(.menu)
                     .scaledToFit()
                 }
                 .onChange(of: selectedManager.managedObject.audioFile, perform: { (value) in
-                    //When the date is changed, save the context CoreData
-                    //TODO: Save audio change
+                    selectedManager.audioHasChanged()
                 })
                 .help("Select the audio to play when the alarm goes off")
             }

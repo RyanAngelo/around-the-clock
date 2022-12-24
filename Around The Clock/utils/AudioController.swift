@@ -10,8 +10,9 @@ import AVFoundation
 var player: AVAudioPlayer?
 
 enum AudioFiles: String, CaseIterable, Identifiable {
-    case nuts, cookies, blueberries
-    var id: Self { self }
+    case SimpleBells = "Simple-Bells"
+    case Nuts = "nuts"
+    var id: RawValue { rawValue }
 }
 
 class AudioController {

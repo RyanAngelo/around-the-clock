@@ -29,6 +29,9 @@ class AlarmManager: ObservableObject, AtcManager{
         self.updateInterval = updateInterval
         self.managedObject = alarmObject
         self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: true, associatedObject: alarmObject.uniqueId!)
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -49,15 +52,27 @@ class AlarmManager: ObservableObject, AtcManager{
     
     func updateData() {
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
-            let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSince(Date.now))!
+            let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSinceNow)!
             clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
+            if (timeRemainingInterval <= 0) {
+                triggerActivation()
+            }
         } else {
             clockStatus.displayValue = "00:00:00"
         }
     }
     
+    func triggerActivation() {
+        clockStatus.activated = true
+        self.stop()
+    }
+    
     func dateHasChanged() {
         updateData()
+        dc.saveContext()
+    }
+    
+    func audioHasChanged() {
         dc.saveContext()
     }
     
