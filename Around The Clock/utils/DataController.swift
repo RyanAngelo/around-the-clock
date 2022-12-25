@@ -24,7 +24,9 @@ class DataController: ObservableObject {
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
-        
+    @Published var activeAlert: ActiveAlert?
+    var queuedAlerts: [ActiveAlert] = []
+    
     init(inMemory: Bool = false) {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -212,7 +214,26 @@ class DataController: ObservableObject {
     //TODO: Create a management object if one does not exist wrather than force unwrap.
     //This could be accomplished by passing the managed object rather than the UUID
     public func getManager(uniqueIdentifier: UUID) -> any AtcManager {
-        return managers[uniqueIdentifier]!
+        let manager: any AtcManager = managers[uniqueIdentifier]!
+        return manager
+    }
+    
+    public func addAlert(atcObject: AtcObject) {
+        let newAlert = ActiveAlert(associatedObject: atcObject)
+        if (activeAlert == nil) {
+            activeAlert = newAlert
+        } else {
+            queuedAlerts.append(newAlert)
+        }
+    }
+    
+    public func endAlert(alertedObject: AtcObject) {
+        let manager: any AtcManager = getManager(uniqueIdentifier: alertedObject.uniqueId!)
+        manager.endActivation()
+        //If there is another alert in the queue, assign it
+        if (!queuedAlerts.isEmpty) {
+            activeAlert = queuedAlerts.first
+        }
     }
     
     //For preview generation

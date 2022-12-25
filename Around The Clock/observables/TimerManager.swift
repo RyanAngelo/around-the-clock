@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-class TimerManager: ObservableObject, AtcManager {    
+class TimerManager: ObservableObject, AtcManager {
     
     private var timer = Timer()
     let formatter = DateComponentsFormatter()
+    let ac: AudioController = AudioController()
 
     private var updateInterval: TimeInterval //Seconds
     private var timeElapsed: TimeInterval = 0
@@ -60,7 +61,7 @@ class TimerManager: ObservableObject, AtcManager {
     
     func updateData() {
         let timeRemaining: TimeInterval = ceil(managedObject.stopTime.advanced(by: -timeElapsed))
-        if (timeRemaining <= 0) {
+        if (timeRemaining <= 0 && clockStatus.activated == false && self.managedObject.state == ClockState.ACTIVE.rawValue) {
             triggerActivation()
         }
         clockStatus.displayValue = formatter.string(from: timeRemaining) ?? "00:00:00"
@@ -68,7 +69,15 @@ class TimerManager: ObservableObject, AtcManager {
     
     func triggerActivation() {
         clockStatus.activated = true
+        ac.playSound(soundResource: self.managedObject.audioFile!)
+        dc.addAlert(atcObject: managedObject)
         self.stop()
+    }
+    
+    func endActivation() {
+        ac.stopSound()
+        setManagedObjectState(newState: ClockState.PAUSED)
+        self.reset()
     }
     
     func reset() {

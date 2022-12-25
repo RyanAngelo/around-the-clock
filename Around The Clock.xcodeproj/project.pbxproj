@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
+		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
 		944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85B729324B7400AC2686 /* AlarmConfigView.swift */; };
 		944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C85BC29326F5A00AC2686 /* AudioController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
 		944C85B729324B7400AC2686 /* AlarmConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigView.swift; sourceTree = "<group>"; };
 		944C85BC29326F5A00AC2686 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			children = (
 				94E4B923292D0F0700B71C05 /* DataController.swift */,
 				944C85BC29326F5A00AC2686 /* AudioController.swift */,
+				94407635295762AF00CC7FBF /* Extensions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			children = (
 				94E4B926292D4F7700B71C05 /* ClockState.swift */,
 				94532AF8293CD4FA008845FB /* ClockStatus.swift */,
+				94407637295766C200CC7FBF /* ActiveAlert.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -353,12 +359,14 @@
 				94E4B92F292E6AFA00B71C05 /* AlarmStatusView.swift in Sources */,
 				94532AFB293CED72008845FB /* TimerStatusView.swift in Sources */,
 				94E4B92D292E649F00B71C05 /* TimerManager.swift in Sources */,
+				94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
 				94DE604D28708F410002795C /* ParentClockView.swift in Sources */,
 				94532AF9293CD4FA008845FB /* ClockStatus.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
 				94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */,
 				94E4B924292D0F0700B71C05 /* DataController.swift in Sources */,
+				94407636295762AF00CC7FBF /* Extensions.swift in Sources */,
 				94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */,
 				944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */,
 			);

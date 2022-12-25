@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+
 var player: AVAudioPlayer?
 
 enum AudioFiles: String, CaseIterable, Identifiable {
@@ -24,6 +25,8 @@ class AudioController {
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
+            player?.numberOfLoops = -1
+            player?.prepareToPlay()
             player?.play()
             
         } catch let error {

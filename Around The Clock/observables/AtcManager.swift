@@ -29,4 +29,7 @@ protocol AtcManager: ObservableObject {
     //Set the current state of the object (Active/Paused, etc.)
     func setManagedObjectState(newState: ClockState)
     
+    func triggerActivation()
+    func endActivation()
+    
 }

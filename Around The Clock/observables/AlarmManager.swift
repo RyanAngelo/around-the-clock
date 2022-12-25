@@ -18,6 +18,7 @@ class AlarmManager: ObservableObject, AtcManager{
     private var timer = Timer()
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
+    let ac: AudioController = AudioController()
     
     @ObservedObject var dc: DataController
     
@@ -56,17 +57,13 @@ class AlarmManager: ObservableObject, AtcManager{
             clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? "00:00:00"
             if (timeRemainingInterval <= 0) {
                 triggerActivation()
+                clockStatus.displayValue = "00:00:00"
             }
         } else {
             clockStatus.displayValue = "00:00:00"
         }
     }
-    
-    func triggerActivation() {
-        clockStatus.activated = true
-        self.stop()
-    }
-    
+        
     func dateHasChanged() {
         updateData()
         dc.saveContext()
@@ -97,6 +94,19 @@ class AlarmManager: ObservableObject, AtcManager{
             stop()
         }
         updateData() //Update data after timer stops
+    }
+    
+    func triggerActivation() {
+        clockStatus.activated = true
+        ac.playSound(soundResource: self.managedObject.audioFile!)
+        dc.addAlert(atcObject: managedObject)
+        self.stop()
+    }
+    
+    func endActivation() {
+        clockStatus.activated = false
+        ac.stopSound()
+        setManagedObjectState(newState: ClockState.PAUSED)
     }
     
     func reset() {}

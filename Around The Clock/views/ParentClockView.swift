@@ -19,6 +19,8 @@ struct ParentClockView: View {
     @State private var atcObject: AtcObject?
     @State private var selectedObjectId: ObjectIdentifier?
     
+    @State private var activeAlerts: [AtcObject] = []
+    
     var body: some View {
         NavigationSplitView {
             List(selection: $atcObject) {
@@ -56,7 +58,8 @@ struct ParentClockView: View {
                                     .buttonStyle(PlainButtonStyle())
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
-                            }                        }
+                            }
+                        }
                     }
                 }
             }
@@ -74,6 +77,14 @@ struct ParentClockView: View {
             } else {
                 Text("Select or create an item")
             }
+        }.alert(item: $dc.activeAlert) { alert in
+            Alert(title: Text(alert.associatedObject.name!),
+                  message: Text("Done!"),
+                  dismissButton: Alert.Button.default(
+                    Text("End"), action: {
+                        dc.endAlert(alertedObject: alert.associatedObject)
+                    })
+            )
         }
         .navigationSplitViewStyle(AutomaticNavigationSplitViewStyle())
         .toolbar {

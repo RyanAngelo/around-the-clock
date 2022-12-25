@@ -22,6 +22,7 @@ struct AlarmConfigView: View {
                 .datePickerStyle(.field)
                 .help("Select the date and time that you want the alarm to go off")
                 .onChange(of: selectedManager.managedObject.stopTime!, perform: { _ in
+                    selectedManager.managedObject.stopTime = selectedManager.managedObject.stopTime!.startOfMinute()
                     selectedManager.dateHasChanged()
                 })
                 Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.SimpleBells.rawValue)) {
