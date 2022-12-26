@@ -77,15 +77,36 @@ struct ParentClockView: View {
             } else {
                 Text("Select or create an item")
             }
-        }.alert(item: $dc.activeAlert) { alert in
-            Alert(title: Text(alert.associatedObject.name!),
-                  message: Text("Done!"),
-                  dismissButton: Alert.Button.default(
-                    Text("End"), action: {
-                        dc.endAlert(alertedObject: alert.associatedObject)
-                    })
-            )
         }
+        .alert(
+            "Done!",
+            isPresented: $dc.alert1Present,
+            presenting: dc.activeAlert1
+        ) { activeAlert in
+            Text(activeAlert.associatedObject.name! + " has completed.")
+            Button(role: .destructive) {
+                dc.endAlert1(activeAlert: dc.activeAlert1!)
+            } label: {
+                Text("End")
+            }
+        } message: { activeAlert in
+            Text(activeAlert.associatedObject.name! + " has completed.")
+        }
+        .alert(
+            "Done!",
+            isPresented: $dc.alert2Present,
+            presenting: dc.activeAlert2
+        ) { activeAlert in
+            Text(activeAlert.associatedObject.name! + " has completed.")
+            Button(role: .destructive) {
+                dc.endAlert2(activeAlert: dc.activeAlert2!)
+            } label: {
+                Text("End")
+            }
+        } message: { activeAlert in
+            Text(activeAlert.associatedObject.name! + " has completed.")
+        }
+        
         .navigationSplitViewStyle(AutomaticNavigationSplitViewStyle())
         .toolbar {
             ToolbarItem {

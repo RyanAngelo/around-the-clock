@@ -24,7 +24,10 @@ class DataController: ObservableObject {
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
-    @Published var activeAlert: ActiveAlert?
+    @Published var activeAlert1: ActiveAlert?
+    @Published var alert1Present: Bool = false
+    @Published var activeAlert2: ActiveAlert?
+    @Published var alert2Present: Bool = false
     var queuedAlerts: [ActiveAlert] = []
     
     init(inMemory: Bool = false) {
@@ -218,23 +221,55 @@ class DataController: ObservableObject {
         return manager
     }
     
+    //Start Alert handling section
+    
     public func addAlert(atcObject: AtcObject) {
         let newAlert = ActiveAlert(associatedObject: atcObject)
-        if (activeAlert == nil) {
-            activeAlert = newAlert
-        } else {
+        if (activeAlert1 == nil) {
+            activeAlert1 = newAlert
+            alert1Present = true
+        } else if (activeAlert2 == nil) {
+            activeAlert2 = newAlert
+            alert2Present = true
+        }
+        else {
             queuedAlerts.append(newAlert)
         }
     }
     
-    public func endAlert(alertedObject: AtcObject) {
-        let manager: any AtcManager = getManager(uniqueIdentifier: alertedObject.uniqueId!)
+    /**
+     Having endAlert1 and endAlert2 allows us to queue up alerts.
+     When one finishes, it can check the other "register" to see if it is free (it always should be)
+     In this way, we can always be cycling through alerts that are queued up.
+     The fundamental issue with the alerts is that they only set alertXPresent to false when they finish the
+     call that they are assigned in their button action.
+     See ParentClockView .alert
+     */
+    public func endAlert1(activeAlert: ActiveAlert) {
+        let manager: any AtcManager = getManager(uniqueIdentifier: activeAlert.associatedObject.uniqueId!)
         manager.endActivation()
-        //If there is another alert in the queue, assign it
-        if (!queuedAlerts.isEmpty) {
-            activeAlert = queuedAlerts.first
+        activeAlert1 = nil
+        if (activeAlert2 == nil) {
+            if (!queuedAlerts.isEmpty) {
+                activeAlert2 = queuedAlerts.removeFirst()
+                alert2Present = true
+            }
         }
     }
+    
+    public func endAlert2(activeAlert: ActiveAlert) {
+        let manager: any AtcManager = getManager(uniqueIdentifier: activeAlert.associatedObject.uniqueId!)
+        manager.endActivation()
+        activeAlert2 = nil
+        if (activeAlert1 == nil) {
+            if (!queuedAlerts.isEmpty) {
+                activeAlert1 = queuedAlerts.removeFirst()
+                alert1Present = true
+            }
+        }
+    }
+    
+    //End Alert Section
     
     //For preview generation
     static var preview: DataController = {
