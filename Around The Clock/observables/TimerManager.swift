@@ -16,7 +16,7 @@ class TimerManager: ObservableObject, AtcManager {
 
     private var updateInterval: TimeInterval //Seconds
     private var timeElapsed: TimeInterval = 0
-    final let defaultDisplay: String = "00:00:00"
+    let defaultDisplay: String = "00:00:00"
 
     @ObservedObject var dc: DataController
     

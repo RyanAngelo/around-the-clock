@@ -19,7 +19,7 @@ class StopwatchManager: ObservableObject, AtcManager{
     private var timer = Timer()
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
-    final let defaultDisplay: String = "00:00:00.000"
+    let defaultDisplay: String = "00:00:00.000"
     
     @ObservedObject var dc: DataController
     

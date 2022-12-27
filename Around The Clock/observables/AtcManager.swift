@@ -13,7 +13,10 @@ import Foundation
  */
 protocol AtcManager: ObservableObject {
     
+    //The applications data controller, initialized at application startup
     var dc: DataController { get set }
+    //The default displayable value for the object
+    var defaultDisplay: String { get }
     func start()
     func stop()
     //Update the data in the manager
@@ -28,8 +31,9 @@ protocol AtcManager: ObservableObject {
     func reset()
     //Set the current state of the object (Active/Paused, etc.)
     func setManagedObjectState(newState: ClockState)
-    
+    //Trigger an activiation of the object
     func triggerActivation()
+    //End an activiation of the object
     func endActivation()
     
 }

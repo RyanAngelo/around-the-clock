@@ -19,7 +19,7 @@ class AlarmManager: ObservableObject, AtcManager{
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
     let ac: AudioController = AudioController()
-    final let defaultDisplay: String = "00:00:00"
+    let defaultDisplay: String = "00:00:00"
 
     @ObservedObject var dc: DataController
     
