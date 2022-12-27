@@ -7,26 +7,23 @@
 
 import SwiftUI
 
-struct TimerStatusView: View  {
+struct StopwatchStatusView: View  {
     
-    @ObservedObject var selectedManager: TimerManager
-
+    @ObservedObject var selectedManager: StopwatchManager
+    
     var body: some View {
         Text(selectedManager.clockStatus.displayValue )
             .font(.system(size: 60).monospacedDigit())
             .background(Color(.clear))
             .padding()
-        if (selectedManager.clockStatus.activated) {
-            Text("Done")
-        }
     }
     
 }
 
-struct StatusView_Previews: PreviewProvider {
+struct StopwatchStatusView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
-        let manager: TimerManager = dc.getManager(uniqueIdentifier: dc.timerItems[0].uniqueId!) as! TimerManager
-        TimerStatusView(selectedManager: manager)
+        let manager: StopwatchManager = dc.getManager(uniqueIdentifier: dc.stopwatchItems[0].uniqueId!) as! StopwatchManager
+        StopwatchStatusView(selectedManager: manager)
     }
 }

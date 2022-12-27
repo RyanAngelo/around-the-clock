@@ -18,9 +18,7 @@ struct ParentClockView: View {
     //State representing currently selected item identifier
     @State private var atcObject: AtcObject?
     @State private var selectedObjectId: ObjectIdentifier?
-    
-    @State private var activeAlerts: [AtcObject] = []
-    
+        
     var body: some View {
         NavigationSplitView {
             List(selection: $atcObject) {
@@ -62,6 +60,25 @@ struct ParentClockView: View {
                         }
                     }
                 }
+                Section(header: Text("Stopwatches")) {
+                    ForEach(dc.stopwatchItems) { stopwatch in
+                        NavigationLink(value: stopwatch) {
+                            HStack {
+                                Text(stopwatch.name ?? "Unknown Stopwatch")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                if (stopwatch.isEqual(to: atcObject)) {
+                                    Button(action: {deleteObject(objectToDelete: stopwatch) }) {
+                                        Label("", systemImage: "minus.circle")
+                                            .labelStyle(IconOnlyLabelStyle())
+                                            .foregroundColor(Color(.white))
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                            }
+                        }
+                    }
+                }
             }
         } detail: {
             if $atcObject.wrappedValue != nil {
@@ -73,18 +90,22 @@ struct ParentClockView: View {
                     TitleView(dc: dc, selectedObject: atcObject!)
                     TimerStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
                     TimerConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
+                } else if atcObject! is AtcStopwatch {
+                    TitleView(dc: dc, selectedObject: atcObject!)
+                    StopwatchStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
+                    StopwatchConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
                 }
             } else {
                 Text("Select or create an item")
             }
-        }
+        } //We support displaying two alerts at once so that we can queue up additional alerts
         .alert(
             "Done!",
             isPresented: $dc.alert1Present,
             presenting: dc.activeAlert1
         ) { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
-            Button(role: .destructive) {
+            Button() {
                 dc.endAlert1(activeAlert: dc.activeAlert1!)
             } label: {
                 Text("End")
@@ -98,7 +119,7 @@ struct ParentClockView: View {
             presenting: dc.activeAlert2
         ) { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
-            Button(role: .destructive) {
+            Button() {
                 dc.endAlert2(activeAlert: dc.activeAlert2!)
             } label: {
                 Text("End")
@@ -118,6 +139,12 @@ struct ParentClockView: View {
             ToolbarItem {
                 Button(action: dc.addTimer) {
                     Label("Add Timer", systemImage: "timer")
+                        .labelStyle(VerticalLabelStyle())
+                }
+            }
+            ToolbarItem {
+                Button(action: dc.addStopwatch) {
+                    Label("Add Stopwatch", systemImage: "stopwatch")
                         .labelStyle(VerticalLabelStyle())
                 }
             }

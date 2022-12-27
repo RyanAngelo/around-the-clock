@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94041D97295B27140021BBC0 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D96295B27140021BBC0 /* StopwatchManager.swift */; };
+		94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */; };
+		94041D9B295B2EB80021BBC0 /* StopwatchConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */; };
 		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
 		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94041D96295B27140021BBC0 /* StopwatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
+		94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchStatusView.swift; sourceTree = "<group>"; };
+		94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchConfigView.swift; sourceTree = "<group>"; };
 		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
@@ -192,9 +198,11 @@
 			children = (
 				94DE604C28708F410002795C /* ParentClockView.swift */,
 				94E4B92E292E6AFA00B71C05 /* AlarmStatusView.swift */,
+				94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */,
 				94532AFA293CED72008845FB /* TimerStatusView.swift */,
 				94532AF6293C01D9008845FB /* TitleView.swift */,
 				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
+				94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */,
 				94532AFC293CF66E008845FB /* TimerConfigView.swift */,
 			);
 			path = views;
@@ -204,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				94E4B920292D0A7600B71C05 /* AlarmManager.swift */,
+				94041D96295B27140021BBC0 /* StopwatchManager.swift */,
 				94E4B92C292E649F00B71C05 /* TimerManager.swift */,
 				94E4B928292D5CDD00B71C05 /* AtcManager.swift */,
 			);
@@ -355,18 +364,21 @@
 				94E4B929292D5CDD00B71C05 /* AtcManager.swift in Sources */,
 				94532AFD293CF66E008845FB /* TimerConfigView.swift in Sources */,
 				944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */,
+				94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */,
 				94532AF7293C01D9008845FB /* TitleView.swift in Sources */,
 				94E4B92F292E6AFA00B71C05 /* AlarmStatusView.swift in Sources */,
 				94532AFB293CED72008845FB /* TimerStatusView.swift in Sources */,
 				94E4B92D292E649F00B71C05 /* TimerManager.swift in Sources */,
 				94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */,
 				94DE605728708F420002795C /* Around_The_Clock.xcdatamodeld in Sources */,
+				94041D9B295B2EB80021BBC0 /* StopwatchConfigView.swift in Sources */,
 				94DE604D28708F410002795C /* ParentClockView.swift in Sources */,
 				94532AF9293CD4FA008845FB /* ClockStatus.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
 				94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */,
 				94E4B924292D0F0700B71C05 /* DataController.swift in Sources */,
 				94407636295762AF00CC7FBF /* Extensions.swift in Sources */,
+				94041D97295B27140021BBC0 /* StopwatchManager.swift in Sources */,
 				94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */,
 				944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */,
 			);

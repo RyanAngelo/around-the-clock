@@ -8,8 +8,6 @@
 import Foundation
 import AVFoundation
 
-var player: AVAudioPlayer?
-
 enum AudioFiles: String, CaseIterable, Identifiable {
     case SimpleBells = "Simple-Bells"
     case Nuts = "nuts"
@@ -17,6 +15,10 @@ enum AudioFiles: String, CaseIterable, Identifiable {
 }
 
 class AudioController {
+    
+    var player: AVAudioPlayer?
+
+    init() {}
     
     func playSound(soundResource: String) {
         guard let path = Bundle.main.path(forResource: soundResource, ofType:"mp3") else {

@@ -16,6 +16,7 @@ class TimerManager: ObservableObject, AtcManager {
 
     private var updateInterval: TimeInterval //Seconds
     private var timeElapsed: TimeInterval = 0
+    final let defaultDisplay: String = "00:00:00"
 
     @ObservedObject var dc: DataController
     
@@ -33,7 +34,7 @@ class TimerManager: ObservableObject, AtcManager {
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
-        self.clockStatus = ClockStatus(displayValue:"00:00:00", activated: false, associatedObject: timerObject.uniqueId!)
+        self.clockStatus = ClockStatus(displayValue:defaultDisplay, activated: false, associatedObject: timerObject.uniqueId!)
         self.hours = TimerManager.getHours(countdownTime: timerObject.stopTime)
         self.minutes = TimerManager.getMinutes(countdownTime: timerObject.stopTime)
         self.seconds = TimerManager.getSeconds(countdownTime: timerObject.stopTime)
@@ -64,7 +65,7 @@ class TimerManager: ObservableObject, AtcManager {
         if (timeRemaining <= 0 && clockStatus.activated == false && self.managedObject.state == ClockState.ACTIVE.rawValue) {
             triggerActivation()
         }
-        clockStatus.displayValue = formatter.string(from: timeRemaining) ?? "00:00:00"
+        clockStatus.displayValue = formatter.string(from: timeRemaining) ?? defaultDisplay
     }
     
     func triggerActivation() {

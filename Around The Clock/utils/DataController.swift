@@ -19,11 +19,14 @@ class DataController: ObservableObject {
     
     private let alarmController: NSFetchedResultsController<AtcAlarm>
     private let timerController: NSFetchedResultsController<AtcTimer>
+    private let stopwatchController: NSFetchedResultsController<AtcStopwatch>
 
     private var managers: [UUID: any AtcManager] = [:]
     
     @Published var alarmItems: [AtcAlarm] = []
     @Published var timerItems: [AtcTimer] = []
+    @Published var stopwatchItems: [AtcStopwatch] = []
+    
     @Published var activeAlert1: ActiveAlert?
     @Published var alert1Present: Bool = false
     @Published var activeAlert2: ActiveAlert?
@@ -64,8 +67,20 @@ class DataController: ObservableObject {
             sectionNameKeyPath: nil,
             cacheName: nil)
         
+        let stopwatchFetchRequest: NSFetchRequest<AtcStopwatch>
+        stopwatchFetchRequest = AtcStopwatch.fetchRequest()
+        stopwatchFetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \AtcStopwatch.name, ascending: true)
+        ]
+        stopwatchController = NSFetchedResultsController(
+            fetchRequest: stopwatchFetchRequest,
+            managedObjectContext: container.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
         fetchTimers()
         fetchAlarms()
+        fetchStopwatches()
         createClocks()
     }
     
@@ -86,6 +101,10 @@ class DataController: ObservableObject {
         }
         for timer in self.timerItems {
             let manager: TimerManager = TimerManager(dc: self, updateInterval: 0.1, timerObject: timer)
+            addManager(am: manager)
+        }
+        for stopwatch in self.stopwatchItems {
+            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: 0.01, stopwatchObject: stopwatch)
             addManager(am: manager)
         }
     }
@@ -175,11 +194,29 @@ class DataController: ObservableObject {
         return nil
     }
     
-    public func updateTimerManager(id: UUID) {
-        saveContext()
-        let tm: TimerManager = getManager(uniqueIdentifier: id) as! TimerManager;
-        tm.reset()
-        tm.updateData()
+    public func addStopwatch() {
+        withAnimation {
+            let newItem = AtcStopwatch(context: container.viewContext)
+            newItem.uniqueId = UUID()
+            newItem.name = "New Stopwatch"
+            newItem.state = ClockState.STOPPED.rawValue
+            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: 1, stopwatchObject: newItem)
+            addManager(am: manager)
+            saveContext()
+            fetchStopwatches()
+        }
+    }
+    
+    private func fetchStopwatches() {
+        try? stopwatchController.performFetch()
+        self.stopwatchItems = stopwatchController.fetchedObjects ?? []
+    }
+    
+    public func fetchStopwatch(id: UUID) -> AtcStopwatch? {
+        if let stopwatchItem = stopwatchItems.first(where: {$0.uniqueId == id}) {
+            return stopwatchItem
+        }
+        return nil
     }
     
     public func saveContext() {
@@ -199,6 +236,11 @@ class DataController: ObservableObject {
     public func saveAndUpdateTimers() {
         saveContext()
         fetchTimers()
+    }
+    
+    public func saveAndUpdateStopwatches() {
+        saveContext()
+        fetchStopwatches()
     }
     
     public func addManager(am: any AtcManager) {
@@ -283,6 +325,7 @@ class DataController: ObservableObject {
             newAlarm.uniqueId = UUID()
             newAlarm.state = ClockState.ACTIVE.rawValue
             let am: AlarmManager = AlarmManager(dc: result, updateInterval: 1, alarmObject: newAlarm)
+            am.stop()
             result.addManager(am: am)
             var newTimer = AtcTimer(context: viewContext)
             newTimer.stopTime = 10000
@@ -300,6 +343,16 @@ class DataController: ObservableObject {
             newTimer.uniqueId = UUID()
             newTimer.state = ClockState.PAUSED.rawValue
             let manager: TimerManager = TimerManager(dc: result, updateInterval: 1, timerObject: newTimer)
+            manager.stop()
+            result.addManager(am: manager)
+        }
+        for _ in 0..<2 {
+            var newStopwatch = AtcStopwatch(context: viewContext)
+            newStopwatch.startTime = Date.now
+            newStopwatch.name = "New Stopwatch"
+            newStopwatch.uniqueId = UUID()
+            newStopwatch.state = ClockState.PAUSED.rawValue
+            let manager: StopwatchManager = StopwatchManager(dc: result, updateInterval: 0.01, stopwatchObject: newStopwatch)
             result.addManager(am: manager)
         }
         do {
@@ -310,6 +363,7 @@ class DataController: ObservableObject {
         }
         result.fetchAlarms()
         result.fetchTimers()
+        result.fetchStopwatches()
         return result
     }()
     

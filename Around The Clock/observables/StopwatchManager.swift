@@ -13,27 +13,24 @@ import SwiftUI
  The AlarmManager calculates the time remaining
  The AlarmManager is tied to an alarmObject
  */
-class AlarmManager: ObservableObject, AtcManager{
+class StopwatchManager: ObservableObject, AtcManager{
+    
     
     private var timer = Timer()
     private var updateInterval: TimeInterval
     let formatter = DateComponentsFormatter()
-    let ac: AudioController = AudioController()
-    final let defaultDisplay: String = "00:00:00"
-
+    final let defaultDisplay: String = "00:00:00.000"
+    
     @ObservedObject var dc: DataController
     
     @Published var clockStatus: ClockStatus
-    @Published var managedObject: AtcAlarm
+    @Published var managedObject: AtcStopwatch
     
-    init(dc: DataController, updateInterval: TimeInterval, alarmObject: AtcAlarm) {
+    init(dc: DataController, updateInterval: TimeInterval, stopwatchObject: AtcStopwatch) {
         self.dc = dc
         self.updateInterval = updateInterval
-        self.managedObject = alarmObject
-        self.clockStatus = ClockStatus(displayValue:defaultDisplay, activated: true, associatedObject: alarmObject.uniqueId!)
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad
+        self.managedObject = stopwatchObject
+        self.clockStatus = ClockStatus(displayValue:defaultDisplay, activated: true, associatedObject: stopwatchObject.uniqueId!)
         if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
             self.start()
         } else {
@@ -53,25 +50,12 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func updateData() {
-        if (self.managedObject.state == ClockState.ACTIVE.rawValue) {
-            let timeRemainingInterval: TimeInterval = (managedObject.stopTime?.timeIntervalSinceNow)!
-            clockStatus.displayValue = formatter.string(from: timeRemainingInterval) ?? defaultDisplay
-            if (timeRemainingInterval <= 0) {
-                triggerActivation()
-                clockStatus.displayValue = defaultDisplay
-            }
+        if (self.managedObject.state == ClockState.ACTIVE.rawValue || self.managedObject.state == ClockState.PAUSED.rawValue) {
+            let timeElapsed: TimeInterval = -(managedObject.startTime?.timeIntervalSinceNow)!
+            clockStatus.displayValue = stringFromTime(interval: timeElapsed)
         } else {
             clockStatus.displayValue = defaultDisplay
         }
-    }
-        
-    func dateHasChanged() {
-        updateData()
-        dc.saveContext()
-    }
-    
-    func audioHasChanged() {
-        dc.saveContext()
     }
     
     func getManagedObjectUniqueId() -> UUID {
@@ -87,6 +71,9 @@ class AlarmManager: ObservableObject, AtcManager{
     }
     
     func setManagedObjectState(newState: ClockState) {
+        if (managedObject.state == ClockState.STOPPED.rawValue && newState == ClockState.ACTIVE) {
+            self.managedObject.startTime = Date.now
+        }
         managedObject.state = newState.rawValue
         dc.saveContext()
         if (newState == ClockState.ACTIVE) {
@@ -94,22 +81,25 @@ class AlarmManager: ObservableObject, AtcManager{
         } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
             stop()
         }
-        updateData() //Update data after timer stops
+        updateData() //Update data after stopwatch stops
     }
     
-    func triggerActivation() {
-        clockStatus.activated = true
-        ac.playSound(soundResource: self.managedObject.audioFile!)
-        dc.addAlert(atcObject: managedObject)
-        self.stop()
+    func reset() {
+        setManagedObjectState(newState: ClockState.STOPPED)
     }
     
-    func endActivation() {
-        clockStatus.activated = false
-        ac.stopSound()
-        setManagedObjectState(newState: ClockState.PAUSED)
+    func stringFromTime(interval: TimeInterval) -> String {
+        let ms = Int(interval.truncatingRemainder(dividingBy: 1) * 1000)
+        let msString = String(format: "%03d", ms)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        return formatter.string(from: interval)! + ".\(msString)"
     }
+
     
-    func reset() {}
+    func triggerActivation() {}
+    func endActivation() {}
     
 }
