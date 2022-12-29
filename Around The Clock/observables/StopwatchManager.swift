@@ -26,6 +26,8 @@ class StopwatchManager: ObservableObject, AtcManager{
     @Published var clockStatus: ClockStatus
     @Published var managedObject: AtcStopwatch
     
+    var lapStartTime: Date?
+    
     init(dc: DataController, updateInterval: TimeInterval, stopwatchObject: AtcStopwatch) {
         self.dc = dc
         self.updateInterval = updateInterval
@@ -40,6 +42,7 @@ class StopwatchManager: ObservableObject, AtcManager{
     
     //TODO: Make sure that this runs when window minimized
     func start() {
+        self.lapStartTime = Date.now
         timer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { _ in
             self.updateData()
         }
@@ -70,6 +73,17 @@ class StopwatchManager: ObservableObject, AtcManager{
         return managedObject
     }
     
+    func getLaps() -> [AtcLap] {
+        let laps: [AtcLap] = self.managedObject.laps?.array as? [AtcLap] ?? []
+        return laps
+    }
+    
+    func addLap() {
+        let lapTime: TimeInterval = -(lapStartTime?.timeIntervalSinceNow)!
+        dc.addLap(stopwatch: self.managedObject, newLapTime: lapTime)
+        self.lapStartTime = Date.now
+    }
+    
     func setManagedObjectState(newState: ClockState) {
         if (managedObject.state == ClockState.STOPPED.rawValue && newState == ClockState.ACTIVE) {
             self.managedObject.startTime = Date.now
@@ -86,6 +100,8 @@ class StopwatchManager: ObservableObject, AtcManager{
     
     func reset() {
         setManagedObjectState(newState: ClockState.STOPPED)
+        self.managedObject.laps = []
+        dc.saveContext()
     }
     
     func stringFromTime(interval: TimeInterval) -> String {

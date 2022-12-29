@@ -18,7 +18,7 @@
     </entity>
     <entity name="AtcStopwatch" representedClassName="AtcStopwatch" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="laps" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AtcLap" inverseName="stopwatch" inverseEntity="AtcLap"/>
+        <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="AtcLap" inverseName="stopwatch" inverseEntity="AtcLap"/>
     </entity>
     <entity name="AtcTimer" representedClassName="AtcTimer" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
         <attribute name="audioFile" optional="YES" attributeType="String" defaultValueString="Simple-Bells"/>

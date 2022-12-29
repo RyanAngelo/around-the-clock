@@ -33,6 +33,11 @@ class DataController: ObservableObject {
     @Published var alert2Present: Bool = false
     var queuedAlerts: [ActiveAlert] = []
     
+    //Default update intervals, in seconds
+    private let timerUpdateInterval: TimeInterval = 0.1
+    private let stopwatchUpdateInterval: TimeInterval = 0.101
+    private let alarmUpdateInterval: TimeInterval = 1
+    
     init(inMemory: Bool = false) {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -92,7 +97,7 @@ class DataController: ObservableObject {
     private func createClocks() {
         //Create alarm manager associated with object
         for alarm in self.alarmItems {
-            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: 1, alarmObject: alarm)
+            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: alarmUpdateInterval, alarmObject: alarm)
             if (alarm.stopTime!.timeIntervalSinceNow < 0) {
                 //Set alarm time to one hour ahead if time is in the past
                 alarm.stopTime = Date().advanced(by: 60*60)
@@ -100,11 +105,11 @@ class DataController: ObservableObject {
             addManager(am: manager)
         }
         for timer in self.timerItems {
-            let manager: TimerManager = TimerManager(dc: self, updateInterval: 0.1, timerObject: timer)
+            let manager: TimerManager = TimerManager(dc: self, updateInterval: timerUpdateInterval, timerObject: timer)
             addManager(am: manager)
         }
         for stopwatch in self.stopwatchItems {
-            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: 0.01, stopwatchObject: stopwatch)
+            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: stopwatchUpdateInterval, stopwatchObject: stopwatch)
             addManager(am: manager)
         }
     }
@@ -117,7 +122,7 @@ class DataController: ObservableObject {
             newItem.stopTime = Date.now.advanced(by: 60 * 60)
             newItem.name = "New Alarm"
             newItem.state = ClockState.STOPPED.rawValue
-            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: 1, alarmObject: newItem)
+            let manager: AlarmManager = AlarmManager(dc: self, updateInterval: alarmUpdateInterval, alarmObject: newItem)
             addManager(am: manager)
             saveContext()
             fetchAlarms()
@@ -175,7 +180,7 @@ class DataController: ObservableObject {
             newItem.stopTime = 0
             newItem.name = "New Timer"
             newItem.state = ClockState.STOPPED.rawValue
-            let manager: TimerManager = TimerManager(dc: self, updateInterval: 1, timerObject: newItem)
+            let manager: TimerManager = TimerManager(dc: self, updateInterval: timerUpdateInterval, timerObject: newItem)
             addManager(am: manager)
             saveContext()
             fetchTimers()
@@ -200,7 +205,7 @@ class DataController: ObservableObject {
             newItem.uniqueId = UUID()
             newItem.name = "New Stopwatch"
             newItem.state = ClockState.STOPPED.rawValue
-            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: 1, stopwatchObject: newItem)
+            let manager: StopwatchManager = StopwatchManager(dc: self, updateInterval: stopwatchUpdateInterval, stopwatchObject: newItem)
             addManager(am: manager)
             saveContext()
             fetchStopwatches()
@@ -217,6 +222,16 @@ class DataController: ObservableObject {
             return stopwatchItem
         }
         return nil
+    }
+    
+    public func addLap(stopwatch: AtcStopwatch, newLapTime: TimeInterval) {
+        let newLap = AtcLap(context: container.viewContext)
+        newLap.uniqueId = UUID()
+        newLap.name = (stopwatch.name ?? "Unknown Stopwatch") + " Lap"
+        newLap.stopwatch = stopwatch
+        newLap.fastest = false //TODO: Determine if fastest lap
+        newLap.timeInterval = newLapTime
+        saveContext()
     }
     
     public func saveContext() {
@@ -352,7 +367,13 @@ class DataController: ObservableObject {
             newStopwatch.name = "New Stopwatch"
             newStopwatch.uniqueId = UUID()
             newStopwatch.state = ClockState.PAUSED.rawValue
-            let manager: StopwatchManager = StopwatchManager(dc: result, updateInterval: 0.01, stopwatchObject: newStopwatch)
+            var newLap: AtcLap = AtcLap(context: viewContext)
+            newLap.stopwatch = newStopwatch
+            newLap.timeInterval = 100
+            newLap.name = "Test Lap"
+            newLap.uniqueId = UUID()
+            let manager: StopwatchManager = StopwatchManager(dc: result, updateInterval: 1, stopwatchObject: newStopwatch)
+            manager.stop()
             result.addManager(am: manager)
         }
         do {

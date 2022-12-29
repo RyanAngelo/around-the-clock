@@ -12,10 +12,18 @@ struct StopwatchStatusView: View  {
     @ObservedObject var selectedManager: StopwatchManager
     
     var body: some View {
-        Text(selectedManager.clockStatus.displayValue )
-            .font(.system(size: 60).monospacedDigit())
-            .background(Color(.clear))
-            .padding()
+        VStack {
+            Text(selectedManager.clockStatus.displayValue )
+                .font(.system(size: 60).monospacedDigit())
+                .background(Color(.clear))
+                .padding()
+            Table(selectedManager.getLaps()) {
+                TableColumn("Lap Time") { lap in
+                    Text(selectedManager.stringFromTime(interval: lap.timeInterval))
+                }
+                TableColumn("Fastest", value: \.fastest.description)
+            }
+        }
     }
     
 }

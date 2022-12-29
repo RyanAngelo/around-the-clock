@@ -12,15 +12,11 @@ struct TimerStatusView: View  {
     @ObservedObject var selectedManager: TimerManager
 
     var body: some View {
-        Text(selectedManager.clockStatus.displayValue )
+        Text(selectedManager.clockStatus.displayValue)
             .font(.system(size: 60).monospacedDigit())
             .background(Color(.clear))
             .padding()
-        if (selectedManager.clockStatus.activated) {
-            Text("Done")
-        }
     }
-    
 }
 
 struct StatusView_Previews: PreviewProvider {

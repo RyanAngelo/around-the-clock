@@ -43,7 +43,7 @@ struct StopwatchConfigView: View {
                         .font(.system(.title3))
                 }.buttonStyle(PlainButtonStyle())
             } else {
-                Button(action: reset) {
+                Button(action: addLap) {
                     Text("Lap")
                         .padding()
                         .frame(width: 75, height: 30, alignment: .center)
@@ -56,6 +56,10 @@ struct StopwatchConfigView: View {
         }
         .padding()
         
+    }
+    
+    func addLap() {
+        selectedManager.addLap()
     }
     
     func start() {

@@ -82,23 +82,24 @@ struct ParentClockView: View {
             }
         } detail: {
             if $atcObject.wrappedValue != nil {
+                TitleView(dc: dc, selectedObject: atcObject!)
                 if atcObject! is AtcAlarm {
-                    TitleView(dc: dc, selectedObject: atcObject!)
                     AlarmStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
                     AlarmConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
                 } else if atcObject! is AtcTimer {
-                    TitleView(dc: dc, selectedObject: atcObject!)
                     TimerStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
                     TimerConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
                 } else if atcObject! is AtcStopwatch {
-                    TitleView(dc: dc, selectedObject: atcObject!)
                     StopwatchStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
                     StopwatchConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
                 }
             } else {
                 Text("Select or create an item")
             }
-        } //We support displaying two alerts at once so that we can queue up additional alerts
+        }
+        // There is a limitation in SwiftUI preview that two alerts can't be present
+        // in the same level of the view hierarchy, so we assign them to empty Text.
+        Text("")
         .alert(
             "Done!",
             isPresented: $dc.alert1Present,
@@ -113,6 +114,7 @@ struct ParentClockView: View {
         } message: { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
         }
+        Text("")
         .alert(
             "Done!",
             isPresented: $dc.alert2Present,
@@ -127,7 +129,6 @@ struct ParentClockView: View {
         } message: { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
         }
-        
         .navigationSplitViewStyle(AutomaticNavigationSplitViewStyle())
         .toolbar {
             ToolbarItem {
