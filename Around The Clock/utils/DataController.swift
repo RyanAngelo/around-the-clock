@@ -147,6 +147,7 @@ class DataController: ObservableObject {
         saveContext()
         fetchAlarms()
         fetchTimers()
+        fetchStopwatches()
     }
     
     public func setManagerState(atcObject: AtcObject, newState: ClockState) {
@@ -165,6 +166,7 @@ class DataController: ObservableObject {
         //TODO: Manage this in a less intensive manner
         fetchTimers()
         fetchAlarms()
+        fetchStopwatches()
     }
     
     public func resetManager(atcObject: AtcObject) {

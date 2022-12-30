@@ -20,12 +20,12 @@ struct StopwatchStatusView: View  {
             Table(selectedManager.getLaps()) {
                 TableColumn("Lap Time") { lap in
                     Text(selectedManager.stringFromTime(interval: lap.timeInterval))
+                        .foregroundColor(lap.fastest ? Color.green : lap.slowest ? Color.red : Color.primary)
+                        
                 }
-                TableColumn("Fastest", value: \.fastest.description)
             }
         }
     }
-    
 }
 
 struct StopwatchStatusView_Previews: PreviewProvider {

@@ -7,6 +7,7 @@
     <entity name="AtcLap" representedClassName="AtcLap" syncable="YES" codeGenerationType="class">
         <attribute name="fastest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="slowest" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="timeInterval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="uniqueId" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="stopwatch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AtcStopwatch" inverseName="laps" inverseEntity="AtcStopwatch"/>
