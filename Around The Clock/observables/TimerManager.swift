@@ -62,6 +62,7 @@ class TimerManager: ObservableObject, AtcManager {
     
     func updateData() {
         let timeRemaining: TimeInterval = ceil(managedObject.stopTime.advanced(by: -timeElapsed))
+        clockStatus.percentComplete = 1.0 - (timeRemaining / managedObject.stopTime)
         if (timeRemaining <= 0 && clockStatus.activated == false && self.managedObject.state == ClockState.ACTIVE.rawValue) {
             triggerActivation()
         }

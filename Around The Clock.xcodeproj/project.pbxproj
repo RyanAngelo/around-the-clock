@@ -10,6 +10,7 @@
 		94041D97295B27140021BBC0 /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D96295B27140021BBC0 /* StopwatchManager.swift */; };
 		94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */; };
 		94041D9B295B2EB80021BBC0 /* StopwatchConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */; };
+		941A6A67296063770000D97C /* StatusWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941A6A66296063770000D97C /* StatusWheelView.swift */; };
 		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
 		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
@@ -57,6 +58,7 @@
 		94041D96295B27140021BBC0 /* StopwatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchStatusView.swift; sourceTree = "<group>"; };
 		94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchConfigView.swift; sourceTree = "<group>"; };
+		941A6A66296063770000D97C /* StatusWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWheelView.swift; sourceTree = "<group>"; };
 		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
 				94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */,
 				94532AFC293CF66E008845FB /* TimerConfigView.swift */,
+				941A6A66296063770000D97C /* StatusWheelView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			files = (
 				94E4B921292D0A7600B71C05 /* AlarmManager.swift in Sources */,
 				94E4B929292D5CDD00B71C05 /* AtcManager.swift in Sources */,
+				941A6A67296063770000D97C /* StatusWheelView.swift in Sources */,
 				94532AFD293CF66E008845FB /* TimerConfigView.swift in Sources */,
 				944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */,
 				94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */,
