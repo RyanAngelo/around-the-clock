@@ -10,7 +10,7 @@ import AVFoundation
 
 enum AudioFiles: String, CaseIterable, Identifiable {
     case SimpleBells = "Simple-Bells"
-    case Nuts = "nuts"
+    case SimpleHorn = "Simple-Horn"
     var id: RawValue { rawValue }
 }
 

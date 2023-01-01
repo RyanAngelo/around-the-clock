@@ -11,6 +11,7 @@
 		94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */; };
 		94041D9B295B2EB80021BBC0 /* StopwatchConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */; };
 		941A6A67296063770000D97C /* StatusWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941A6A66296063770000D97C /* StatusWheelView.swift */; };
+		9426C3EC296206EE002DBBB9 /* Simple-Horn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9426C3EB296206EE002DBBB9 /* Simple-Horn.mp3 */; };
 		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
 		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
@@ -59,6 +60,7 @@
 		94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchStatusView.swift; sourceTree = "<group>"; };
 		94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchConfigView.swift; sourceTree = "<group>"; };
 		941A6A66296063770000D97C /* StatusWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWheelView.swift; sourceTree = "<group>"; };
+		9426C3EB296206EE002DBBB9 /* Simple-Horn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Horn.mp3"; sourceTree = "<group>"; };
 		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				9447959229563DBB0001D404 /* Simple-Bells.mp3 */,
+				9426C3EB296206EE002DBBB9 /* Simple-Horn.mp3 */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				94DE605228708F420002795C /* Preview Assets.xcassets in Resources */,
 				94DE604F28708F420002795C /* Assets.xcassets in Resources */,
 				9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */,
+				9426C3EC296206EE002DBBB9 /* Simple-Horn.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -141,40 +141,6 @@ class DataController: ObservableObject {
         return nil
     }
     
-    public func deleteManagedObject(atcObject: AtcObject) {
-        removeManager(uniqueIdToRemove: atcObject.uniqueId!)
-        container.viewContext.delete(atcObject)
-        saveContext()
-        fetchAlarms()
-        fetchTimers()
-        fetchStopwatches()
-    }
-    
-    public func setManagerState(atcObject: AtcObject, newState: ClockState) {
-        atcObject.state = newState.rawValue
-        if let co: any AtcManager = managers[atcObject.uniqueId!] {
-            if (newState == ClockState.ACTIVE) {
-                co.start()
-            } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
-                co.stop()
-            }
-            atcObject.state = newState.rawValue
-        } else {
-            print("Error! No Manager for associated ATC Object")
-        }
-        saveContext()
-        //TODO: Manage this in a less intensive manner
-        fetchTimers()
-        fetchAlarms()
-        fetchStopwatches()
-    }
-    
-    public func resetManager(atcObject: AtcObject) {
-        if let co: any AtcManager = managers[atcObject.uniqueId!] {
-            co.reset()
-        }
-    }
-    
     public func addTimer() {
         withAnimation {
             let newItem = AtcTimer(context: container.viewContext)
@@ -234,6 +200,45 @@ class DataController: ObservableObject {
         newLap.fastest = false //TODO: Determine if fastest lap
         newLap.timeInterval = newLapTime
         saveContext()
+    }
+    
+    public func deleteManagedObject(atcObject: AtcObject) {
+        removeManager(uniqueIdToRemove: atcObject.uniqueId!)
+        container.viewContext.delete(atcObject)
+        saveContext()
+        fetchListForObjectType(atcObject: atcObject)
+    }
+    
+    public func fetchListForObjectType(atcObject: AtcObject) {
+        if (atcObject.isKind(of: AtcAlarm.self)) {
+            fetchAlarms()
+        } else if(atcObject.isKind(of: AtcTimer.self)) {
+            fetchTimers()
+        } else if(atcObject.isKind(of: AtcStopwatch.self)) {
+            fetchStopwatches()
+        }
+    }
+    
+    public func setManagerState(atcObject: AtcObject, newState: ClockState) {
+        atcObject.state = newState.rawValue
+        if let co: any AtcManager = managers[atcObject.uniqueId!] {
+            if (newState == ClockState.ACTIVE) {
+                co.start()
+            } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
+                co.stop()
+            }
+            atcObject.state = newState.rawValue
+        } else {
+            print("Error! No Manager for associated ATC Object")
+        }
+        saveContext()
+        fetchListForObjectType(atcObject: atcObject)
+    }
+    
+    public func resetManager(atcObject: AtcObject) {
+        if let co: any AtcManager = managers[atcObject.uniqueId!] {
+            co.reset()
+        }
     }
     
     public func saveContext() {
@@ -362,8 +367,6 @@ class DataController: ObservableObject {
             let manager: TimerManager = TimerManager(dc: result, updateInterval: 1, timerObject: newTimer)
             manager.stop()
             result.addManager(am: manager)
-        }
-        for _ in 0..<2 {
             var newStopwatch = AtcStopwatch(context: viewContext)
             newStopwatch.startTime = Date.now
             newStopwatch.name = "New Stopwatch"
@@ -374,9 +377,9 @@ class DataController: ObservableObject {
             newLap.timeInterval = 100
             newLap.name = "Test Lap"
             newLap.uniqueId = UUID()
-            let manager: StopwatchManager = StopwatchManager(dc: result, updateInterval: 1, stopwatchObject: newStopwatch)
-            manager.stop()
-            result.addManager(am: manager)
+            let smanager: StopwatchManager = StopwatchManager(dc: result, updateInterval: 1, stopwatchObject: newStopwatch)
+            smanager.stop()
+            result.addManager(am: smanager)
         }
         do {
             try viewContext.save()
