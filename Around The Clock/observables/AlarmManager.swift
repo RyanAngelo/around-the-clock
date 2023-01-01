@@ -99,7 +99,9 @@ class AlarmManager: ObservableObject, AtcManager{
     
     func triggerActivation() {
         clockStatus.activated = true
-        ac.playSound(soundResource: self.managedObject.audioFile!)
+        if (!self.managedObject.audioFile!.elementsEqual(AudioFiles.None.rawValue)) {
+            ac.playSound(soundResource: self.managedObject.audioFile!)
+        }
         dc.addAlert(atcObject: managedObject)
         self.stop()
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AtcAlarm" representedClassName=".AtcAlarm" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
-        <attribute name="audioFile" optional="YES" attributeType="String" defaultValueString="Simple-Bells"/>
+        <attribute name="audioFile" optional="YES" attributeType="String" defaultValueString="None"/>
         <attribute name="stopTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="AtcLap" representedClassName="AtcLap" syncable="YES" codeGenerationType="class">
@@ -22,7 +22,7 @@
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="AtcLap" inverseName="stopwatch" inverseEntity="AtcLap"/>
     </entity>
     <entity name="AtcTimer" representedClassName="AtcTimer" parentEntity="AtcObject" syncable="YES" codeGenerationType="class">
-        <attribute name="audioFile" optional="YES" attributeType="String" defaultValueString="Simple-Bells"/>
+        <attribute name="audioFile" optional="YES" attributeType="String" defaultValueString="None"/>
         <attribute name="lastCheckDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="stopTime" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
