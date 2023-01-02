@@ -22,63 +22,9 @@ struct ParentClockView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $atcObject) {
-                Section(header: Text("Alarms")) {
-                    ForEach(dc.alarmItems) { alarm in
-                        NavigationLink(value: alarm) {
-                            HStack {
-                                Text(alarm.name ?? "Unknown Alarm")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                if (alarm.isEqual(to: atcObject)) {
-                                    Button(action: {deleteObject(objectToDelete: alarm) }) {
-                                        Label("", systemImage: "minus.circle")
-                                            .labelStyle(IconOnlyLabelStyle())
-                                            .foregroundColor(Color(.white))
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                        }
-                    }
-                }
-                Section(header: Text("Timers")) {
-                    ForEach(dc.timerItems) { timer in
-                        NavigationLink(value: timer) {
-                            HStack {
-                                Text(timer.name ?? "Unknown Timer")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                if (timer.isEqual(to: atcObject)) {
-                                    Button(action: {deleteObject(objectToDelete: timer) }) {
-                                        Label("", systemImage: "minus.circle")
-                                            .labelStyle(IconOnlyLabelStyle())
-                                            .foregroundColor(Color(.white))
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                        }
-                    }
-                }
-                Section(header: Text("Stopwatches")) {
-                    ForEach(dc.stopwatchItems) { stopwatch in
-                        NavigationLink(value: stopwatch) {
-                            HStack {
-                                Text(stopwatch.name ?? "Unknown Stopwatch")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                if (stopwatch.isEqual(to: atcObject)) {
-                                    Button(action: {deleteObject(objectToDelete: stopwatch) }) {
-                                        Label("", systemImage: "minus.circle")
-                                            .labelStyle(IconOnlyLabelStyle())
-                                            .foregroundColor(Color(.white))
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                            }
-                        }
-                    }
-                }
+                AlarmSectionView(dc: dc, atcObject: $atcObject)
+                TimerSectionView(dc: dc, atcObject: $atcObject)
+                StopwatchSectionView(dc: dc, atcObject: $atcObject)
             }
         } detail: {
             if $atcObject.wrappedValue != nil {
@@ -161,10 +107,6 @@ struct ParentClockView: View {
         }
     }
     
-    private func deleteObject(objectToDelete: AtcObject) {
-        atcObject = nil
-        dc.deleteManagedObject(atcObject: objectToDelete)
-    }
     
 }
 

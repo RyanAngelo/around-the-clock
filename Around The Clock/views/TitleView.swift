@@ -10,6 +10,7 @@ import SwiftUI
 struct TitleView: View {
     
     @ObservedObject var dc: DataController
+    //NSManagedObject conforms to the ObservableObject protocol
     @ObservedObject var selectedObject: AtcObject
     
     var body: some View {
