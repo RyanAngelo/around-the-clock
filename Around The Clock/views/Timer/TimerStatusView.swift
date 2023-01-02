@@ -12,13 +12,11 @@ struct TimerStatusView: View  {
     @ObservedObject var selectedManager: TimerManager
 
     var body: some View {
-        HStack {
-            StatusWheelView(clockStatus: $selectedManager.clockStatus)
-                .frame(width: 50, height: 50)
+        ZStack {
+            StatusWheelView(clockStatus: $selectedManager.clockStatus).scaledToFit()
             Text(selectedManager.clockStatus.displayValue)
                 .font(.system(size: 60).monospacedDigit())
                 .background(Color(.clear))
-                .padding()
         }
     }
 }

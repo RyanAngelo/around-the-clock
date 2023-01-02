@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct TimerSectionView: View {
+struct StopwatchSectionView: View {
     
     //Environment passed from parent
     @ObservedObject var dc: DataController
     @Binding var atcObject: AtcObject?
 
     var body: some View {
-        Section(header: Text("Timers")) {
-            ForEach(dc.timerItems) { timer in
-                NavigationLink(value: timer) {
+        Section(header: Text("Stopwatches")) {
+            ForEach(dc.stopwatchItems) { stopwatch in
+                NavigationLink(value: stopwatch) {
                     HStack {
-                        Text(timer.name ?? "Unknown Timer")
+                        Text(stopwatch.name ?? "Unknown Stopwatch")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        if (timer.isEqual(to: atcObject)) {
+                        if (stopwatch.isEqual(to: atcObject)) {
                             Button(
                             action: {
                                 self.atcObject = nil
-                                dc.deleteManagedObject(atcObject: timer)
+                                dc.deleteManagedObject(atcObject: stopwatch)
                             }){
                             Label("", systemImage: "minus.circle")
                                 .labelStyle(IconOnlyLabelStyle())

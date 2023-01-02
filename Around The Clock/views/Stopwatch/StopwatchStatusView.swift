@@ -14,16 +14,9 @@ struct StopwatchStatusView: View  {
     var body: some View {
         VStack {
             Text(selectedManager.clockStatus.displayValue )
-                .font(.system(size: 60).monospacedDigit())
+                .font(.system(size: 65).monospacedDigit())
                 .background(Color(.clear))
-                .padding()
-            Table(selectedManager.getLaps()) {
-                TableColumn("Lap Time") { lap in
-                    Text(selectedManager.stringFromTime(interval: lap.timeInterval))
-                        .foregroundColor(lap.fastest ? Color.green : lap.slowest ? Color.red : Color.primary)
-                        
-                }
-            }
+            StopwatchLapView(selectedManager: selectedManager)
         }
     }
 }

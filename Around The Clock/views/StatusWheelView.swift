@@ -27,7 +27,7 @@ struct StatusWheelView: View {
                         lineCap: .round
                     )
                 )
-                //start the status from the top
+            //start the status from the top
                 .rotationEffect(.degrees(-90))
                 .animation(.easeOut, value: $clockStatus.percentComplete.wrappedValue ?? 0.0)
         }

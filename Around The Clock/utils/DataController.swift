@@ -34,7 +34,7 @@ class DataController: ObservableObject {
     var queuedAlerts: [ActiveAlert] = []
     
     //Default update intervals, in seconds
-    private let timerUpdateInterval: TimeInterval = 0.1
+    private let timerUpdateInterval: TimeInterval = 0.2
     private let stopwatchUpdateInterval: TimeInterval = 0.101
     private let alarmUpdateInterval: TimeInterval = 1
     

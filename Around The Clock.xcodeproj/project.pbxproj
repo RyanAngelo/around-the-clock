@@ -15,6 +15,10 @@
 		9426C3EE29630097002DBBB9 /* AlarmSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3ED29630097002DBBB9 /* AlarmSectionView.swift */; };
 		9426C3F0296302B6002DBBB9 /* TimerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3EF296302B6002DBBB9 /* TimerSectionView.swift */; };
 		9426C3F229630362002DBBB9 /* StopwatchSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F129630362002DBBB9 /* StopwatchSectionView.swift */; };
+		9426C3F629632955002DBBB9 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F529632955002DBBB9 /* AlarmView.swift */; };
+		9426C3F829632B7C002DBBB9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F729632B7C002DBBB9 /* TimerView.swift */; };
+		9426C3FA29632BF7002DBBB9 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F929632BF7002DBBB9 /* StopwatchView.swift */; };
+		9426C3FF296343AB002DBBB9 /* StopwatchLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3FE296343AB002DBBB9 /* StopwatchLapView.swift */; };
 		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
 		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
@@ -67,6 +71,10 @@
 		9426C3ED29630097002DBBB9 /* AlarmSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSectionView.swift; sourceTree = "<group>"; };
 		9426C3EF296302B6002DBBB9 /* TimerSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerSectionView.swift; sourceTree = "<group>"; };
 		9426C3F129630362002DBBB9 /* StopwatchSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchSectionView.swift; sourceTree = "<group>"; };
+		9426C3F529632955002DBBB9 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
+		9426C3F729632B7C002DBBB9 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		9426C3F929632BF7002DBBB9 /* StopwatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
+		9426C3FE296343AB002DBBB9 /* StopwatchLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchLapView.swift; sourceTree = "<group>"; };
 		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
@@ -122,6 +130,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9426C3FB29632DF1002DBBB9 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				9426C3F529632955002DBBB9 /* AlarmView.swift */,
+				9426C3ED29630097002DBBB9 /* AlarmSectionView.swift */,
+				94E4B92E292E6AFA00B71C05 /* AlarmStatusView.swift */,
+				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		9426C3FC29632DF8002DBBB9 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				9426C3F729632B7C002DBBB9 /* TimerView.swift */,
+				9426C3EF296302B6002DBBB9 /* TimerSectionView.swift */,
+				94532AFA293CED72008845FB /* TimerStatusView.swift */,
+				94532AFC293CF66E008845FB /* TimerConfigView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		9426C3FD29632DFE002DBBB9 /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				9426C3F929632BF7002DBBB9 /* StopwatchView.swift */,
+				9426C3F129630362002DBBB9 /* StopwatchSectionView.swift */,
+				94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */,
+				9426C3FE296343AB002DBBB9 /* StopwatchLapView.swift */,
+				94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */,
+			);
+			path = Stopwatch;
+			sourceTree = "<group>";
+		};
 		9447959129563D6A0001D404 /* audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,17 +250,11 @@
 			isa = PBXGroup;
 			children = (
 				94DE604C28708F410002795C /* ParentClockView.swift */,
-				9426C3ED29630097002DBBB9 /* AlarmSectionView.swift */,
-				9426C3EF296302B6002DBBB9 /* TimerSectionView.swift */,
-				9426C3F129630362002DBBB9 /* StopwatchSectionView.swift */,
-				94E4B92E292E6AFA00B71C05 /* AlarmStatusView.swift */,
-				94041D98295B2DC80021BBC0 /* StopwatchStatusView.swift */,
-				94532AFA293CED72008845FB /* TimerStatusView.swift */,
 				94532AF6293C01D9008845FB /* TitleView.swift */,
-				944C85B729324B7400AC2686 /* AlarmConfigView.swift */,
-				94041D9A295B2EB80021BBC0 /* StopwatchConfigView.swift */,
-				94532AFC293CF66E008845FB /* TimerConfigView.swift */,
 				941A6A66296063770000D97C /* StatusWheelView.swift */,
+				9426C3FB29632DF1002DBBB9 /* Alarm */,
+				9426C3FC29632DF8002DBBB9 /* Timer */,
+				9426C3FD29632DFE002DBBB9 /* Stopwatch */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -382,8 +418,10 @@
 				94532AFD293CF66E008845FB /* TimerConfigView.swift in Sources */,
 				9426C3F0296302B6002DBBB9 /* TimerSectionView.swift in Sources */,
 				944C85B829324B7400AC2686 /* AlarmConfigView.swift in Sources */,
+				9426C3F629632955002DBBB9 /* AlarmView.swift in Sources */,
 				9426C3EE29630097002DBBB9 /* AlarmSectionView.swift in Sources */,
 				94041D99295B2DC80021BBC0 /* StopwatchStatusView.swift in Sources */,
+				9426C3F829632B7C002DBBB9 /* TimerView.swift in Sources */,
 				94532AF7293C01D9008845FB /* TitleView.swift in Sources */,
 				94E4B92F292E6AFA00B71C05 /* AlarmStatusView.swift in Sources */,
 				94532AFB293CED72008845FB /* TimerStatusView.swift in Sources */,
@@ -398,8 +436,10 @@
 				94E4B924292D0F0700B71C05 /* DataController.swift in Sources */,
 				9426C3F229630362002DBBB9 /* StopwatchSectionView.swift in Sources */,
 				94407636295762AF00CC7FBF /* Extensions.swift in Sources */,
+				9426C3FF296343AB002DBBB9 /* StopwatchLapView.swift in Sources */,
 				94041D97295B27140021BBC0 /* StopwatchManager.swift in Sources */,
 				94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */,
+				9426C3FA29632BF7002DBBB9 /* StopwatchView.swift in Sources */,
 				944C85BD29326F5A00AC2686 /* AudioController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

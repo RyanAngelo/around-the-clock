@@ -17,23 +17,24 @@ struct TimerConfigView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Picker("Hours", selection: $selectedManager.hours ) {
+            VStack {
+                Picker("Hours".padding(toLength: 9, withPad: " ", startingAt: 0), selection: $selectedManager.hours ) {
                     ForEach(hours, id: \.self) { hour in
                         Text(hour.description)
                     }
                 }
-                Picker("Minutes", selection: $selectedManager.minutes) {
+                Picker("Minutes".padding(toLength: 9, withPad: " ", startingAt: 0), selection: $selectedManager.minutes) {
                     ForEach(minutes, id: \.self) { minute in
                         Text(minute.description)
                     }
                 }
-                Picker("Seconds", selection: $selectedManager.seconds) {
+                Picker("Seconds".padding(toLength: 9, withPad: " ", startingAt: 0), selection: $selectedManager.seconds) {
                     ForEach(seconds, id: \.self) { second in
                         Text(second.description)
                     }
                 }
             }
+                .monospaced()
             .onChange(of: selectedManager.hours, perform: { (value) in
                 selectedManager.setManagedObjectTime()
             })
@@ -47,48 +48,47 @@ struct TimerConfigView: View {
             Picker("Audio:", selection: $selectedManager.managedObject.audioFile.toUnwrapped(defaultValue: AudioFiles.SimpleBells.rawValue)) {
                 ForEach(AudioFiles.allCases) { audio in
                     Text(audio.rawValue)
-                    .tag(audio.rawValue)
+                        .tag(audio.rawValue)
                 }
                 .pickerStyle(.menu)
-                .scaledToFit()
             }
             .onChange(of: selectedManager.managedObject.audioFile, perform: { (value) in
                 selectedManager.audioHasChanged()
             })
             .help("Select the audio to play when the alarm goes off")
             .padding()
-        }
-        HStack {
-            if (selectedManager.managedObject.state != ClockState.ACTIVE.rawValue) {
-                Button(action: start) {
-                    Text("Start")
-                        .padding()
-                        .frame(width: 70, height: 30, alignment: .center)
-                        .background(RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.green))
-                        .font(.system(.title3))
-                }.buttonStyle(PlainButtonStyle())
-            } else {
-                Button(role: .cancel, action: stop) {
-                    Text("Pause")
+            .monospaced()
+            HStack {
+                if (selectedManager.managedObject.state != ClockState.ACTIVE.rawValue) {
+                    Button(action: start) {
+                        Text("Start")
+                            .padding()
+                            .frame(width: 70, height: 30, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.green))
+                            .font(.system(.title3))
+                    }.buttonStyle(PlainButtonStyle())
+                } else {
+                    Button(role: .cancel, action: stop) {
+                        Text("Pause")
+                            .padding()
+                            .frame(width: 75, height: 30, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.red))
+                            .font(.system(.title3))
+                    }.buttonStyle(PlainButtonStyle())
+                }
+                Button(role: .cancel, action: reset) {
+                    Text("Reset")
                         .padding()
                         .frame(width: 75, height: 30, alignment: .center)
                         .background(RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.red))
+                            .fill(Color.yellow))
                         .font(.system(.title3))
                 }.buttonStyle(PlainButtonStyle())
             }
-            Button(role: .cancel, action: reset) {
-                Text("Reset")
-                    .padding()
-                    .frame(width: 75, height: 30, alignment: .center)
-                    .background(RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.yellow))
-                    .font(.system(.title3))
-            }.buttonStyle(PlainButtonStyle())
+            .padding()
         }
-        .padding()
-        
     }
     
     func start() {

@@ -17,7 +17,11 @@ struct ParentClockView: View {
 
     //State representing currently selected item identifier
     @State private var atcObject: AtcObject?
-    @State private var selectedObjectId: ObjectIdentifier?
+    
+    init(dc: DataController, atcObject: AtcObject?) {
+        self.dc = dc
+        self._atcObject = State(initialValue: atcObject ?? nil)
+    }
         
     var body: some View {
         NavigationSplitView {
@@ -28,20 +32,21 @@ struct ParentClockView: View {
             }
         } detail: {
             if $atcObject.wrappedValue != nil {
-                TitleView(dc: dc, selectedObject: atcObject!)
-                if atcObject! is AtcAlarm {
-                    AlarmStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
-                    AlarmConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! AlarmManager)
-                } else if atcObject! is AtcTimer {
-                    TimerStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
-                    TimerConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! TimerManager)
-                } else if atcObject! is AtcStopwatch {
-                    StopwatchStatusView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
-                    StopwatchConfigView(selectedManager: dc.getManager(uniqueIdentifier: (atcObject?.uniqueId)!) as! StopwatchManager)
+                VStack {
+                    TitleView(dc: dc, selectedObject: atcObject!)
+                    Spacer()
+                    if atcObject! is AtcAlarm {
+                        AlarmView(dc: dc, atcObject: atcObject!)
+                    } else if atcObject! is AtcTimer {
+                        TimerView(dc: dc, atcObject: atcObject!)
+                    } else if atcObject! is AtcStopwatch {
+                        StopwatchView(dc: dc, atcObject: atcObject!)
+                    }
                 }
             } else {
                 Text("Select or create an item")
             }
+                
         }
         // There is a limitation in SwiftUI preview that two alerts can't be present
         // in the same level of the view hierarchy, so we assign them to empty Text.
@@ -120,6 +125,8 @@ private let itemFormatter: DateFormatter = {
 struct ParentClockView_Previews: PreviewProvider {
     static var previews: some View {
         let dc: DataController = DataController.preview
-        ParentClockView(dc: dc)
+        let alarmObject = dc.alarmItems[0]
+        let pcw = ParentClockView(dc: dc, atcObject: alarmObject)
+        return pcw
     }
 }

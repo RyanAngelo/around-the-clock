@@ -13,7 +13,7 @@ struct AlarmStatusView: View  {
     
     var body: some View {
         Text(selectedManager.clockStatus.displayValue )
-            .font(.system(size: 60).monospacedDigit())
+            .font(.system(size: 120).monospacedDigit())
             .background(Color(.clear))
             .padding()
     }

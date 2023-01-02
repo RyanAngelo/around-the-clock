@@ -38,6 +38,7 @@ struct AlarmConfigView: View {
                 })
                 .help("Select the audio to play when the alarm goes off")
             }
+            .monospaced()
             .padding()
         }
         HStack {
