@@ -19,6 +19,7 @@
 		9426C3F829632B7C002DBBB9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F729632B7C002DBBB9 /* TimerView.swift */; };
 		9426C3FA29632BF7002DBBB9 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3F929632BF7002DBBB9 /* StopwatchView.swift */; };
 		9426C3FF296343AB002DBBB9 /* StopwatchLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426C3FE296343AB002DBBB9 /* StopwatchLapView.swift */; };
+		942ACDEC2973293B009BF3F4 /* Simple-Beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 942ACDEB2973293B009BF3F4 /* Simple-Beep.mp3 */; };
 		94407636295762AF00CC7FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407635295762AF00CC7FBF /* Extensions.swift */; };
 		94407638295766C200CC7FBF /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94407637295766C200CC7FBF /* ActiveAlert.swift */; };
 		9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9447959229563DBB0001D404 /* Simple-Bells.mp3 */; };
@@ -75,6 +76,7 @@
 		9426C3F729632B7C002DBBB9 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		9426C3F929632BF7002DBBB9 /* StopwatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		9426C3FE296343AB002DBBB9 /* StopwatchLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchLapView.swift; sourceTree = "<group>"; };
+		942ACDEB2973293B009BF3F4 /* Simple-Beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Beep.mp3"; sourceTree = "<group>"; };
 		94407635295762AF00CC7FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94407637295766C200CC7FBF /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		9447959229563DBB0001D404 /* Simple-Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Bells.mp3"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				9447959229563DBB0001D404 /* Simple-Bells.mp3 */,
 				9426C3EB296206EE002DBBB9 /* Simple-Horn.mp3 */,
+				942ACDEB2973293B009BF3F4 /* Simple-Beep.mp3 */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				94DE605228708F420002795C /* Preview Assets.xcassets in Resources */,
 				94DE604F28708F420002795C /* Assets.xcassets in Resources */,
 				9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */,
+				942ACDEC2973293B009BF3F4 /* Simple-Beep.mp3 in Resources */,
 				9426C3EC296206EE002DBBB9 /* Simple-Horn.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

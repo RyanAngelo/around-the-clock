@@ -12,6 +12,7 @@ enum AudioFiles: String, CaseIterable, Identifiable {
     case None = "None"
     case SimpleBells = "Simple-Bells"
     case SimpleHorn = "Simple-Horn"
+    case SimpleBeep = "Simple-Beep"
     var id: RawValue { rawValue }
 }
 

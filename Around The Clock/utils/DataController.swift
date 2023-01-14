@@ -27,6 +27,7 @@ class DataController: ObservableObject {
     @Published var timerItems: [AtcTimer] = []
     @Published var stopwatchItems: [AtcStopwatch] = []
     
+    //Alerts for when an item completes
     @Published var activeAlert1: ActiveAlert?
     @Published var alert1Present: Bool = false
     @Published var activeAlert2: ActiveAlert?
