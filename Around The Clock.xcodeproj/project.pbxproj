@@ -43,7 +43,6 @@
 		94E4B929292D5CDD00B71C05 /* AtcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B928292D5CDD00B71C05 /* AtcManager.swift */; };
 		94E4B92D292E649F00B71C05 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92C292E649F00B71C05 /* TimerManager.swift */; };
 		94E4B92F292E6AFA00B71C05 /* AlarmStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B92E292E6AFA00B71C05 /* AlarmStatusView.swift */; };
-		94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B942292FB94D00B71C05 /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +103,6 @@
 		94E4B928292D5CDD00B71C05 /* AtcManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtcManager.swift; sourceTree = "<group>"; };
 		94E4B92C292E649F00B71C05 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		94E4B92E292E6AFA00B71C05 /* AlarmStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStatusView.swift; sourceTree = "<group>"; };
-		94E4B942292FB94D00B71C05 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Persistence.swift; path = "Around The Clock/Persistence.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +187,6 @@
 		94DE603E28708F410002795C = {
 			isa = PBXGroup;
 			children = (
-				94E4B942292FB94D00B71C05 /* Persistence.swift */,
 				94DE604928708F410002795C /* Around The Clock */,
 				94DE606028708F430002795C /* Around The ClockTests */,
 				94DE606A28708F430002795C /* Around The ClockUITests */,
@@ -436,7 +433,6 @@
 				94DE604D28708F410002795C /* ParentClockView.swift in Sources */,
 				94532AF9293CD4FA008845FB /* ClockStatus.swift in Sources */,
 				94DE604B28708F410002795C /* Around_The_ClockApp.swift in Sources */,
-				94E4B943292FB94D00B71C05 /* Persistence.swift in Sources */,
 				94E4B924292D0F0700B71C05 /* DataController.swift in Sources */,
 				9426C3F229630362002DBBB9 /* StopwatchSectionView.swift in Sources */,
 				94407636295762AF00CC7FBF /* Extensions.swift in Sources */,

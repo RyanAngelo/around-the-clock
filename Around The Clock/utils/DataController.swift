@@ -310,26 +310,24 @@ class DataController: ObservableObject {
      call that they are assigned in their button action.
      See ParentClockView .alert
      */
-    public func endAlert1(activeAlert: ActiveAlert) {
+    public func endAlert(alertNumber: Int, activeAlert: ActiveAlert) {
         let manager: any AtcManager = getManager(uniqueIdentifier: activeAlert.associatedObject.uniqueId!)
         manager.endActivation()
-        activeAlert1 = nil
-        if (activeAlert2 == nil) {
-            if (!queuedAlerts.isEmpty) {
-                activeAlert2 = queuedAlerts.removeFirst()
-                alert2Present = true
+        if (alertNumber == 1) {
+            activeAlert1 = nil
+            if (activeAlert2 == nil) {
+                if (!queuedAlerts.isEmpty) {
+                    activeAlert2 = queuedAlerts.removeFirst()
+                    alert2Present = true
+                }
             }
-        }
-    }
-    
-    public func endAlert2(activeAlert: ActiveAlert) {
-        let manager: any AtcManager = getManager(uniqueIdentifier: activeAlert.associatedObject.uniqueId!)
-        manager.endActivation()
-        activeAlert2 = nil
-        if (activeAlert1 == nil) {
-            if (!queuedAlerts.isEmpty) {
-                activeAlert1 = queuedAlerts.removeFirst()
-                alert1Present = true
+        } else {
+            activeAlert2 = nil
+            if (activeAlert1 == nil) {
+                if (!queuedAlerts.isEmpty) {
+                    activeAlert1 = queuedAlerts.removeFirst()
+                    alert1Present = true
+                }
             }
         }
     }

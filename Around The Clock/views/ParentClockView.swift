@@ -58,7 +58,7 @@ struct ParentClockView: View {
         ) { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
             Button() {
-                dc.endAlert1(activeAlert: dc.activeAlert1!)
+                dc.endAlert(alertNumber: 1, activeAlert: dc.activeAlert1!)
             } label: {
                 Text("End")
             }
@@ -73,7 +73,7 @@ struct ParentClockView: View {
         ) { activeAlert in
             Text(activeAlert.associatedObject.name! + " has completed.")
             Button() {
-                dc.endAlert2(activeAlert: dc.activeAlert2!)
+                dc.endAlert(alertNumber: 2, activeAlert: dc.activeAlert2!)
             } label: {
                 Text("End")
             }
