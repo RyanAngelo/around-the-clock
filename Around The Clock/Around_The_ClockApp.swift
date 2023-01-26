@@ -17,5 +17,18 @@ struct Around_The_ClockApp: App {
             ParentClockView(dc: self.dc, atcObject: nil)
                 .environment(\.managedObjectContext, dc.container.viewContext)
         }
+        .commands {
+            CommandMenu("Add Item") {
+                Button("Add Alarm") {
+                    dc.addAlarm()
+                }
+                Button("Add Timer") {
+                    dc.addTimer()
+                }
+                Button("Add Stopwatch") {
+                    dc.addStopwatch()
+                }
+            }
+        }
     }
 }

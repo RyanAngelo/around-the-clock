@@ -63,7 +63,7 @@ struct AlarmConfigView: View {
             }
         }
         .padding()
-        
+        .help(Text("Configure an alarm by settings the desired completion date and time."))
     }
     
     func start() {
