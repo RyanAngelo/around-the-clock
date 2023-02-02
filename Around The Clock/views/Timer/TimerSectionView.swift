@@ -16,25 +16,7 @@ struct TimerSectionView: View {
     var body: some View {
         Section(header: Text("Timers")) {
             ForEach(dc.timerItems) { timer in
-                NavigationLink(value: timer) {
-                    HStack {
-                        Text(timer.name ?? "Unknown Timer")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if (timer.isEqual(to: atcObject)) {
-                            Button(
-                            action: {
-                                self.atcObject = nil
-                                dc.deleteManagedObject(atcObject: timer)
-                            }){
-                            Label("", systemImage: "minus.circle")
-                                .labelStyle(IconOnlyLabelStyle())
-                                .foregroundColor(Color(.white))
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                    }
-                }
+                SectionLinkView(activeAtcObject: $atcObject, dc: dc, selectedAtcObject: timer)
             }
         }
     }

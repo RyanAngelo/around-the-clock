@@ -221,12 +221,11 @@ class DataController: ObservableObject {
     }
     
     public func setManagerState(atcObject: AtcObject, newState: ClockState) {
-        atcObject.state = newState.rawValue
         if let co: any AtcManager = managers[atcObject.uniqueId!] {
             if (newState == ClockState.ACTIVE) {
-                co.start()
+                co.setManagedObjectState(newState: ClockState.ACTIVE)
             } else if (newState == ClockState.STOPPED || newState == ClockState.PAUSED) {
-                co.stop()
+                co.setManagedObjectState(newState: ClockState.STOPPED)
             }
             atcObject.state = newState.rawValue
         } else {

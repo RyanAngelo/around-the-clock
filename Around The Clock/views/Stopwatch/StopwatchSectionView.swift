@@ -16,25 +16,7 @@ struct StopwatchSectionView: View {
     var body: some View {
         Section(header: Text("Stopwatches")) {
             ForEach(dc.stopwatchItems) { stopwatch in
-                NavigationLink(value: stopwatch) {
-                    HStack {
-                        Text(stopwatch.name ?? "Unknown Stopwatch")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if (stopwatch.isEqual(to: atcObject)) {
-                            Button(
-                            action: {
-                                self.atcObject = nil
-                                dc.deleteManagedObject(atcObject: stopwatch)
-                            }){
-                            Label("", systemImage: "minus.circle")
-                                .labelStyle(IconOnlyLabelStyle())
-                                .foregroundColor(Color(.white))
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                    }
-                }
+                SectionLinkView(activeAtcObject: $atcObject, dc: dc, selectedAtcObject: stopwatch)
             }
         }
     }

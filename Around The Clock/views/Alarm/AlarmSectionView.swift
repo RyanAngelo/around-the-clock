@@ -16,25 +16,7 @@ struct AlarmSectionView: View {
     var body: some View {
         Section(header: Text("Alarms")) {
             ForEach(dc.alarmItems) { alarm in
-                NavigationLink(value: alarm) {
-                    HStack {
-                        Text(alarm.name ?? "Unknown Alarm")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if (alarm.isEqual(to: atcObject)) {
-                            Button(
-                            action: {
-                                self.atcObject = nil
-                                dc.deleteManagedObject(atcObject: alarm)
-                            }){
-                            Label("", systemImage: "minus.circle")
-                                .labelStyle(IconOnlyLabelStyle())
-                                .foregroundColor(Color(.white))
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                    }
-                }
+                SectionLinkView(activeAtcObject: $atcObject, dc: dc, selectedAtcObject: alarm)
             }
         }
     }

@@ -20,6 +20,7 @@ struct ParentClockView: View {
     
     init(dc: DataController, atcObject: AtcObject?) {
         self.dc = dc
+        //atcObject is needed for previews
         self._atcObject = State(initialValue: atcObject ?? nil)
     }
         
