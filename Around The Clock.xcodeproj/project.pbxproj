@@ -38,6 +38,7 @@
 		94DE606C28708F430002795C /* Around_The_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606B28708F430002795C /* Around_The_ClockUITests.swift */; };
 		94DE606E28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */; };
 		94E3DB6E298C1EA900DAB72D /* SectionLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3DB6D298C1EA900DAB72D /* SectionLinkView.swift */; };
+		94E3DB70298D542A00DAB72D /* Simple-Dark-Chords.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 94E3DB6F298D542A00DAB72D /* Simple-Dark-Chords.mp3 */; };
 		94E4B921292D0A7600B71C05 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B920292D0A7600B71C05 /* AlarmManager.swift */; };
 		94E4B924292D0F0700B71C05 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B923292D0F0700B71C05 /* DataController.swift */; };
 		94E4B927292D4F7700B71C05 /* ClockState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E4B926292D4F7700B71C05 /* ClockState.swift */; };
@@ -99,6 +100,7 @@
 		94DE606B28708F430002795C /* Around_The_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITests.swift; sourceTree = "<group>"; };
 		94DE606D28708F430002795C /* Around_The_ClockUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around_The_ClockUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94E3DB6D298C1EA900DAB72D /* SectionLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionLinkView.swift; sourceTree = "<group>"; };
+		94E3DB6F298D542A00DAB72D /* Simple-Dark-Chords.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Simple-Dark-Chords.mp3"; sourceTree = "<group>"; };
 		94E4B920292D0A7600B71C05 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		94E4B923292D0F0700B71C05 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		94E4B926292D4F7700B71C05 /* ClockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockState.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				9447959229563DBB0001D404 /* Simple-Bells.mp3 */,
 				9426C3EB296206EE002DBBB9 /* Simple-Horn.mp3 */,
 				942ACDEB2973293B009BF3F4 /* Simple-Beep.mp3 */,
+				94E3DB6F298D542A00DAB72D /* Simple-Dark-Chords.mp3 */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				9447959329563DBB0001D404 /* Simple-Bells.mp3 in Resources */,
 				942ACDEC2973293B009BF3F4 /* Simple-Beep.mp3 in Resources */,
 				9426C3EC296206EE002DBBB9 /* Simple-Horn.mp3 in Resources */,
+				94E3DB70298D542A00DAB72D /* Simple-Dark-Chords.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
