@@ -114,3 +114,22 @@ xcuserdata/
 *.xcworkspace/*
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# Sensitive Information
+*.pem
+*.cer
+*.p12
+*.key
+*.mobileprovision
+*.provisionprofile
+*.env
+*.env.*
+credentials.json
+google-services.json
+GoogleService-Info.plist
+firebase_credentials.json
+secret.properties
+local.properties
+keystore.properties
+*.keystore
+*.jks
